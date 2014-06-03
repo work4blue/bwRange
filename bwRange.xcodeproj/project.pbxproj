@@ -21,6 +21,8 @@
 		8509F8FF193A53E20021EC57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8509F8E1193A53E20021EC57 /* UIKit.framework */; };
 		8509F907193A53E20021EC57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8509F905193A53E20021EC57 /* InfoPlist.strings */; };
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
+		85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804711193CF6EA004F73CB /* WelcomeViewController.m */; };
+		85804715193CF752004F73CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804714193CF752004F73CB /* Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,12 @@
 		8509F904193A53E20021EC57 /* bwRangeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bwRangeTests-Info.plist"; sourceTree = "<group>"; };
 		8509F906193A53E20021EC57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8509F908193A53E20021EC57 /* bwRangeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bwRangeTests.m; sourceTree = "<group>"; };
+		85804710193CF6EA004F73CB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Sources/WelcomeViewController.h; sourceTree = "<group>"; };
+		85804711193CF6EA004F73CB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Sources/WelcomeViewController.m; sourceTree = "<group>"; };
+		85804713193CF752004F73CB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Sources/Utils.h; sourceTree = "<group>"; };
+		85804714193CF752004F73CB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Sources/Utils.m; sourceTree = "<group>"; };
+		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
+		85804718193DB427004F73CB /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,12 @@
 				8509F8F3193A53E20021EC57 /* ViewController.m */,
 				8509F8F5193A53E20021EC57 /* Images.xcassets */,
 				8509F8E4193A53E20021EC57 /* Supporting Files */,
+				85804710193CF6EA004F73CB /* WelcomeViewController.h */,
+				85804711193CF6EA004F73CB /* WelcomeViewController.m */,
+				85804713193CF752004F73CB /* Utils.h */,
+				85804714193CF752004F73CB /* Utils.m */,
+				85804716193CFCA2004F73CB /* AppDefine.h */,
+				85804718193DB427004F73CB /* Common.h */,
 			);
 			path = bwRange;
 			sourceTree = "<group>";
@@ -211,6 +225,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 8509F8D1193A53E20021EC57;
 			productRefGroup = 8509F8DB193A53E20021EC57 /* Products */;
@@ -250,7 +265,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8509F8F4193A53E20021EC57 /* ViewController.m in Sources */,
+				85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
+				85804715193CF752004F73CB /* Utils.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +473,7 @@
 				8509F90E193A53E20021EC57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8509F90F193A53E20021EC57 /* Build configuration list for PBXNativeTarget "bwRangeTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +482,7 @@
 				8509F911193A53E20021EC57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
