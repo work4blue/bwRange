@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define FINDER_TYPE_BAG    (1)
+#define FINDER_TYPE_KEYS   (2)
+#define FINDER_TYPE_LAPTOP (3)
+#define FINDER_TYPE_WALLET   (4)
+
 @interface Utils : NSObject
 
 #define IOS7_OR_LATER ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
@@ -17,6 +22,14 @@
 
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+
++ (UITableViewCell *)getCellBySender:(UIView *)view;
+
++ (UIImage *)imageWithFinderType:(int)type;
+
++ (NSString  *)stringWithFinderType:(int)type;
+
++ (NSString  *)stringWithFinderDistance:(int)type;
 
 @end
 

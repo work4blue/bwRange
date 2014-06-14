@@ -21,8 +21,18 @@
 		8509F8FF193A53E20021EC57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8509F8E1193A53E20021EC57 /* UIKit.framework */; };
 		8509F907193A53E20021EC57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8509F905193A53E20021EC57 /* InfoPlist.strings */; };
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
+		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
+		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
+		8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */; };
 		85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804711193CF6EA004F73CB /* WelcomeViewController.m */; };
 		85804715193CF752004F73CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804714193CF752004F73CB /* Utils.m */; };
+		85EE291E19487BA90085A6EB /* NewDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE291D19487BA90085A6EB /* NewDeviceViewController.m */; };
+		85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE292019495DDD0085A6EB /* FinderListViewController.m */; };
+		85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE29241949773C0085A6EB /* UIView+Toast.m */; };
+		85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AAB3194B627800F0573A /* SingleSelectViewController.m */; };
+		85F6AABA194B6F2A00F0573A /* DeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */; };
+		85F6AAC0194C1DBC00F0573A /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */; };
+		85F6AAC1194C1DBC00F0573A /* LeveyPopListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +65,30 @@
 		8509F904193A53E20021EC57 /* bwRangeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bwRangeTests-Info.plist"; sourceTree = "<group>"; };
 		8509F906193A53E20021EC57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8509F908193A53E20021EC57 /* bwRangeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bwRangeTests.m; sourceTree = "<group>"; };
+		8533AD40193E4C8500461C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/3.5.storyboard; sourceTree = "<group>"; };
+		8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceListTableViewController.h; path = Sources/DeviceListTableViewController.h; sourceTree = "<group>"; };
+		8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceListTableViewController.m; path = Sources/DeviceListTableViewController.m; sourceTree = "<group>"; };
 		85804710193CF6EA004F73CB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Sources/WelcomeViewController.h; sourceTree = "<group>"; };
 		85804711193CF6EA004F73CB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Sources/WelcomeViewController.m; sourceTree = "<group>"; };
 		85804713193CF752004F73CB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Sources/Utils.h; sourceTree = "<group>"; };
 		85804714193CF752004F73CB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Sources/Utils.m; sourceTree = "<group>"; };
 		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
 		85804718193DB427004F73CB /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		85EE291C19487BA90085A6EB /* NewDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDeviceViewController.h; path = Sources/NewDeviceViewController.h; sourceTree = "<group>"; };
+		85EE291D19487BA90085A6EB /* NewDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDeviceViewController.m; path = Sources/NewDeviceViewController.m; sourceTree = "<group>"; };
+		85EE291F19495DDD0085A6EB /* FinderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderListViewController.h; path = Sources/FinderListViewController.h; sourceTree = "<group>"; };
+		85EE292019495DDD0085A6EB /* FinderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderListViewController.m; path = Sources/FinderListViewController.m; sourceTree = "<group>"; };
+		85EE29231949773C0085A6EB /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		85EE29241949773C0085A6EB /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		85F6AAB2194B627800F0573A /* SingleSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleSelectViewController.h; path = Sources/SingleSelectViewController.h; sourceTree = "<group>"; };
+		85F6AAB3194B627800F0573A /* SingleSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleSelectViewController.m; path = Sources/SingleSelectViewController.m; sourceTree = "<group>"; };
+		85F6AAB8194B6F2A00F0573A /* DeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceSettingViewController.h; path = Sources/DeviceSettingViewController.h; sourceTree = "<group>"; };
+		85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceSettingViewController.m; path = Sources/DeviceSettingViewController.m; sourceTree = "<group>"; };
+		85F6AABC194C1DBC00F0573A /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
+		85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
+		85F6AABE194C1DBC00F0573A /* LeveyPopListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListViewCell.h; sourceTree = "<group>"; };
+		85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */,
 				8509F8E0193A53E20021EC57 /* CoreGraphics.framework in Frameworks */,
 				8509F8E2193A53E20021EC57 /* UIKit.framework in Frameworks */,
 				8509F8DE193A53E20021EC57 /* Foundation.framework in Frameworks */,
@@ -109,6 +138,7 @@
 		8509F8DC193A53E20021EC57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */,
 				8509F8DD193A53E20021EC57 /* Foundation.framework */,
 				8509F8DF193A53E20021EC57 /* CoreGraphics.framework */,
 				8509F8E1193A53E20021EC57 /* UIKit.framework */,
@@ -120,6 +150,9 @@
 		8509F8E3193A53E20021EC57 /* bwRange */ = {
 			isa = PBXGroup;
 			children = (
+				85EE2929194979640085A6EB /* Resources */,
+				85EE2926194979340085A6EB /* 3rd */,
+				8533AD3F193E4C8500461C4A /* 3.5.storyboard */,
 				8509F8EC193A53E20021EC57 /* AppDelegate.h */,
 				8509F8ED193A53E20021EC57 /* AppDelegate.m */,
 				8509F8EF193A53E20021EC57 /* Main.storyboard */,
@@ -133,6 +166,16 @@
 				85804714193CF752004F73CB /* Utils.m */,
 				85804716193CFCA2004F73CB /* AppDefine.h */,
 				85804718193DB427004F73CB /* Common.h */,
+				8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */,
+				8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */,
+				85EE291C19487BA90085A6EB /* NewDeviceViewController.h */,
+				85EE291D19487BA90085A6EB /* NewDeviceViewController.m */,
+				85EE291F19495DDD0085A6EB /* FinderListViewController.h */,
+				85EE292019495DDD0085A6EB /* FinderListViewController.m */,
+				85F6AAB2194B627800F0573A /* SingleSelectViewController.h */,
+				85F6AAB3194B627800F0573A /* SingleSelectViewController.m */,
+				85F6AAB8194B6F2A00F0573A /* DeviceSettingViewController.h */,
+				85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */,
 			);
 			path = bwRange;
 			sourceTree = "<group>";
@@ -164,6 +207,44 @@
 				8509F905193A53E20021EC57 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		85EE29221949773C0085A6EB /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				85EE29231949773C0085A6EB /* UIView+Toast.h */,
+				85EE29241949773C0085A6EB /* UIView+Toast.m */,
+			);
+			name = Toast;
+			path = 3rd/Toast;
+			sourceTree = "<group>";
+		};
+		85EE2926194979340085A6EB /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				85F6AABB194C1DBC00F0573A /* LeveyPopListView */,
+				85EE29221949773C0085A6EB /* Toast */,
+			);
+			name = 3rd;
+			sourceTree = "<group>";
+		};
+		85EE2929194979640085A6EB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		85F6AABB194C1DBC00F0573A /* LeveyPopListView */ = {
+			isa = PBXGroup;
+			children = (
+				85F6AABC194C1DBC00F0573A /* LeveyPopListView.h */,
+				85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */,
+				85F6AABE194C1DBC00F0573A /* LeveyPopListViewCell.h */,
+				85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */,
+			);
+			name = LeveyPopListView;
+			path = 3rd/LeveyPopListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +294,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = " Andrew Huang";
 				TargetAttributes = {
+					8509F8D9193A53E20021EC57 = {
+						DevelopmentTeam = S85DP6P2DG;
+					};
 					8509F8FA193A53E20021EC57 = {
 						TestTargetID = 8509F8D9193A53E20021EC57;
 					};
@@ -246,6 +330,7 @@
 				8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,
+				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,11 +349,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */,
+				85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */,
+				85F6AABA194B6F2A00F0573A /* DeviceSettingViewController.m in Sources */,
+				85EE291E19487BA90085A6EB /* NewDeviceViewController.m in Sources */,
 				8509F8F4193A53E20021EC57 /* ViewController.m in Sources */,
+				85F6AAC1194C1DBC00F0573A /* LeveyPopListViewCell.m in Sources */,
+				8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */,
 				85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
+				85F6AAC0194C1DBC00F0573A /* LeveyPopListView.m in Sources */,
 				85804715193CF752004F73CB /* Utils.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
+				85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +406,14 @@
 				8509F906193A53E20021EC57 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8533AD3F193E4C8500461C4A /* 3.5.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8533AD40193E4C8500461C4A /* Base */,
+			);
+			name = 3.5.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -393,10 +494,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bwRange/bwRange-Prefix.pch";
 				INFOPLIST_FILE = "bwRange/bwRange-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -406,10 +510,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bwRange/bwRange-Prefix.pch";
 				INFOPLIST_FILE = "bwRange/bwRange-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

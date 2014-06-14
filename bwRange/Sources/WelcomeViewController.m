@@ -8,6 +8,7 @@
 
 #import "WelcomeViewController.h"
 #import "Utils.h"
+#import "UIView+Toast.h"
 
 @interface WelcomeViewController ()
 
@@ -24,11 +25,22 @@
     return self;
 }
 
+//- (void)test{
+//    
+//    
+//    [self.view makeToast:@"bwRange 标签 钥匙 发出哔的声音."
+//                duration:3.0
+//                position:@"bottom"
+//                   image:[UIImage imageNamed:@"leash_default_icon_bg"]];
+//}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+ //   [self test ];
     
 }
 

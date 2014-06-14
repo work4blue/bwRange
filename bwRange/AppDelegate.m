@@ -8,12 +8,27 @@
 
 #import "AppDelegate.h"
 
+#import "Common.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    UIStoryboard *mainStoryboard = nil;
+    if (SCREEN_IS_RETIAN4){
+        mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    }
+    else{
+        mainStoryboard = [UIStoryboard storyboardWithName:@"3.5" bundle:nil];
+    }
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
+    
     return YES;
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
