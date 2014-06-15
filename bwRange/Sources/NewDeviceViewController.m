@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "SingleSelectViewController.h"
 #import "LeveyPopListView.h"
-#import "Utils.h"
+#import "BleFinder.h"
 
 
 @interface NewDeviceViewController ()
@@ -88,7 +88,7 @@
       
         
         UILabel *nameView = (UILabel *)  [ self.tableView viewWithTag:302];
-        nameView.text =[ Utils stringWithFinderDistance:anIndex ];
+        nameView.text =[ BleFinder stringWithFinderDistance:anIndex ];
     }];
     lplv.delegate = self;
     
@@ -115,10 +115,10 @@
         
          UIImageView *imageView = (UIImageView *)  [ self.tableView viewWithTag:201];
         
-        imageView.image = [ Utils imageWithFinderType:anIndex ];
+        imageView.image = [ BleFinder imageWithFinderType:anIndex ];
         
          UILabel *nameView = (UILabel *)  [ self.tableView viewWithTag:202];
-        nameView.text =[ Utils stringWithFinderType:anIndex ];
+        nameView.text =[ BleFinder stringWithFinderType:anIndex ];
     }];
        lplv.delegate = self;
     

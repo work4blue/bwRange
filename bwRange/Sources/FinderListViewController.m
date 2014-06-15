@@ -40,6 +40,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    
+    self.bleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    
     self.nFinders = [NSMutableArray arrayWithCapacity:16];
     
     [ self initFinderData ];
@@ -57,7 +60,7 @@
                @"笔记本电脑", @"name",
                @"icon_laptop", @"image",
                @"status_far", @"state",
-               @"ON", @"power",
+               @"OFF", @"power",
                @"a:b:c:d:e:f", @"addr",
                nil];
     
@@ -70,7 +73,7 @@
                @"钱包", @"name",
                @"icon_bag", @"image",
                @"status_near", @"state",
-                @"ON", @"power",
+                @"OFF", @"power",
                @"a:b:c:d:e:f", @"addr",
                nil];
     
@@ -110,6 +113,26 @@
 
     // Return the number of rows in the section.
     return [ self.nFinders count ];
+}
+
+//联接切换开关，目前只把当成一个开关
+-(IBAction)connectSwitchAction:(id)sender {
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn = [switchButton isOn];
+    
+    UITableViewCell* cell= [Utils getCellBySender:sender ];
+    NSIndexPath* indexPath= [self.tableView indexPathForCell:cell];
+    
+    self.currentLine = indexPath.row; //取得当前行
+    
+    
+//    if(isButtonOn)
+//        [self.bleManager cancelPeripheralConnection:peripheral];
+//    else
+//        [self.bleManager connectPeripheral:peripheral options:nil];
+    
+    
+
 }
 
 
@@ -194,10 +217,31 @@
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     
+    UISwitch * connectSwitch = (UISwitch *)[cell viewWithTag:103];
+     [connectSwitch addTarget:self action:@selector(connectSwitchAction:) forControlEvents:UIControlEventValueChanged];
     
     
     return cell;
 }
+
+
+//连接外设成功，开始发现服务
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    DLog(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.UUID);
+    
+    self.blePeripheral = peripheral;
+    
+    [self.blePeripheral setDelegate:self];
+    [self.blePeripheral discoverServices:nil];
+}
+
+//连接外设失败
+-(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+
+
 
 
 

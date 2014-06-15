@@ -25,11 +25,7 @@
 
 + (UITableViewCell *)getCellBySender:(UIView *)view;
 
-+ (UIImage *)imageWithFinderType:(int)type;
 
-+ (NSString  *)stringWithFinderType:(int)type;
-
-+ (NSString  *)stringWithFinderDistance:(int)type;
 
 @end
 
