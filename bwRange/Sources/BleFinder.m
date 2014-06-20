@@ -15,6 +15,9 @@
     if (self=[super init]) {
         [ self setType:FINDER_TYPE_BAG ];
          self.status  = FINDER_STATUS_LINKLOSS;
+        
+        self.range = 5;
+        
      }
     
     return self;
@@ -49,6 +52,36 @@
  <key>VIBRATE</key>
  <string>0</string>
  */
+-(NSDictionary *)newDict{
+    
+    NSString * tone =@"0";
+    if(self.ringtone != nil)
+        tone =[ self.ringtone objectForKey:@"id"];
+    
+   
+    return  [NSDictionary dictionaryWithObjectsAndKeys:
+               [ NSString stringWithFormat:@"finder%d",self.finderType],@"UUID", [self getName ],@"NAME",
+                 [ NSString stringWithFormat:@"%d",self.range],@"RANGE",tone,@"RINGTONE",
+                [ NSString stringWithFormat:@"%d",self.sensitivity],@"SENSITIVITY",
+             [ NSString stringWithFormat:@"%d",self.finderType],@"TYPE",
+             [ NSString stringWithFormat:@"%d",self.vibrate],@"VIBRATE" ,nil];
+
+    
+    
+//    return  [NSDictionary dictionaryWithObjectsAndKeys:
+//                  self.UUID,@"UUID",@"公文包",11,@"ALARM", [self getName ],@"NAME",
+//                  [ NSString stringWithFormat:@"%d",self.range],@"RANGE",tone,@"RINGTONE",
+//                @"5",@"SENSITIVITY",[ NSString stringWithFormat:@"%d",self.finderType],@"TYPE",
+//             @"0",@"VIBRATE" ,nil];
+    
+}
+
+-(NSDictionary *)newDict2{
+    
+    
+    return   [NSDictionary dictionaryWithObjectsAndKeys:@"近",@"text", nil];
+    
+}
 
 -(void) initWithDictionary:(NSDictionary *)map{
     
@@ -114,8 +147,8 @@
     
     switch(type){
         default:
-        case 0: return @"远"; break;
-        case 1: return @"近"; break;
+        case FINDER_RANGE_FAR: return @"远"; break;
+        case FINDER_RANGE_NEAR: return @"近"; break;
             
             
     }

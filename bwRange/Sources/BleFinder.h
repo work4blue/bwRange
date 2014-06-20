@@ -17,6 +17,8 @@
 
 
 
+#define FINDER_RANGE_NEAR (0)
+#define FINDER_RANGE_FAR (1)
 
 #define FINDER_STATUS_FAR (1)
 #define FINDER_STATUS_NEAR (2)
@@ -79,4 +81,5 @@
 + (NSString  *)stringWithFinderDistance:(int)type;
 
 
+-(NSDictionary *)newDict;
 @end

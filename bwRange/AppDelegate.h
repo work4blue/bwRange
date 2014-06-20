@@ -20,5 +20,8 @@
 //delegate.dataManager;
 
 +(AppDelegate*)sharedInstance;
++(DataManager*)getManager;
+
+#define APP_DATA_MANAGER [AppDelegate sharedInstance].dataManager]
 
 @end

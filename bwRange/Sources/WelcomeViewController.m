@@ -9,6 +9,7 @@
 #import "WelcomeViewController.h"
 #import "Utils.h"
 #import "UIView+Toast.h"
+#import "AppDelegate.h"
 
 @interface WelcomeViewController ()
 
@@ -25,22 +26,19 @@
     return self;
 }
 
-//- (void)test{
-//    
-//    
-//    [self.view makeToast:@"bwRange 标签 钥匙 发出哔的声音."
-//                duration:3.0
-//                position:@"bottom"
-//                   image:[UIImage imageNamed:@"leash_default_icon_bg"]];
-//}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    //如果用户创建一个设备，则直接进入Finder列表
+    if(![AppDelegate getManager].isDemoMode){
+        [self performSegueWithIdentifier:@"FinderList" sender:self];
+
+    }
     
     
- //   [self test ];
     
 }
 

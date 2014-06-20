@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BleFinder.h"
 
 @interface DataManager : NSObject
 
-@property (strong,nonatomic) NSMutableArray *nBleDevices;
+@property (strong,nonatomic) NSMutableArray *nBleFinders;
 @property (strong,nonatomic) NSMutableArray *nRingtones;
 @property (strong,nonatomic) NSMutableArray *nFinderTypes;
 
@@ -24,6 +25,11 @@
 -(int)loadRingtones;
 
 -(NSDictionary * )getRingtone:(NSString *)toneId;
+
+- (int) addFinder:(BleFinder *)finder;
+
+- (void) saveFinder;
+
 
 -(BOOL)isDemoMode;
 

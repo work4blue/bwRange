@@ -144,8 +144,31 @@
     return YES;
 }
 
++ (NSString*)getSandboxFilePath:(NSString*)fileName{
+    //沙盒中的文件路径
+    NSArray *storeFilePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *doucumentsDirectiory = [storeFilePath objectAtIndex:0];
+    NSString *plistPath =[doucumentsDirectiory stringByAppendingPathComponent:fileName];       //根据需要更改文件名
+    return plistPath;
+}
 
-+(BOOL)isFileExist:(NSString * )fileName{
+//判断沙盒中名为plistname的文件是否存在
++(BOOL) isSandboxFileExists:(NSString*)fileName{
+    
+    NSString *plistPath =[ Utils getSandboxFilePath:fileName ];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if( [fileManager fileExistsAtPath:plistPath]== NO ) {
+       // NSLog(@"not exists");
+        return NO;
+    }else{
+        return YES;
+    }
+    
+}
+
+
++(BOOL)isBundleFileExist:(NSString * )fileName{
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@""];
     
     if(path==NULL)
@@ -154,6 +177,30 @@
     
     return YES;
 }
+
++ (void) writeToSandboxFile: (NSString*)fileName withData:(NSMutableArray *)data
+{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *finalPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+    [data writeToFile:finalPath atomically: YES];
+    /* This would change the firmware version in the plist to 1.1.1 by initing the NSDictionary with the plist, then changing the value of the string in the key "ProductVersion" to what you specified */
+}
+
++ (NSMutableArray *) readFromSandboxFile: (NSString *)fileName {
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *finalPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:finalPath];
+    
+    if (fileExists) {
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithContentsOfFile:finalPath];
+        return arr;
+    } else {
+        return nil;
+    }
+}
+
 
 
 @end

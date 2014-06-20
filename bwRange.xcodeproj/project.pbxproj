@@ -35,6 +35,7 @@
 		85CC6E21194D72C900F79C10 /* BleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC6E20194D72C900F79C10 /* BleDevice.m */; };
 		85D81E7C195434B20017AB00 /* FinderTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7B195434B20017AB00 /* FinderTypeViewController.m */; };
 		85D81E7F195434D10017AB00 /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7E195434D10017AB00 /* DistanceViewController.m */; };
+		85D81E811954855E0017AB00 /* Finders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85D81E801954855E0017AB00 /* Finders.plist */; };
 		85EE291E19487BA90085A6EB /* FinderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE291D19487BA90085A6EB /* FinderDetailViewController.m */; };
 		85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE292019495DDD0085A6EB /* FinderListViewController.m */; };
 		85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE29241949773C0085A6EB /* UIView+Toast.m */; };
@@ -99,6 +100,7 @@
 		85D81E7B195434B20017AB00 /* FinderTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderTypeViewController.m; path = Sources/FinderTypeViewController.m; sourceTree = "<group>"; };
 		85D81E7D195434D10017AB00 /* DistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceViewController.h; path = Sources/DistanceViewController.h; sourceTree = "<group>"; };
 		85D81E7E195434D10017AB00 /* DistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistanceViewController.m; path = Sources/DistanceViewController.m; sourceTree = "<group>"; };
+		85D81E801954855E0017AB00 /* Finders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Finders.plist; path = plist/Finders.plist; sourceTree = "<group>"; };
 		85EE291C19487BA90085A6EB /* FinderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderDetailViewController.h; path = Sources/FinderDetailViewController.h; sourceTree = "<group>"; };
 		85EE291D19487BA90085A6EB /* FinderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderDetailViewController.m; path = Sources/FinderDetailViewController.m; sourceTree = "<group>"; };
 		85EE291F19495DDD0085A6EB /* FinderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderListViewController.h; path = Sources/FinderListViewController.h; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		85450C881952F64C00A9BB8A /* plist */ = {
 			isa = PBXGroup;
 			children = (
+				85D81E801954855E0017AB00 /* Finders.plist */,
 				85450C891952F6B500A9BB8A /* Ringtones.plist */,
 				85450C8A1952F6B500A9BB8A /* DemoFinders.plist */,
 				85450C861952F63500A9BB8A /* FinderTypes.plist */,
@@ -376,6 +379,7 @@
 			files = (
 				8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */,
 				85450C8B1952F6B500A9BB8A /* Ringtones.plist in Resources */,
+				85D81E811954855E0017AB00 /* Finders.plist in Resources */,
 				85450C871952F63500A9BB8A /* FinderTypes.plist in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,

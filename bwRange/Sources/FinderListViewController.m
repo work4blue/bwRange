@@ -46,7 +46,7 @@
    // self.bleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 
    //新版本，从plist装入数据
-    self.nFinders = [AppDelegate sharedInstance].dataManager.nBleDevices ;
+    self.nFinders = [AppDelegate sharedInstance].dataManager.nBleFinders ;
     
 //  本地测试数据
 //    self.nFinders = [NSMutableArray arrayWithCapacity:16];

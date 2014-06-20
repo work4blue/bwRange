@@ -8,9 +8,9 @@
 
 #import "FinderDetailViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "SingleSelectViewController.h"
 #import "LeveyPopListView.h"
-#import "BleFinder.h"
+
+#import "AppDelegate.h"
 
 
 
@@ -46,11 +46,17 @@
     
     self.navigationItem.title  = [ device name];
     
+    if(self.isNewDevice == YES){
+        self.navigationItem.rightBarButtonItem.title =@"保存";
+    }
+    
     
     
     [self initTypeList];
     
     [self initDistanceList];
+    
+     [self initRingtoneList];
     
     
     //[self setFindType:self.bleFinder.finderType];
@@ -94,39 +100,36 @@
     {
         
         
-        SingleSelectViewController *destViewController = segue.destinationViewController;
-        
-        
-        [ destViewController initCheck:0];
+//        SingleSelectViewController *destViewController = segue.destinationViewController;
+//        
+//        
+//        [ destViewController initCheck:0];
     }
 }
+
+#pragma mark - 选择列表
+
+
+-(void)initRingtoneList{
+    
+    self.ringtoneOptions = [AppDelegate sharedInstance].dataManager.nRingtones;
+    
+    
+}
+
 
 -(void)initDistanceList{
     
     self.distanceOptions = [NSArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"远",@"text", nil],
                         [NSDictionary dictionaryWithObjectsAndKeys:@"近",@"text", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"远",@"text", nil],
+                       
                        
                         nil];
     
     
 }
 
-//处理选择列表
-
-- (void)showDistanceListView {
-    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"选择报警距离" options:_distanceOptions handler:^(NSInteger anIndex) {
-        //_infoLabel.text = [NSString stringWithFormat:@"You have selected %@", _options[anIndex]];
-        
-      
-        
-        UILabel *nameView = (UILabel *)  [ self.tableView viewWithTag:302];
-        nameView.text =[ BleFinder stringWithFinderDistance:anIndex ];
-    }];
-    lplv.delegate = self;
-    
-    [lplv showInView:self.tableView animated:YES];
-}
 
 -(void)initTypeList{
     
@@ -140,14 +143,43 @@
     
 }
 
--(void)setFindType:(int)type atView:(UIView *)view{
-    UIImageView *imageView = (UIImageView *)  [ view viewWithTag:201];
+
+//处理铃声列表
+
+- (void)showRingtoneListView {
+    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"铃声" options:_ringtoneOptions handler:^(NSInteger anIndex) {
+        
+        NSString * tone = [ NSString stringWithFormat:@"%d",anIndex];
+        
+        self.bleFinder.ringtone = [[AppDelegate sharedInstance].dataManager  getRingtone:tone ];      [ self setRingtone:self.tableView];
+        
+        
+    }];
+    lplv.delegate = self;
     
-    imageView.image = [ BleFinder imageWithFinderType:type ];
-    
-    UILabel *nameView = (UILabel *)  [ view viewWithTag:202];
-    nameView.text =[ BleFinder stringWithFinderType:type ];
+    [lplv showInView:self.tableView animated:YES];
 }
+
+
+
+//处理选择列表
+
+- (void)showDistanceListView {
+    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"选择报警距离" options:_distanceOptions handler:^(NSInteger anIndex) {
+        //_infoLabel.text = [NSString stringWithFormat:@"You have selected %@", _options[anIndex]];
+        
+        self.bleFinder.range = anIndex;
+        [ self setFindRange:anIndex atView:self.tableView];
+        
+        
+    }];
+    lplv.delegate = self;
+    
+    [lplv showInView:self.tableView animated:YES];
+}
+
+
+
 
 //处理选择列表
 
@@ -155,6 +187,7 @@
     LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"选择一个类型" options:_typeOptions handler:^(NSInteger anIndex) {
         //_infoLabel.text = [NSString stringWithFormat:@"You have selected %@", _options[anIndex]];
         
+        self.bleFinder.finderType = anIndex;
         [ self setFindType:anIndex atView:self.tableView];
         
       
@@ -176,6 +209,45 @@
 }
 
 
+#pragma mark - 操作处理
+- (IBAction)finishClick:(id)sender{
+    if([self isNewDevice]){
+        //保存并跳转
+        
+        [[AppDelegate sharedInstance].dataManager  addFinder:self.bleFinder ];
+         [[AppDelegate sharedInstance].dataManager  saveFinder ];
+        
+    }
+    else{
+        
+    }
+}
+
+#pragma mark - 操作响应
+-(void)setFindType:(int)type atView:(UIView *)view{
+    UIImageView *imageView = (UIImageView *)  [ view viewWithTag:201];
+    
+    imageView.image = [ BleFinder imageWithFinderType:type ];
+    
+    UILabel *nameView = (UILabel *)  [ view viewWithTag:202];
+    nameView.text =[ BleFinder stringWithFinderType:type ];
+}
+
+
+
+-(void)setRingtone:(UIView *)view{
+    UILabel *nameView = (UILabel *)  [ view viewWithTag:601];
+    nameView.text =[ self.bleFinder.ringtone objectForKey:@"text" ];
+    
+}
+
+-(void)setFindRange:(int)range atView:(UIView *)view{
+    UILabel *nameView = (UILabel *)  [ view viewWithTag:302];
+    nameView.text =[ BleFinder stringWithFinderDistance:range ];
+}
+
+#pragma mark - 表格处理
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -188,6 +260,9 @@
             break;
         case 300:
             [ self showDistanceListView ];
+            break;
+        case 600:
+            [ self showRingtoneListView ];
             break;
     }
 }
@@ -202,11 +277,16 @@
             {
                 [self setFindType:self.bleFinder.finderType atView:cell ];
             }
+        case 1:
+            if(indexPath.row == 0)
+            {
+                [self setFindRange:self.bleFinder.range atView:cell ];
+            }
             break;
         }
 }
 
-#pragma mark - Table view data source
+
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{

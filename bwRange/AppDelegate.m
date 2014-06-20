@@ -66,4 +66,8 @@
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
++(DataManager*)getManager{
+    return [AppDelegate sharedInstance].dataManager;
+}
+
 @end

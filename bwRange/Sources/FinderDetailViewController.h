@@ -18,8 +18,11 @@
 
 @property (strong, nonatomic) NSArray * typeOptions;
 @property (strong, nonatomic) NSArray * distanceOptions;
+@property (strong, nonatomic) NSArray * ringtoneOptions;
 
 
 
 - (void)newFinder:(int)finderType atRange:(int)range;
+
+- (IBAction)finishClick:(id)sender;
 @end

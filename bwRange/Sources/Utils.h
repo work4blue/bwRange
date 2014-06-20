@@ -22,8 +22,12 @@
 
 + (UITableViewCell *)getCellBySender:(UIView *)view;
 
-+(BOOL)isFileExist:(NSString * )fileName;
-+(BOOL)isPlistFileExist:(NSString * )fileName;
++(BOOL)isBundleFileExist:(NSString * )fileName;
++(BOOL) isSandboxFileExists:(NSString*)fileName;
++ (NSString*)getSandboxFilePath:(NSString*)fileName;
+
++ (void) writeToSandboxFile: (NSString*)fileName withData:(NSMutableArray *)data;
++ (NSMutableArray *) readFromSandboxFile: (NSString *)fileName;
 
 @end
 
