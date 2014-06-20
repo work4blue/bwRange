@@ -12,6 +12,7 @@
 #import "BleFinder.h"
 #import "Utils.h"
 #import "AppDelegate.h"
+#import "FinderStatusViewController.h"
 
 
 @interface FinderListViewController ()
@@ -55,7 +56,7 @@
     
     if([self isDemoMode]){
         self.navigationItem.title  = @"演示模式";
-
+        self.navigationItem.leftBarButtonItem.title = @"退出";
     }
 }
 
@@ -310,7 +311,20 @@
 
 
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"FinderStatus"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+       // NSDictionary *device = [ self.nDevices objectAtIndex:indexPath.row];
+        
+        BleFinder * finder = [[ AppDelegate getManager].nBleFinders objectAtIndex:indexPath.row ];
+        
+        FinderStatusViewController *destViewController = segue.destinationViewController;
+        
+        
+        destViewController.bleFinder = finder;
+    }
+}
 
 
 

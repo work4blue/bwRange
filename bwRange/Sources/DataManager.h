@@ -28,7 +28,11 @@
 
 - (int) addFinder:(BleFinder *)finder;
 
+- (BOOL) removeFinder:(BleFinder *)finder;
+
 - (void) saveFinder;
+
+
 
 
 -(BOOL)isDemoMode;

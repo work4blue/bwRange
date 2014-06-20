@@ -23,6 +23,7 @@
 
 
 - (void)newFinder:(int)finderType atRange:(int)range;
+- (void)setFinder:(BleFinder *)finder;
 
 - (IBAction)finishClick:(id)sender;
 @end

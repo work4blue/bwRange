@@ -154,6 +154,26 @@
     return 0;
 }
 
+- (BOOL) removeFinder:(BleFinder *)finder{
+    if([self isDemoMode])
+        return NO;
+    
+    
+    [self.nBleFinders removeObject:finder];
+    
+    [self saveFinder ];
+    
+    if(self.nBleFinders.count <= 0)
+    {
+        self.isDemoData = YES;
+        [self loadFinders ];
+        
+    }
+    return YES;
+}
+
+
+
 -(int)loadFinderTypes{
      return 0;
 }

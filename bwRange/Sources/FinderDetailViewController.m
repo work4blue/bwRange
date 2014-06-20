@@ -246,6 +246,16 @@
     nameView.text =[ BleFinder stringWithFinderDistance:range ];
 }
 
+#pragma mark - 对话框 响应
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        [[AppDelegate getManager]
+         removeFinder:self.bleFinder ];
+    
+     [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark - 表格处理
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -263,6 +273,23 @@
             break;
         case 600:
             [ self showRingtoneListView ];
+            break;
+        case 700:
+        {
+            if( [[AppDelegate getManager] isDemoMode] == YES)
+                return ;
+            
+            //[self.bleFinder getName]
+            NSString * msg = [ NSString stringWithFormat:@"是否删除 %@ ?", [self.bleFinder getName] ] ;
+            
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"删除物品" message:msg delegate:self
+                                                cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil];
+            alert.alertViewStyle=UIAlertViewStyleDefault;
+            
+      
+            [alert show];
+        }
+          
             break;
     }
 }
