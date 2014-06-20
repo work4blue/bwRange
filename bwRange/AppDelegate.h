@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DataManager.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) DataManager *dataManager;
+
+//AppDelegate *delegate=(AppDelegate*)[[UIApplicationsharedApplication]delegate];
+//delegate.dataManager;
+
++(AppDelegate*)sharedInstance;
 
 @end

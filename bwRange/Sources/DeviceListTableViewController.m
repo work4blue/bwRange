@@ -8,8 +8,11 @@
 
 #import "DeviceListTableViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "UIView+Toast.h"
 
-#import "NewDeviceViewController.h"
+#import "FinderTypeViewController.h"
+
+#define SCAN_TIME_MS (10)
 
 @interface DeviceListTableViewController ()
 
@@ -24,6 +27,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -32,12 +36,6 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     
     //采用iOS6 的自带的UIRefreshControl控制下拉刷新
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -45,6 +43,9 @@
     //refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"] ;
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
+    
+    self.isRefreshing = false;
+    [self.refreshControl endRefreshing];
     
     
     self.count = 0;
@@ -56,7 +57,34 @@
      self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
     
+    
 }
+
+-(void) stopScan{
+    
+    [self.manager stopScan];
+    [self.activity stopAnimating];
+    [self updateLog:@"扫描超时,停止扫描"];
+    self.isRefreshing = false;
+    
+    [ self.navigationItem.rightBarButtonItem setTitle:@"重新扫描"];
+    
+    [self.view hideToastActivity];
+    
+    [self.refreshControl endRefreshing];
+    
+    [self.tableView reloadData];
+}
+
+- (void)startScan {
+    [ self.navigationItem.rightBarButtonItem setTitle:@"停止扫描"];
+    
+    if(! self.refreshControl.refreshing) //如果是下拉刷新无需显示
+      [ self.view makeToastActivity ];
+    
+    self.isRefreshing = true;
+}
+
 
 -(void)handleData
 {
@@ -79,16 +107,36 @@
 //    [self.tableView reloadData];
 }
 
+//右上角重新扫描按键
+- (IBAction)rescanBle:(id)sender{
+    
+    if(self.isRefreshing){
+        [ self stopScan ];
+        
+        return ;
+    }
+    [ self scanClick];
+    
 
+}
+
+
+
+//下拉刷新的处理方法
 -(void)refreshView:(UIRefreshControl *)refresh
 {
+    if(self.isRefreshing){
+        [self.refreshControl endRefreshing];
+        return ;
+    }
+    
     if (refresh.refreshing) {
         refresh.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在查找设备..."] ;
         
         //开始扫描
         [self scanClick ];
         
-      //  [self performSelector:@selector(handleData) withObject:nil afterDelay:0];
+      
     }
 }
 
@@ -98,22 +146,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 //扫描
 -(void)scanClick
 {
-    [self updateLog:@"正在扫描外设..."];
+    //[self updateLog:@"正在扫描外设..."];
     //[_activity startAnimating];
+    
+    if(self.isRefreshing)
+        return ;
+    
+   [ self startScan ];
     
     //扫描BLE设备
     [ self.manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
-    //30.0 秒超时定时器
-    double delayInSeconds = 30.0;
+    //30.0 秒超时定时器,，应该由扫描蓝牙设备来停止
+    double delayInSeconds = SCAN_TIME_MS;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.manager stopScan];
-        [self.activity stopAnimating];
-        [self updateLog:@"扫描超时,停止扫描"];
+       
+       if(self.isRefreshing)
+        [self stopScan];
+        
+        
     });
 }
 
@@ -149,13 +205,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
-    
-  //  cell.textLabel.text = [self.nDevices objectAtIndex:indexPath.row];
+   
     
     NSDictionary *device = [ self.nDevices objectAtIndex:indexPath.row];
     CBPeripheral *p = [device objectForKey:@"peripheral"];
-    cell.textLabel.text = p.name;
+    if( p.name == nil)
+        cell.textLabel.text = @"<unamed>";
+    else
+        cell.textLabel.text = p.name;
 
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     
@@ -207,7 +264,7 @@
     BOOL replace = NO;
     // Match if we have this device from before
     for (int i=0; i < self.nDevices.count; i++) {
-         NSDictionary *dev = [ self.nDevices objectAtIndex:i];
+         //NSDictionary *dev = [ self.nDevices objectAtIndex:i];
         CBPeripheral *p = [device objectForKey:@"peripheral"];
         if ([p isEqual:peripheral]) {
             [ self.nDevices replaceObjectAtIndex:i withObject:device];
@@ -216,11 +273,10 @@
     }
     if (!replace) {
         
-       //[self performSelector:@selector(handleData) withObject:nil afterDelay:0];
-        [ self.refreshControl endRefreshing];
-        
         [ self.nDevices addObject:device];
-        [ self.tableView reloadData];
+        
+       //[self performSelector:@selector(handleData) withObject:nil afterDelay:0];
+        [ self stopScan];
     }
 }
 
@@ -234,7 +290,7 @@
         
         NSDictionary *device = [ self.nDevices objectAtIndex:indexPath.row];
         
-        NewDeviceViewController *destViewController = segue.destinationViewController;
+        FinderTypeViewController *destViewController = segue.destinationViewController;
         
         
         destViewController.bleDevice = device;

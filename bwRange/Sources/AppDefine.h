@@ -19,6 +19,10 @@
 
 #define BUTTON_BACKGROUND_COLOR RGBCOLOR(0xee,0xf2,0xf3)
 
+#define GRID_BACKGROUD RGBCOLOR(0xdf,0xdf,0xdf) //223,223,223
+
+
+
 
 
 #endif

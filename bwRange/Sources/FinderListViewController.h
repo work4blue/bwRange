@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface FinderListViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface FinderListViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate,UIActionSheetDelegate>
 
 @property (strong,nonatomic) NSMutableArray *nFinders;
 @property (nonatomic) int currentLine ;
 
 @property (nonatomic, strong) CBCentralManager *bleManager;
 @property (strong,nonatomic) CBPeripheral *blePeripheral; //当前联接设备
+
+
+-(IBAction) funcClicked:(id)sender;
 
 
 

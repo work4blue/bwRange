@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	
+	<dict>
+        <key>UUID</key>
+        <string>DEMO-UUID-1</string>
+		<key>ALARM</key>
+		<string>11</string>
+		<key>NAME</key>
+		<string>Keys</string>
+		<key>RANGE</key>
+		<string>0</string>
+		<key>RINGTONE</key>
+        <string>2</string>
+		<key>SENSITIVITY</key>
+		<string>5</string>
+		<key>TYPE</key>
+		<string>0</string>
+		<key>VIBRATE</key>
+		<string>0</string>
+        <key>MUTE</key>
+		<string>0</string>
+	</dict>
+	
+	<dict>
+        <key>UUID</key>
+        <string>DEMO-UUID-2</string>
+		<key>ALARM</key>
+		<string>11</string>
+		<key>NAME</key>
+		<string>Bag</string>
+		<key>RANGE</key>
+		<string>1</string>
+		<key>RINGTONE</key>
+        <string>1</string>
+		<key>SENSITIVITY</key>
+		<string>5</string>
+		<key>TYPE</key>
+		<string>2</string>
+		<key>VIBRATE</key>
+		<string>1</string>
+        <key>MUTE</key>
+		<string>0</string>
+	</dict>
+	
+	<dict>
+        <key>UUID</key>
+        <string>DEMO-UUID-3</string>
+		<key>ALARM</key>
+		<string>11</string>
+		<key>NAME</key>
+		<string>Laptop</string>
+		<key>RANGE</key>
+		<string>1</string>
+		<key>RINGTONE</key>
+        <string>0</string>
+		<key>SENSITIVITY</key>
+		<string>5</string>
+		<key>TYPE</key>
+		<string>3</string>
+		<key>VIBRATE</key>
+		<string>1</string>
+        <key>MUTE</key>
+		<string>1</string>
+	</dict>
+</array>
+</plist>

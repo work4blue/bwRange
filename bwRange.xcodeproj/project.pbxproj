@@ -22,12 +22,20 @@
 		8509F907193A53E20021EC57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8509F905193A53E20021EC57 /* InfoPlist.strings */; };
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
 		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
+		85450C851952E4E900A9BB8A /* FinderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85450C841952E4E900A9BB8A /* FinderMapViewController.m */; };
+		85450C871952F63500A9BB8A /* FinderTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C861952F63500A9BB8A /* FinderTypes.plist */; };
+		85450C8B1952F6B500A9BB8A /* Ringtones.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C891952F6B500A9BB8A /* Ringtones.plist */; };
+		85450C8C1952F6B500A9BB8A /* DemoFinders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C8A1952F6B500A9BB8A /* DemoFinders.plist */; };
+		85450C8F1952FCC400A9BB8A /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85450C8E1952FCC400A9BB8A /* DataManager.m */; };
 		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
 		8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */; };
 		85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804711193CF6EA004F73CB /* WelcomeViewController.m */; };
 		85804715193CF752004F73CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804714193CF752004F73CB /* Utils.m */; };
 		85CC6E1E194C7A6C00F79C10 /* BleFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC6E1D194C7A6C00F79C10 /* BleFinder.m */; };
-		85EE291E19487BA90085A6EB /* NewDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE291D19487BA90085A6EB /* NewDeviceViewController.m */; };
+		85CC6E21194D72C900F79C10 /* BleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC6E20194D72C900F79C10 /* BleDevice.m */; };
+		85D81E7C195434B20017AB00 /* FinderTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7B195434B20017AB00 /* FinderTypeViewController.m */; };
+		85D81E7F195434D10017AB00 /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7E195434D10017AB00 /* DistanceViewController.m */; };
+		85EE291E19487BA90085A6EB /* FinderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE291D19487BA90085A6EB /* FinderDetailViewController.m */; };
 		85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE292019495DDD0085A6EB /* FinderListViewController.m */; };
 		85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE29241949773C0085A6EB /* UIView+Toast.m */; };
 		85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AAB3194B627800F0573A /* SingleSelectViewController.m */; };
@@ -67,6 +75,13 @@
 		8509F906193A53E20021EC57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8509F908193A53E20021EC57 /* bwRangeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bwRangeTests.m; sourceTree = "<group>"; };
 		8533AD40193E4C8500461C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/3.5.storyboard; sourceTree = "<group>"; };
+		85450C831952E4E900A9BB8A /* FinderMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderMapViewController.h; path = Sources/FinderMapViewController.h; sourceTree = "<group>"; };
+		85450C841952E4E900A9BB8A /* FinderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderMapViewController.m; path = Sources/FinderMapViewController.m; sourceTree = "<group>"; };
+		85450C861952F63500A9BB8A /* FinderTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FinderTypes.plist; path = plist/FinderTypes.plist; sourceTree = "<group>"; };
+		85450C891952F6B500A9BB8A /* Ringtones.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Ringtones.plist; path = plist/Ringtones.plist; sourceTree = "<group>"; };
+		85450C8A1952F6B500A9BB8A /* DemoFinders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DemoFinders.plist; path = plist/DemoFinders.plist; sourceTree = "<group>"; };
+		85450C8D1952FCC400A9BB8A /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = Sources/DataManager.h; sourceTree = "<group>"; };
+		85450C8E1952FCC400A9BB8A /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = Sources/DataManager.m; sourceTree = "<group>"; };
 		8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceListTableViewController.h; path = Sources/DeviceListTableViewController.h; sourceTree = "<group>"; };
 		8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceListTableViewController.m; path = Sources/DeviceListTableViewController.m; sourceTree = "<group>"; };
@@ -78,8 +93,14 @@
 		85804718193DB427004F73CB /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		85CC6E1C194C7A6C00F79C10 /* BleFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleFinder.h; path = Sources/BleFinder.h; sourceTree = "<group>"; };
 		85CC6E1D194C7A6C00F79C10 /* BleFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleFinder.m; path = Sources/BleFinder.m; sourceTree = "<group>"; };
-		85EE291C19487BA90085A6EB /* NewDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDeviceViewController.h; path = Sources/NewDeviceViewController.h; sourceTree = "<group>"; };
-		85EE291D19487BA90085A6EB /* NewDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDeviceViewController.m; path = Sources/NewDeviceViewController.m; sourceTree = "<group>"; };
+		85CC6E1F194D72C900F79C10 /* BleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleDevice.h; path = Sources/BleDevice.h; sourceTree = "<group>"; };
+		85CC6E20194D72C900F79C10 /* BleDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleDevice.m; path = Sources/BleDevice.m; sourceTree = "<group>"; };
+		85D81E7A195434B20017AB00 /* FinderTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderTypeViewController.h; path = Sources/FinderTypeViewController.h; sourceTree = "<group>"; };
+		85D81E7B195434B20017AB00 /* FinderTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderTypeViewController.m; path = Sources/FinderTypeViewController.m; sourceTree = "<group>"; };
+		85D81E7D195434D10017AB00 /* DistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceViewController.h; path = Sources/DistanceViewController.h; sourceTree = "<group>"; };
+		85D81E7E195434D10017AB00 /* DistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistanceViewController.m; path = Sources/DistanceViewController.m; sourceTree = "<group>"; };
+		85EE291C19487BA90085A6EB /* FinderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderDetailViewController.h; path = Sources/FinderDetailViewController.h; sourceTree = "<group>"; };
+		85EE291D19487BA90085A6EB /* FinderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderDetailViewController.m; path = Sources/FinderDetailViewController.m; sourceTree = "<group>"; };
 		85EE291F19495DDD0085A6EB /* FinderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderListViewController.h; path = Sources/FinderListViewController.h; sourceTree = "<group>"; };
 		85EE292019495DDD0085A6EB /* FinderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderListViewController.m; path = Sources/FinderListViewController.m; sourceTree = "<group>"; };
 		85EE29231949773C0085A6EB /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
@@ -153,6 +174,7 @@
 		8509F8E3193A53E20021EC57 /* bwRange */ = {
 			isa = PBXGroup;
 			children = (
+				85450C881952F64C00A9BB8A /* plist */,
 				85EE2929194979640085A6EB /* Resources */,
 				85EE2926194979340085A6EB /* 3rd */,
 				8533AD3F193E4C8500461C4A /* 3.5.storyboard */,
@@ -171,8 +193,8 @@
 				85804718193DB427004F73CB /* Common.h */,
 				8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */,
 				8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */,
-				85EE291C19487BA90085A6EB /* NewDeviceViewController.h */,
-				85EE291D19487BA90085A6EB /* NewDeviceViewController.m */,
+				85EE291C19487BA90085A6EB /* FinderDetailViewController.h */,
+				85EE291D19487BA90085A6EB /* FinderDetailViewController.m */,
 				85EE291F19495DDD0085A6EB /* FinderListViewController.h */,
 				85EE292019495DDD0085A6EB /* FinderListViewController.m */,
 				85F6AAB2194B627800F0573A /* SingleSelectViewController.h */,
@@ -181,6 +203,16 @@
 				85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */,
 				85CC6E1C194C7A6C00F79C10 /* BleFinder.h */,
 				85CC6E1D194C7A6C00F79C10 /* BleFinder.m */,
+				85CC6E1F194D72C900F79C10 /* BleDevice.h */,
+				85CC6E20194D72C900F79C10 /* BleDevice.m */,
+				85450C831952E4E900A9BB8A /* FinderMapViewController.h */,
+				85450C841952E4E900A9BB8A /* FinderMapViewController.m */,
+				85450C8D1952FCC400A9BB8A /* DataManager.h */,
+				85450C8E1952FCC400A9BB8A /* DataManager.m */,
+				85D81E7A195434B20017AB00 /* FinderTypeViewController.h */,
+				85D81E7B195434B20017AB00 /* FinderTypeViewController.m */,
+				85D81E7D195434D10017AB00 /* DistanceViewController.h */,
+				85D81E7E195434D10017AB00 /* DistanceViewController.m */,
 			);
 			path = bwRange;
 			sourceTree = "<group>";
@@ -212,6 +244,16 @@
 				8509F905193A53E20021EC57 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		85450C881952F64C00A9BB8A /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				85450C891952F6B500A9BB8A /* Ringtones.plist */,
+				85450C8A1952F6B500A9BB8A /* DemoFinders.plist */,
+				85450C861952F63500A9BB8A /* FinderTypes.plist */,
+			);
+			name = plist;
 			sourceTree = "<group>";
 		};
 		85EE29221949773C0085A6EB /* Toast */ = {
@@ -333,9 +375,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */,
+				85450C8B1952F6B500A9BB8A /* Ringtones.plist in Resources */,
+				85450C871952F63500A9BB8A /* FinderTypes.plist in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,
 				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
+				85450C8C1952F6B500A9BB8A /* DemoFinders.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,17 +401,22 @@
 			files = (
 				85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */,
 				85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */,
+				85D81E7F195434D10017AB00 /* DistanceViewController.m in Sources */,
 				85F6AABA194B6F2A00F0573A /* DeviceSettingViewController.m in Sources */,
-				85EE291E19487BA90085A6EB /* NewDeviceViewController.m in Sources */,
+				85EE291E19487BA90085A6EB /* FinderDetailViewController.m in Sources */,
+				85450C8F1952FCC400A9BB8A /* DataManager.m in Sources */,
 				8509F8F4193A53E20021EC57 /* ViewController.m in Sources */,
 				85CC6E1E194C7A6C00F79C10 /* BleFinder.m in Sources */,
 				85F6AAC1194C1DBC00F0573A /* LeveyPopListViewCell.m in Sources */,
+				85D81E7C195434B20017AB00 /* FinderTypeViewController.m in Sources */,
 				8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */,
 				85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */,
+				85450C851952E4E900A9BB8A /* FinderMapViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
 				85F6AAC0194C1DBC00F0573A /* LeveyPopListView.m in Sources */,
 				85804715193CF752004F73CB /* Utils.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
+				85CC6E21194D72C900F79C10 /* BleDevice.m in Sources */,
 				85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

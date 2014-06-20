@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewDeviceViewController : UITableViewController
+#import "BleFinder.h"
+
+@interface FinderDetailViewController : UITableViewController
 
 @property (nonatomic, strong) NSDictionary * bleDevice;
+@property (nonatomic, strong) BleFinder * bleFinder;
 
 
 @property (strong, nonatomic) NSArray * typeOptions;
 @property (strong, nonatomic) NSArray * distanceOptions;
 
+
+
+- (void)newFinder:(int)finderType atRange:(int)range;
 @end

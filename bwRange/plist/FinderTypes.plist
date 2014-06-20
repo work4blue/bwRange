@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	
+	<dict>
+        <key>id</key>
+        <string>0</string>
+		<key>DEFAULT</key>
+		<true/>
+		<key>PATH</key>
+		<string>icon_keys</string>
+		<key>TYPE</key>
+		<string>Keys</string>
+		<key>UUID</key>
+		<string>DEMO-UUID-1</string>
+	</dict>
+	
+	<dict>
+        <key>id</key>
+        <string>1</string>
+		<key>DEFAULT</key>
+		<true/>
+		<key>PATH</key>
+		<string>icon_wallet</string>
+		<key>TYPE</key>
+		<string>Wallet</string>
+		<key>UUID</key>
+		<string></string>
+	</dict>
+	<dict>
+        <key>id</key>
+        <string>2</string>
+		<key>DEFAULT</key>
+		<true/>
+		<key>PATH</key>
+		<string>icon_bag</string>
+		<key>TYPE</key>
+		<string>Bag</string>
+		<key>UUID</key>
+		<string>DEMO-UUID-2</string>
+	</dict>
+
+	<dict>
+        <key>id</key>
+        <string>3</string>
+		<key>DEFAULT</key>
+		<true/>
+		<key>PATH</key>
+		<string>icon_laptop</string>
+		<key>TYPE</key>
+		<string>Laptop</string>
+		<key>UUID</key>
+		<string>DEMO-UUID-3</string>
+	</dict>
+</array>
+</plist>

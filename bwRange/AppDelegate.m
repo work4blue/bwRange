@@ -14,6 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    self.dataManager = [[ DataManager alloc] init];
+    
 
     UIStoryboard *mainStoryboard = nil;
     if (SCREEN_IS_RETIAN4){
@@ -56,6 +59,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
++(AppDelegate*)sharedInstance
+{
+    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 @end

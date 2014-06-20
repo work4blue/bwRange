@@ -6,24 +6,27 @@
 //  Copyright (c) 2014年  Andrew Huang. All rights reserved.
 //
 
-#import "NewDeviceViewController.h"
+#import "FinderDetailViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "SingleSelectViewController.h"
 #import "LeveyPopListView.h"
 #import "BleFinder.h"
 
 
-@interface NewDeviceViewController ()
+
+@interface FinderDetailViewController ()
+@property (nonatomic) BOOL isNewDevice;
 
 @end
 
-@implementation NewDeviceViewController
+@implementation FinderDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.isNewDevice = NO;
     }
     return self;
 }
@@ -38,15 +41,45 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-   CBPeripheral * device =  [ self.bleDevice objectForKey:@"peripheral" ];
+    
+    CBPeripheral * device =  [ self.bleDevice objectForKey:@"peripheral" ];
     
     self.navigationItem.title  = [ device name];
+    
+    
     
     [self initTypeList];
     
     [self initDistanceList];
     
+    
+    //[self setFindType:self.bleFinder.finderType];
+    
+    
+    
+    
+    //UITableViewCell * cell = [self tableView:table cellForRowAtIndexPath:indexPath ];
+    
+    
+   DLog(@"tableView count %d,", [ self tableView:self.tableView numberOfRowsInSection:0]);
+   DLog(@"tableView scount %d,", [ self numberOfSectionsInTableView:self.tableView ]);
 }
+
+
+- (void)newFinder:(int)finderType atRange:(int)range{
+     self.isNewDevice = YES;
+      self.bleFinder = [[ BleFinder alloc] init];
+    
+    self.bleFinder.finderType = finderType;
+    self.bleFinder.range =range;
+    
+}
+
+- (void)setFinder:(BleFinder *)finder{
+    self.isNewDevice = NO;
+    self.bleFinder = finder;
+}
+
 
 
 
@@ -107,20 +140,27 @@
     
 }
 
+-(void)setFindType:(int)type atView:(UIView *)view{
+    UIImageView *imageView = (UIImageView *)  [ view viewWithTag:201];
+    
+    imageView.image = [ BleFinder imageWithFinderType:type ];
+    
+    UILabel *nameView = (UILabel *)  [ view viewWithTag:202];
+    nameView.text =[ BleFinder stringWithFinderType:type ];
+}
+
 //处理选择列表
 
 - (void)showTypeListView {
     LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"选择一个类型" options:_typeOptions handler:^(NSInteger anIndex) {
         //_infoLabel.text = [NSString stringWithFormat:@"You have selected %@", _options[anIndex]];
         
-         UIImageView *imageView = (UIImageView *)  [ self.tableView viewWithTag:201];
+        [ self setFindType:anIndex atView:self.tableView];
         
-        imageView.image = [ BleFinder imageWithFinderType:anIndex ];
-        
-         UILabel *nameView = (UILabel *)  [ self.tableView viewWithTag:202];
-        nameView.text =[ BleFinder stringWithFinderType:anIndex ];
+      
     }];
-       lplv.delegate = self;
+    
+    lplv.delegate = self;
     
     [lplv showInView:self.tableView animated:YES];
 }
@@ -128,10 +168,6 @@
 - (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex {
    // _infoLabel.text = [NSString stringWithFormat:@"You have selected %@",_options[anIndex]];
    
-    
-    
-    
-    
     
     
 }
@@ -144,6 +180,7 @@
 {
     
     UITableViewCell *newCell = (UITableViewCell *) [tableView  cellForRowAtIndexPath:indexPath];
+    DLog(@"cell tag %d",newCell.tag);
     switch(newCell.tag)
     {
         case 200:
@@ -153,6 +190,20 @@
             [ self showDistanceListView ];
             break;
     }
+}
+
+//表格显示前操作
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        
+        case 0:
+            if(indexPath.row == 0)
+            {
+                [self setFindType:self.bleFinder.finderType atView:cell ];
+            }
+            break;
+        }
 }
 
 #pragma mark - Table view data source

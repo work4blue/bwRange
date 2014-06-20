@@ -134,6 +134,26 @@
     return nil;
 }
 
++(BOOL)isPlistFileExist:(NSString * )fileName{
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"];
+    
+    if(path==NULL)
+        
+        return NO;
+    
+    return YES;
+}
+
+
++(BOOL)isFileExist:(NSString * )fileName{
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@""];
+    
+    if(path==NULL)
+        
+        return NO;
+    
+    return YES;
+}
 
 
 @end

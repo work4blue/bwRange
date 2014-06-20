@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define FINDER_TYPE_BAG    (1)
-#define FINDER_TYPE_KEYS   (2)
-#define FINDER_TYPE_LAPTOP (3)
-#define FINDER_TYPE_WALLET   (4)
+
 
 @interface Utils : NSObject
 
@@ -25,7 +22,8 @@
 
 + (UITableViewCell *)getCellBySender:(UIView *)view;
 
-
++(BOOL)isFileExist:(NSString * )fileName;
++(BOOL)isPlistFileExist:(NSString * )fileName;
 
 @end
 

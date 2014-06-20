@@ -14,6 +14,8 @@
 @property (nonatomic, strong) CBCentralManager *manager;
 @property (nonatomic, strong) CBPeripheral *peripheral;
 
+
+
 @property (strong ,nonatomic) CBCharacteristic *writeCharacteristic;
 
 @property (strong,nonatomic) NSMutableArray *nDevices;
@@ -29,6 +31,9 @@
 @property BOOL isRefreshing;
 @property(nonatomic) float batteryValue;
 @property (nonatomic) int count;
+
+
+- (IBAction)rescanBle:(id)sender;
 
 
 @end
