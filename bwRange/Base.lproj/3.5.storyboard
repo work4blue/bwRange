@@ -250,6 +250,16 @@
                                             <rect key="frame" x="183" y="27" width="40" height="39"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TA-ce-Pl4">
+                                            <rect key="frame" x="81" y="0.0" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="hide">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="rmT-9T-fQV" kind="push" identifier="newDevice" id="L5K-zg-05v"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -268,7 +278,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="我的物品" id="2Mv-Lu-Nhg">
                         <barButtonItem key="backBarButtonItem" title="返回" id="nQn-ss-qjM"/>
-                        <barButtonItem key="leftBarButtonItem" title="新增" id="9Gv-sm-1kJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="新增" id="9Gv-sm-1kJ">
+                            <connections>
+                                <action selector="funcClicked:" destination="Y5T-O4-Mda" id="7W3-ot-Fek"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="navbar_gridview_icon" id="6hM-yH-jL0">
                             <connections>
                                 <segue destination="fqF-kw-3O1" kind="push" id="Yzw-cq-g78"/>
@@ -392,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmy-CR-YvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2048" y="333"/>
+            <point key="canvasLocation" x="2075" y="507"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qq2-Ds-BtU">
@@ -736,7 +750,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7LM-2H-SUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2065" y="-341"/>
+            <point key="canvasLocation" x="1754" y="259"/>
         </scene>
         <!--Distance View Controller - 报警距离-->
         <scene sceneID="yRt-8L-pJJ">
@@ -890,6 +904,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="597-rf-yHh">
+                                                    <rect key="frame" x="219" y="7" width="47" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="hidden">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1018,7 +1039,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ra7-n9-zr5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2636" y="237"/>
+            <point key="canvasLocation" x="3179" y="187"/>
         </scene>
         <!--Finder Type View Controller - 物品-->
         <scene sceneID="cNZ-6b-fZ4">
@@ -1295,6 +1316,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="L5K-zg-05v"/>
         <segue reference="aUI-yf-waN"/>
     </inferredMetricsTieBreakers>
 </document>

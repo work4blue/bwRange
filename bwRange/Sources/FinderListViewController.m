@@ -54,10 +54,16 @@
 //    
 //    [ self initFinderData ];
     
+    self.navigationController.delegate = self ;
+    
     if([self isDemoMode]){
         self.navigationItem.title  = @"演示模式";
         self.navigationItem.leftBarButtonItem.title = @"退出";
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
 }
 
 - (BOOL)isDemoMode{
@@ -207,18 +213,34 @@
     
 }
 
--(IBAction) funcClicked:(id)sender{
-    UIActionSheet *sheet = [UIActionSheet alloc];
+
+    
+    
+-(IBAction) funcClicked:(id)sender {
+    
     if([self isDemoMode]){
-        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出演示" otherButtonTitles: nil];
+         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else{
-        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除物品" otherButtonTitles: @"新增物品",nil];
+       [self performSegueWithIdentifier:@"newDevice" sender:self];
     }
     
-    [sheet showInView:self.view];
-
+   
+    
 }
+
+//-(IBAction) funcClickedOld:(id)sender{
+//    UIActionSheet *sheet = [UIActionSheet alloc];
+//    if([self isDemoMode]){
+//        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出演示" otherButtonTitles: nil];
+//    }
+//    else{
+//        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除物品" otherButtonTitles: @"新增物品",nil];
+//    }
+//    
+//    [sheet showInView:self.view];
+//
+//}
 
 
 -(IBAction) buttonClicked:(id)sender {
@@ -325,6 +347,21 @@
         destViewController.bleFinder = finder;
     }
 }
+
+//回退事件
+
+//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+//    [self.tableView reloadData ];
+//}
+//
+//- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+//{
+//    [self.tableView reloadData ];
+//
+//    
+//}
+
+
 
 
 

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface FinderListViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate,UIActionSheetDelegate>
+//,UINavigationControllerDelegate
+
+@interface FinderListViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate,UINavigationControllerDelegate>
 
 @property (strong,nonatomic) NSMutableArray *nFinders;
 @property (nonatomic) int currentLine ;

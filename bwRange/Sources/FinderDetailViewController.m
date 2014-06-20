@@ -46,6 +46,11 @@
     
     self.navigationItem.title  = [ device name];
     
+    self.navigationController.delegate=self;
+    
+    
+
+    
     if(self.isNewDevice == YES){
         self.navigationItem.rightBarButtonItem.title =@"保存";
     }
@@ -86,6 +91,9 @@
     self.bleFinder = finder;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData ];
+}
 
 
 
@@ -217,9 +225,18 @@
         [[AppDelegate sharedInstance].dataManager  addFinder:self.bleFinder ];
          [[AppDelegate sharedInstance].dataManager  saveFinder ];
         
+        self.isNewDevice = NO;
+        
+        //[self dismissViewControllerAnimated:YES completion:nil];
+       
+        //[self.navigationController popViewControllerAnimated:YES];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES ];
+
+        
     }
     else{
-        
+       [[AppDelegate sharedInstance].dataManager  saveFinder ];
     }
 }
 
