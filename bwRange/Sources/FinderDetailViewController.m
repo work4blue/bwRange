@@ -231,7 +231,7 @@
        
         //[self.navigationController popViewControllerAnimated:YES];
         
-        [self.navigationController popToRootViewControllerAnimated:YES ];
+        [self.navigationController popToRootViewControllerAnimated:NO ];
 
         
     }
