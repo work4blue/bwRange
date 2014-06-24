@@ -7,8 +7,9 @@
 //
 
 #import "SingleSelectViewController.h"
+#import "BleDevice.h"
 
 @interface FinderTypeViewController : SingleSelectViewController
 
-@property (nonatomic, strong) NSDictionary * bleDevice;
+@property (nonatomic, strong) BleDevice * bleDevice;
 @end

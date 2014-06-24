@@ -42,9 +42,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    CBPeripheral * device =  [ self.bleDevice objectForKey:@"peripheral" ];
+   // CBPeripheral * device =  [ self.bleDevice objectForKey:@"peripheral" ];
     
-    self.navigationItem.title  = [ device name];
+   // self.navigationItem.title  = [ device name];
+    self.navigationItem.title  =  self.bleDevice.DevName;
     
     self.navigationController.delegate=self;
     
@@ -66,9 +67,6 @@
     
     //[self setFindType:self.bleFinder.finderType];
     
-    
-    
-    
     //UITableViewCell * cell = [self tableView:table cellForRowAtIndexPath:indexPath ];
     
     
@@ -83,6 +81,8 @@
     
     self.bleFinder.finderType = finderType;
     self.bleFinder.range =range;
+    
+    DLog(@"newFinder type %d,range %e",finderType,range);
     
 }
 
@@ -222,6 +222,8 @@
     if([self isNewDevice]){
         //保存并跳转
         
+       // self.bleFinder.UUID = [ self.bleDevice objectForKey:@"UUID" ];
+        self.bleFinder.UUID = self.bleDevice.UUID;
         [[AppDelegate sharedInstance].dataManager  addFinder:self.bleFinder ];
          [[AppDelegate sharedInstance].dataManager  saveFinder ];
         
@@ -268,6 +270,8 @@
     if(buttonIndex == 0){
         [[AppDelegate getManager]
          removeFinder:self.bleFinder ];
+        
+        
     
      [self dismissViewControllerAnimated:YES completion:nil];
     }

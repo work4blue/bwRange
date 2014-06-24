@@ -17,6 +17,8 @@
 
 
 
+
+
 -(id) init;
 
 -(int)loadFinders;
@@ -38,5 +40,6 @@
 -(BOOL)isDemoMode;
 
 -(void)load;
+
 
 @end

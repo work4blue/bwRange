@@ -60,9 +60,13 @@
         self.navigationItem.title  = @"演示模式";
         self.navigationItem.leftBarButtonItem.title = @"退出";
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+   if(![self isDemoMode])
+        [ [ AppDelegate getFinderService ] startDetectingFinders ];
+    
     [self.tableView reloadData];
 }
 

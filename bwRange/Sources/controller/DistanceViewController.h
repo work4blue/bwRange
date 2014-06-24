@@ -7,10 +7,11 @@
 //
 
 #import "SingleSelectViewController.h"
+#import "BleDevice.h"
 
 @interface DistanceViewController : SingleSelectViewController
 
 
-@property (nonatomic, strong) NSDictionary * bleDevice;
+@property (nonatomic, strong) BleDevice * bleDevice;
 @property (nonatomic) int finderType;
 @end

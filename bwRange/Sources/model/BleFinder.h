@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BleDevice.h"
 
 #define FINDER_TYPE_KEYS   (0)
 #define FINDER_TYPE_WALLET  (1)
@@ -48,11 +48,11 @@
  <string>0</string>
  */
 
-@interface BleFinder : NSObject
+@interface BleFinder : BleDevice
 
 @property (nonatomic) int finderType ; //wallet ,bag ...
 @property (nonatomic) int status     ; //
-@property (nonatomic, strong) NSString * UUID ;
+
 @property (nonatomic) int range     ;
 @property (nonatomic) int sensitivity     ;
 
@@ -64,11 +64,15 @@
 
 -(id) init;
 
+-(void) reset;
+
 -(void) setType:(int)finderType;
 
 - (NSString  *)getName;
 - (UIImage  *)getImage;
 - (UIImage  *)getStatusImage;
+
+-(void)setDevRSSI:(NSNumber *)rssi;
 
 -(void) initWithDictionary:(NSDictionary *)map;
 
@@ -79,6 +83,8 @@
 + (NSString  *)stringWithFinderType:(int)type;
 
 + (NSString  *)stringWithFinderDistance:(int)type;
+
+
 
 
 -(NSDictionary *)newDict;

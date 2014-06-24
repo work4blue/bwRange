@@ -158,10 +158,13 @@
     if([self isDemoMode])
         return NO;
     
+    NSLog(@"removeFinder befor %@",self.nBleFinders);
     
     [self.nBleFinders removeObject:finder];
     
     [self saveFinder ];
+    
+     NSLog(@"removeFinder after %@",self.nBleFinders);
     
     if(self.nBleFinders.count <= 0)
     {
@@ -269,6 +272,10 @@
     
    // [ self loadFinders ];
     
+    
+}
+
+- (void)startDetect{
     
 }
 

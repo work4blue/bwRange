@@ -17,6 +17,8 @@
     
     self.dataManager = [[ DataManager alloc] init];
     
+    self.finderService = [[ BleFinderService alloc] init];
+    
 
     UIStoryboard *mainStoryboard = nil;
     if (SCREEN_IS_RETIAN4){
@@ -68,6 +70,11 @@
 
 +(DataManager*)getManager{
     return [AppDelegate sharedInstance].dataManager;
+}
+
++(BleFinderService*)getFinderService{
+    return [AppDelegate sharedInstance].finderService;
+  
 }
 
 @end

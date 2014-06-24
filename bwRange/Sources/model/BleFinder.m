@@ -7,6 +7,11 @@
 //
 
 #import "BleFinder.h"
+#import "BleDevice.h"
+
+@interface BleFinder()
+
+@end
 
 @implementation BleFinder
 
@@ -17,6 +22,8 @@
          self.status  = FINDER_STATUS_LINKLOSS;
         
         self.range = 5;
+        
+       
         
      }
     
@@ -59,12 +66,16 @@
         tone =[ self.ringtone objectForKey:@"id"];
     
    
-    return  [NSDictionary dictionaryWithObjectsAndKeys:
-               [ NSString stringWithFormat:@"finder%d",self.finderType],@"UUID", [self getName ],@"NAME",
+    NSDictionary * dic =   [NSDictionary dictionaryWithObjectsAndKeys:
+                self.UUID,@"UUID", [self getName ],@"NAME",
                  [ NSString stringWithFormat:@"%d",self.range],@"RANGE",tone,@"RINGTONE",
                 [ NSString stringWithFormat:@"%d",self.sensitivity],@"SENSITIVITY",
              [ NSString stringWithFormat:@"%d",self.finderType],@"TYPE",
              [ NSString stringWithFormat:@"%d",self.vibrate],@"VIBRATE" ,nil];
+    
+    DLog(@"new finder %@",dic);
+    
+    return dic;
 
     
     
@@ -81,6 +92,10 @@
     
     return   [NSDictionary dictionaryWithObjectsAndKeys:@"近",@"text", nil];
     
+}
+
+-(NSString *) description{
+    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d",self.UUID,self.finderType,[self getName],self.range,self.status ];
 }
 
 -(void) initWithDictionary:(NSDictionary *)map{
@@ -109,6 +124,8 @@
     else
         self.vibrate = YES;
     
+    
+    NSLog(@"%@",self);
        
 }
 
@@ -207,6 +224,27 @@
     return notification;
 }
 
+-(void) reset{
+    self.status = FINDER_STATUS_LINKLOSS;
+    [  self setPeripheral:nil ];
+    
+}
+
+-(void)setDevRSSI:(NSNumber *)rssi{
+    self.RSSI = rssi;
+    
+    [self detectDistance:abs([rssi intValue])];
+    
+    CGFloat proximity  = [rssi floatValue];
+    if (proximity < -70)
+         self.status  = FINDER_STATUS_FAR;
+    else if (proximity < -55)
+        self.status  = FINDER_STATUS_NEAR;
+    else if (proximity < 0)
+        self.status  = FINDER_STATUS_LINKLOSS;
+
+    
+}
 
 
 @end

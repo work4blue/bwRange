@@ -9,6 +9,7 @@
 #import "DeviceListTableViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "UIView+Toast.h"
+#import "BleDevice.h"
 
 #import "FinderTypeViewController.h"
 
@@ -54,8 +55,12 @@
    
     
      //创建蓝牙服务
-     self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    // is disabling duplicate filtering, but is using the default queue (main thread) for delegate events
+     //self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
+    
+     dispatch_queue_t centralQueue = dispatch_queue_create("com.yo.mycentral", DISPATCH_QUEUE_SERIAL);
+    self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
     
     
 }
@@ -207,13 +212,12 @@
     
    
     
-    NSDictionary *device = [ self.nDevices objectAtIndex:indexPath.row];
-    CBPeripheral *p = [device objectForKey:@"peripheral"];
-    if( p.name == nil)
-        cell.textLabel.text = @"<unamed>";
-    else
-        cell.textLabel.text = p.name;
-
+//    NSDictionary *device = [ self.nDevices objectAtIndex:indexPath.row];
+//    CBPeripheral *p = [device objectForKey:@"peripheral"];
+    
+    BleDevice * device = (BleDevice *)[ self.nDevices objectAtIndex:indexPath.row];
+    cell.textLabel.text =  device.DevName ;
+   
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     
     return cell;
@@ -253,25 +257,42 @@
     [self.manager stopScan];
     //[_activity stopAnimating];
     
-    NSDictionary *device;
+   
     
-    device = [NSDictionary dictionaryWithObjectsAndKeys:
-                    peripheral, @"peripheral",
-                    peripheral.identifier, @"uuid",
-                    RSSI, @"RSSI",
-                    advertisementData, @"advertisementData", nil];
+//    NSDictionary *device;
+//    
+//    device = [NSDictionary dictionaryWithObjectsAndKeys:
+//                    peripheral, @"peripheral",
+//                    peripheral.identifier, @"uuid",
+//                    RSSI, @"RSSI",
+//                    advertisementData, @"advertisementData", nil];
 
     BOOL replace = NO;
+    NSString * newUUID = [ peripheral.identifier UUIDString ];
     // Match if we have this device from before
     for (int i=0; i < self.nDevices.count; i++) {
-         //NSDictionary *dev = [ self.nDevices objectAtIndex:i];
-        CBPeripheral *p = [device objectForKey:@"peripheral"];
-        if ([p isEqual:peripheral]) {
-            [ self.nDevices replaceObjectAtIndex:i withObject:device];
+        
+        //CBPeripheral *p = [device objectForKey:@"peripheral"];
+        BleDevice * device = (BleDevice *)[ self.nDevices objectAtIndex:i];
+        
+      //  CBPeripheral *p =  device.peripheral;
+        
+        NSString * uuid = device.UUID;
+        
+       // if ([ p isEqual:peripheral]) {
+        if ([ uuid isEqual:newUUID]) {
+            //[ self.nDevices replaceObjectAtIndex:i withObject:device];
+             [device setPeripheral:peripheral ];
+            
             replace = YES;
+            break;
         }
     }
     if (!replace) {
+        
+        BleDevice * device = [[BleDevice alloc] init];
+        
+        [ device setPeripheral:peripheral ];
         
         [ self.nDevices addObject:device];
         

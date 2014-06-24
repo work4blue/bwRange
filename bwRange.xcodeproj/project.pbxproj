@@ -47,6 +47,7 @@
 		85C1F7F219558149000A0D17 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F119558149000A0D17 /* Utils.m */; };
 		85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F4195583B6000A0D17 /* BleManager.m */; };
 		85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F7195583E8000A0D17 /* BlePeripheral.m */; };
+		85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F8011959693F000A0D17 /* BleFinderService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,9 @@
 		85C1F7F4195583B6000A0D17 /* BleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleManager.m; sourceTree = "<group>"; };
 		85C1F7F6195583E8000A0D17 /* BlePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlePeripheral.h; sourceTree = "<group>"; };
 		85C1F7F7195583E8000A0D17 /* BlePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlePeripheral.m; sourceTree = "<group>"; };
+		85C1F8001959693F000A0D17 /* BleFinderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleFinderService.h; sourceTree = "<group>"; };
+		85C1F8011959693F000A0D17 /* BleFinderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleFinderService.m; sourceTree = "<group>"; };
+		85C1F80319596D2B000A0D17 /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,7 @@
 		85C1F7B419558027000A0D17 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85C1F7FC195967B6000A0D17 /* service */,
 				85C1F7EE19558149000A0D17 /* lib */,
 				85C1F7CF19558139000A0D17 /* controller */,
 				85C1F7B51955809B000A0D17 /* 3rd */,
@@ -334,6 +339,7 @@
 		85C1F7EE19558149000A0D17 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				85C1F80319596D2B000A0D17 /* GCDSingleton.h */,
 				85C1F7EF19558149000A0D17 /* Common.h */,
 				85C1F7F019558149000A0D17 /* Utils.h */,
 				85C1F7F119558149000A0D17 /* Utils.m */,
@@ -344,6 +350,16 @@
 			);
 			name = lib;
 			path = Sources/lib;
+			sourceTree = "<group>";
+		};
+		85C1F7FC195967B6000A0D17 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F8001959693F000A0D17 /* BleFinderService.h */,
+				85C1F8011959693F000A0D17 /* BleFinderService.m */,
+			);
+			name = service;
+			path = Sources/service;
 			sourceTree = "<group>";
 		};
 		85EE2929194979640085A6EB /* Resources */ = {
@@ -473,6 +489,7 @@
 				85C1F7EB19558139000A0D17 /* FinderTypeViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
 				85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */,
+				85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */,
 				85C1F7F219558149000A0D17 /* Utils.m in Sources */,
 				85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */,
 				85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */,

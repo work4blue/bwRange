@@ -14,6 +14,16 @@
 
 
 
-@property (nonatomic, strong) CBPeripheral * bleDevice; //对应外部设备
+@property (nonatomic, strong) NSString  * UUID; //对应外部设备
+@property (nonatomic, strong) NSString  * DevName;
+@property (nonatomic, strong) NSNumber  * RSSI;
 
+-(id) init;
+
+-(void) setPeripheral:(CBPeripheral *)peripheral;
+-(CBPeripheral *)getPeripheral;
+
+
+
+-(int) detectDistance:(int)rssi;
 @end

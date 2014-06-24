@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface DeviceListTableViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface DeviceListTableViewController : UITableViewController<CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
 @property (nonatomic, strong) CBPeripheral *peripheral;

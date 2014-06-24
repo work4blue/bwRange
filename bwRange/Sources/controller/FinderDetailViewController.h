@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "BleFinder.h"
+#import "BleDevice.h"
 
 @interface FinderDetailViewController : UITableViewController
 
-@property (nonatomic, strong) NSDictionary * bleDevice;
+@property (nonatomic, strong) BleDevice * bleDevice;
 @property (nonatomic, strong) BleFinder * bleFinder;
 
 

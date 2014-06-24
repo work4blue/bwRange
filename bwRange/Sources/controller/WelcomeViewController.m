@@ -33,7 +33,11 @@
     [super viewDidLoad];
    
     
-    
+    //如果用户创建一个设备，则直接进入Finder列表
+    if(![AppDelegate getManager].isDemoMode){
+        [self performSegueWithIdentifier:@"FinderList" sender:self];
+        
+    }
     
     
 }
@@ -52,11 +56,12 @@
     
     [ Utils hideNavBar:self];
     
-    //如果用户创建一个设备，则直接进入Finder列表
     if(![AppDelegate getManager].isDemoMode){
         [self performSegueWithIdentifier:@"FinderList" sender:self];
         
     }
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
