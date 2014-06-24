@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation Utils
 
@@ -200,6 +201,14 @@
         return nil;
     }
 }
+
++ (void)playMp3:(NSString *)fileName{
+    SystemSoundID soundId;
+    NSString *path = [[NSBundle mainBundle]pathForResource:fileName ofType:@"mp3"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundId);
+    AudioServicesPlaySystemSound(soundId);
+}
+
 
 
 

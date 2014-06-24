@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <CoreBluetooth/CoreBluetooth.h>
+
 @interface BleDevice : NSObject
+
+
+
+@property (nonatomic, strong) CBPeripheral * bleDevice; //对应外部设备
 
 @end

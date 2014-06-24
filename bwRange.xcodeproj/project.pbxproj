@@ -14,7 +14,6 @@
 		8509F8EA193A53E20021EC57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F8E9193A53E20021EC57 /* main.m */; };
 		8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F8ED193A53E20021EC57 /* AppDelegate.m */; };
 		8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8509F8EF193A53E20021EC57 /* Main.storyboard */; };
-		8509F8F4193A53E20021EC57 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F8F3193A53E20021EC57 /* ViewController.m */; };
 		8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8509F8F5193A53E20021EC57 /* Images.xcassets */; };
 		8509F8FD193A53E20021EC57 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8509F8FC193A53E20021EC57 /* XCTest.framework */; };
 		8509F8FE193A53E20021EC57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8509F8DD193A53E20021EC57 /* Foundation.framework */; };
@@ -22,28 +21,32 @@
 		8509F907193A53E20021EC57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8509F905193A53E20021EC57 /* InfoPlist.strings */; };
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
 		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
-		85450C851952E4E900A9BB8A /* FinderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85450C841952E4E900A9BB8A /* FinderMapViewController.m */; };
-		85450C871952F63500A9BB8A /* FinderTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C861952F63500A9BB8A /* FinderTypes.plist */; };
-		85450C8B1952F6B500A9BB8A /* Ringtones.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C891952F6B500A9BB8A /* Ringtones.plist */; };
-		85450C8C1952F6B500A9BB8A /* DemoFinders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85450C8A1952F6B500A9BB8A /* DemoFinders.plist */; };
-		85450C8F1952FCC400A9BB8A /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85450C8E1952FCC400A9BB8A /* DataManager.m */; };
 		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
-		8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */; };
-		85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804711193CF6EA004F73CB /* WelcomeViewController.m */; };
-		85804715193CF752004F73CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85804714193CF752004F73CB /* Utils.m */; };
-		85CC6E1E194C7A6C00F79C10 /* BleFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC6E1D194C7A6C00F79C10 /* BleFinder.m */; };
-		85CC6E21194D72C900F79C10 /* BleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC6E20194D72C900F79C10 /* BleDevice.m */; };
-		85D81E7C195434B20017AB00 /* FinderTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7B195434B20017AB00 /* FinderTypeViewController.m */; };
-		85D81E7F195434D10017AB00 /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E7E195434D10017AB00 /* DistanceViewController.m */; };
-		85D81E811954855E0017AB00 /* Finders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85D81E801954855E0017AB00 /* Finders.plist */; };
-		85D81E871954AE440017AB00 /* FinderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D81E861954AE440017AB00 /* FinderStatusViewController.m */; };
-		85EE291E19487BA90085A6EB /* FinderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE291D19487BA90085A6EB /* FinderDetailViewController.m */; };
-		85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE292019495DDD0085A6EB /* FinderListViewController.m */; };
-		85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE29241949773C0085A6EB /* UIView+Toast.m */; };
-		85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AAB3194B627800F0573A /* SingleSelectViewController.m */; };
-		85F6AABA194B6F2A00F0573A /* DeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */; };
-		85F6AAC0194C1DBC00F0573A /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */; };
-		85F6AAC1194C1DBC00F0573A /* LeveyPopListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */; };
+		85C1F7B119558000000A0D17 /* BleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7AC19558000000A0D17 /* BleDevice.m */; };
+		85C1F7B219558000000A0D17 /* BleFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7AE19558000000A0D17 /* BleFinder.m */; };
+		85C1F7B319558000000A0D17 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7B019558000000A0D17 /* DataManager.m */; };
+		85C1F7BE1955809B000A0D17 /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7B81955809B000A0D17 /* LeveyPopListView.m */; };
+		85C1F7BF1955809B000A0D17 /* LeveyPopListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7BA1955809B000A0D17 /* LeveyPopListViewCell.m */; };
+		85C1F7C01955809B000A0D17 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7BD1955809B000A0D17 /* UIView+Toast.m */; };
+		85C1F7C9195580AA000A0D17 /* DemoFinders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C2195580AA000A0D17 /* DemoFinders.plist */; };
+		85C1F7CA195580AA000A0D17 /* Finders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C3195580AA000A0D17 /* Finders.plist */; };
+		85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C4195580AA000A0D17 /* FinderTypes.plist */; };
+		85C1F7CC195580AA000A0D17 /* Ringtones.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C5195580AA000A0D17 /* Ringtones.plist */; };
+		85C1F7CD195580AA000A0D17 /* beep1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C7195580AA000A0D17 /* beep1.mp3 */; };
+		85C1F7CE195580AA000A0D17 /* beep2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C8195580AA000A0D17 /* beep2.mp3 */; };
+		85C1F7E419558139000A0D17 /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D119558139000A0D17 /* DeviceListTableViewController.m */; };
+		85C1F7E519558139000A0D17 /* DeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D319558139000A0D17 /* DeviceSettingViewController.m */; };
+		85C1F7E619558139000A0D17 /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D519558139000A0D17 /* DistanceViewController.m */; };
+		85C1F7E719558139000A0D17 /* FinderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D719558139000A0D17 /* FinderDetailViewController.m */; };
+		85C1F7E819558139000A0D17 /* FinderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D919558139000A0D17 /* FinderListViewController.m */; };
+		85C1F7E919558139000A0D17 /* FinderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7DB19558139000A0D17 /* FinderMapViewController.m */; };
+		85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7DD19558139000A0D17 /* FinderStatusViewController.m */; };
+		85C1F7EB19558139000A0D17 /* FinderTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7DF19558139000A0D17 /* FinderTypeViewController.m */; };
+		85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7E119558139000A0D17 /* SingleSelectViewController.m */; };
+		85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7E319558139000A0D17 /* WelcomeViewController.m */; };
+		85C1F7F219558149000A0D17 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F119558149000A0D17 /* Utils.m */; };
+		85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F4195583B6000A0D17 /* BleManager.m */; };
+		85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F7195583E8000A0D17 /* BlePeripheral.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +71,6 @@
 		8509F8EC193A53E20021EC57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8509F8ED193A53E20021EC57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8509F8F0193A53E20021EC57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8509F8F2193A53E20021EC57 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8509F8F3193A53E20021EC57 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8509F8F5193A53E20021EC57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8509F8FB193A53E20021EC57 /* bwRangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bwRangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8509F8FC193A53E20021EC57 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -77,47 +78,53 @@
 		8509F906193A53E20021EC57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8509F908193A53E20021EC57 /* bwRangeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bwRangeTests.m; sourceTree = "<group>"; };
 		8533AD40193E4C8500461C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/3.5.storyboard; sourceTree = "<group>"; };
-		85450C831952E4E900A9BB8A /* FinderMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderMapViewController.h; path = Sources/FinderMapViewController.h; sourceTree = "<group>"; };
-		85450C841952E4E900A9BB8A /* FinderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderMapViewController.m; path = Sources/FinderMapViewController.m; sourceTree = "<group>"; };
-		85450C861952F63500A9BB8A /* FinderTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FinderTypes.plist; path = plist/FinderTypes.plist; sourceTree = "<group>"; };
-		85450C891952F6B500A9BB8A /* Ringtones.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Ringtones.plist; path = plist/Ringtones.plist; sourceTree = "<group>"; };
-		85450C8A1952F6B500A9BB8A /* DemoFinders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DemoFinders.plist; path = plist/DemoFinders.plist; sourceTree = "<group>"; };
-		85450C8D1952FCC400A9BB8A /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = Sources/DataManager.h; sourceTree = "<group>"; };
-		85450C8E1952FCC400A9BB8A /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = Sources/DataManager.m; sourceTree = "<group>"; };
 		8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceListTableViewController.h; path = Sources/DeviceListTableViewController.h; sourceTree = "<group>"; };
-		8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceListTableViewController.m; path = Sources/DeviceListTableViewController.m; sourceTree = "<group>"; };
-		85804710193CF6EA004F73CB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Sources/WelcomeViewController.h; sourceTree = "<group>"; };
-		85804711193CF6EA004F73CB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Sources/WelcomeViewController.m; sourceTree = "<group>"; };
-		85804713193CF752004F73CB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Sources/Utils.h; sourceTree = "<group>"; };
-		85804714193CF752004F73CB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Sources/Utils.m; sourceTree = "<group>"; };
 		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
-		85804718193DB427004F73CB /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		85CC6E1C194C7A6C00F79C10 /* BleFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleFinder.h; path = Sources/BleFinder.h; sourceTree = "<group>"; };
-		85CC6E1D194C7A6C00F79C10 /* BleFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleFinder.m; path = Sources/BleFinder.m; sourceTree = "<group>"; };
-		85CC6E1F194D72C900F79C10 /* BleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleDevice.h; path = Sources/BleDevice.h; sourceTree = "<group>"; };
-		85CC6E20194D72C900F79C10 /* BleDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleDevice.m; path = Sources/BleDevice.m; sourceTree = "<group>"; };
-		85D81E7A195434B20017AB00 /* FinderTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderTypeViewController.h; path = Sources/FinderTypeViewController.h; sourceTree = "<group>"; };
-		85D81E7B195434B20017AB00 /* FinderTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderTypeViewController.m; path = Sources/FinderTypeViewController.m; sourceTree = "<group>"; };
-		85D81E7D195434D10017AB00 /* DistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceViewController.h; path = Sources/DistanceViewController.h; sourceTree = "<group>"; };
-		85D81E7E195434D10017AB00 /* DistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistanceViewController.m; path = Sources/DistanceViewController.m; sourceTree = "<group>"; };
-		85D81E801954855E0017AB00 /* Finders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Finders.plist; path = plist/Finders.plist; sourceTree = "<group>"; };
-		85D81E851954AE440017AB00 /* FinderStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderStatusViewController.h; path = Sources/FinderStatusViewController.h; sourceTree = "<group>"; };
-		85D81E861954AE440017AB00 /* FinderStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderStatusViewController.m; path = Sources/FinderStatusViewController.m; sourceTree = "<group>"; };
-		85EE291C19487BA90085A6EB /* FinderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderDetailViewController.h; path = Sources/FinderDetailViewController.h; sourceTree = "<group>"; };
-		85EE291D19487BA90085A6EB /* FinderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderDetailViewController.m; path = Sources/FinderDetailViewController.m; sourceTree = "<group>"; };
-		85EE291F19495DDD0085A6EB /* FinderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FinderListViewController.h; path = Sources/FinderListViewController.h; sourceTree = "<group>"; };
-		85EE292019495DDD0085A6EB /* FinderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FinderListViewController.m; path = Sources/FinderListViewController.m; sourceTree = "<group>"; };
-		85EE29231949773C0085A6EB /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
-		85EE29241949773C0085A6EB /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		85F6AAB2194B627800F0573A /* SingleSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleSelectViewController.h; path = Sources/SingleSelectViewController.h; sourceTree = "<group>"; };
-		85F6AAB3194B627800F0573A /* SingleSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleSelectViewController.m; path = Sources/SingleSelectViewController.m; sourceTree = "<group>"; };
-		85F6AAB8194B6F2A00F0573A /* DeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceSettingViewController.h; path = Sources/DeviceSettingViewController.h; sourceTree = "<group>"; };
-		85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceSettingViewController.m; path = Sources/DeviceSettingViewController.m; sourceTree = "<group>"; };
-		85F6AABC194C1DBC00F0573A /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
-		85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
-		85F6AABE194C1DBC00F0573A /* LeveyPopListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListViewCell.h; sourceTree = "<group>"; };
-		85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListViewCell.m; sourceTree = "<group>"; };
+		85C1F7AB19558000000A0D17 /* BleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleDevice.h; sourceTree = "<group>"; };
+		85C1F7AC19558000000A0D17 /* BleDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleDevice.m; sourceTree = "<group>"; };
+		85C1F7AD19558000000A0D17 /* BleFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleFinder.h; sourceTree = "<group>"; };
+		85C1F7AE19558000000A0D17 /* BleFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleFinder.m; sourceTree = "<group>"; };
+		85C1F7AF19558000000A0D17 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		85C1F7B019558000000A0D17 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		85C1F7B71955809B000A0D17 /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
+		85C1F7B81955809B000A0D17 /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
+		85C1F7B91955809B000A0D17 /* LeveyPopListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListViewCell.h; sourceTree = "<group>"; };
+		85C1F7BA1955809B000A0D17 /* LeveyPopListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListViewCell.m; sourceTree = "<group>"; };
+		85C1F7BC1955809B000A0D17 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		85C1F7BD1955809B000A0D17 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		85C1F7C2195580AA000A0D17 /* DemoFinders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DemoFinders.plist; sourceTree = "<group>"; };
+		85C1F7C3195580AA000A0D17 /* Finders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Finders.plist; sourceTree = "<group>"; };
+		85C1F7C4195580AA000A0D17 /* FinderTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FinderTypes.plist; sourceTree = "<group>"; };
+		85C1F7C5195580AA000A0D17 /* Ringtones.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ringtones.plist; sourceTree = "<group>"; };
+		85C1F7C7195580AA000A0D17 /* beep1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep1.mp3; sourceTree = "<group>"; };
+		85C1F7C8195580AA000A0D17 /* beep2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep2.mp3; sourceTree = "<group>"; };
+		85C1F7D019558139000A0D17 /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListTableViewController.h; sourceTree = "<group>"; };
+		85C1F7D119558139000A0D17 /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListTableViewController.m; sourceTree = "<group>"; };
+		85C1F7D219558139000A0D17 /* DeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingViewController.h; sourceTree = "<group>"; };
+		85C1F7D319558139000A0D17 /* DeviceSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingViewController.m; sourceTree = "<group>"; };
+		85C1F7D419558139000A0D17 /* DistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceViewController.h; sourceTree = "<group>"; };
+		85C1F7D519558139000A0D17 /* DistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceViewController.m; sourceTree = "<group>"; };
+		85C1F7D619558139000A0D17 /* FinderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderDetailViewController.h; sourceTree = "<group>"; };
+		85C1F7D719558139000A0D17 /* FinderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderDetailViewController.m; sourceTree = "<group>"; };
+		85C1F7D819558139000A0D17 /* FinderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderListViewController.h; sourceTree = "<group>"; };
+		85C1F7D919558139000A0D17 /* FinderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderListViewController.m; sourceTree = "<group>"; };
+		85C1F7DA19558139000A0D17 /* FinderMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderMapViewController.h; sourceTree = "<group>"; };
+		85C1F7DB19558139000A0D17 /* FinderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderMapViewController.m; sourceTree = "<group>"; };
+		85C1F7DC19558139000A0D17 /* FinderStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderStatusViewController.h; sourceTree = "<group>"; };
+		85C1F7DD19558139000A0D17 /* FinderStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderStatusViewController.m; sourceTree = "<group>"; };
+		85C1F7DE19558139000A0D17 /* FinderTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderTypeViewController.h; sourceTree = "<group>"; };
+		85C1F7DF19558139000A0D17 /* FinderTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderTypeViewController.m; sourceTree = "<group>"; };
+		85C1F7E019558139000A0D17 /* SingleSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleSelectViewController.h; sourceTree = "<group>"; };
+		85C1F7E119558139000A0D17 /* SingleSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSelectViewController.m; sourceTree = "<group>"; };
+		85C1F7E219558139000A0D17 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		85C1F7E319558139000A0D17 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		85C1F7EF19558149000A0D17 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		85C1F7F019558149000A0D17 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		85C1F7F119558149000A0D17 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		85C1F7F3195583B6000A0D17 /* BleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleManager.h; sourceTree = "<group>"; };
+		85C1F7F4195583B6000A0D17 /* BleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleManager.m; sourceTree = "<group>"; };
+		85C1F7F6195583E8000A0D17 /* BlePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlePeripheral.h; sourceTree = "<group>"; };
+		85C1F7F7195583E8000A0D17 /* BlePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlePeripheral.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,47 +186,15 @@
 		8509F8E3193A53E20021EC57 /* bwRange */ = {
 			isa = PBXGroup;
 			children = (
-				85450C881952F64C00A9BB8A /* plist */,
+				85C1F7B419558027000A0D17 /* Sources */,
 				85EE2929194979640085A6EB /* Resources */,
-				85EE2926194979340085A6EB /* 3rd */,
 				8533AD3F193E4C8500461C4A /* 3.5.storyboard */,
 				8509F8EC193A53E20021EC57 /* AppDelegate.h */,
 				8509F8ED193A53E20021EC57 /* AppDelegate.m */,
 				8509F8EF193A53E20021EC57 /* Main.storyboard */,
-				8509F8F2193A53E20021EC57 /* ViewController.h */,
-				8509F8F3193A53E20021EC57 /* ViewController.m */,
 				8509F8F5193A53E20021EC57 /* Images.xcassets */,
 				8509F8E4193A53E20021EC57 /* Supporting Files */,
-				85804710193CF6EA004F73CB /* WelcomeViewController.h */,
-				85804711193CF6EA004F73CB /* WelcomeViewController.m */,
-				85804713193CF752004F73CB /* Utils.h */,
-				85804714193CF752004F73CB /* Utils.m */,
 				85804716193CFCA2004F73CB /* AppDefine.h */,
-				85804718193DB427004F73CB /* Common.h */,
-				8570B5CD1946E33F00CEC06E /* DeviceListTableViewController.h */,
-				8570B5CE1946E33F00CEC06E /* DeviceListTableViewController.m */,
-				85EE291C19487BA90085A6EB /* FinderDetailViewController.h */,
-				85EE291D19487BA90085A6EB /* FinderDetailViewController.m */,
-				85EE291F19495DDD0085A6EB /* FinderListViewController.h */,
-				85EE292019495DDD0085A6EB /* FinderListViewController.m */,
-				85F6AAB2194B627800F0573A /* SingleSelectViewController.h */,
-				85F6AAB3194B627800F0573A /* SingleSelectViewController.m */,
-				85F6AAB8194B6F2A00F0573A /* DeviceSettingViewController.h */,
-				85F6AAB9194B6F2A00F0573A /* DeviceSettingViewController.m */,
-				85CC6E1C194C7A6C00F79C10 /* BleFinder.h */,
-				85CC6E1D194C7A6C00F79C10 /* BleFinder.m */,
-				85CC6E1F194D72C900F79C10 /* BleDevice.h */,
-				85CC6E20194D72C900F79C10 /* BleDevice.m */,
-				85450C831952E4E900A9BB8A /* FinderMapViewController.h */,
-				85450C841952E4E900A9BB8A /* FinderMapViewController.m */,
-				85450C8D1952FCC400A9BB8A /* DataManager.h */,
-				85450C8E1952FCC400A9BB8A /* DataManager.m */,
-				85D81E7A195434B20017AB00 /* FinderTypeViewController.h */,
-				85D81E7B195434B20017AB00 /* FinderTypeViewController.m */,
-				85D81E7D195434D10017AB00 /* DistanceViewController.h */,
-				85D81E7E195434D10017AB00 /* DistanceViewController.m */,
-				85D81E851954AE440017AB00 /* FinderStatusViewController.h */,
-				85D81E861954AE440017AB00 /* FinderStatusViewController.m */,
 			);
 			path = bwRange;
 			sourceTree = "<group>";
@@ -253,53 +228,131 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		85450C881952F64C00A9BB8A /* plist */ = {
+		85C1F7AA19558000000A0D17 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				85D81E801954855E0017AB00 /* Finders.plist */,
-				85450C891952F6B500A9BB8A /* Ringtones.plist */,
-				85450C8A1952F6B500A9BB8A /* DemoFinders.plist */,
-				85450C861952F63500A9BB8A /* FinderTypes.plist */,
+				85C1F7AB19558000000A0D17 /* BleDevice.h */,
+				85C1F7AC19558000000A0D17 /* BleDevice.m */,
+				85C1F7AD19558000000A0D17 /* BleFinder.h */,
+				85C1F7AE19558000000A0D17 /* BleFinder.m */,
+				85C1F7AF19558000000A0D17 /* DataManager.h */,
+				85C1F7B019558000000A0D17 /* DataManager.m */,
 			);
-			name = plist;
+			name = model;
+			path = Sources/model;
 			sourceTree = "<group>";
 		};
-		85EE29221949773C0085A6EB /* Toast */ = {
+		85C1F7B419558027000A0D17 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				85EE29231949773C0085A6EB /* UIView+Toast.h */,
-				85EE29241949773C0085A6EB /* UIView+Toast.m */,
+				85C1F7EE19558149000A0D17 /* lib */,
+				85C1F7CF19558139000A0D17 /* controller */,
+				85C1F7B51955809B000A0D17 /* 3rd */,
+				85C1F7AA19558000000A0D17 /* model */,
 			);
-			name = Toast;
-			path = 3rd/Toast;
+			name = Sources;
 			sourceTree = "<group>";
 		};
-		85EE2926194979340085A6EB /* 3rd */ = {
+		85C1F7B51955809B000A0D17 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
-				85F6AABB194C1DBC00F0573A /* LeveyPopListView */,
-				85EE29221949773C0085A6EB /* Toast */,
+				85C1F7B61955809B000A0D17 /* LeveyPopListView */,
+				85C1F7BB1955809B000A0D17 /* Toast */,
 			);
 			name = 3rd;
+			path = Sources/3rd;
+			sourceTree = "<group>";
+		};
+		85C1F7B61955809B000A0D17 /* LeveyPopListView */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7B71955809B000A0D17 /* LeveyPopListView.h */,
+				85C1F7B81955809B000A0D17 /* LeveyPopListView.m */,
+				85C1F7B91955809B000A0D17 /* LeveyPopListViewCell.h */,
+				85C1F7BA1955809B000A0D17 /* LeveyPopListViewCell.m */,
+			);
+			path = LeveyPopListView;
+			sourceTree = "<group>";
+		};
+		85C1F7BB1955809B000A0D17 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7BC1955809B000A0D17 /* UIView+Toast.h */,
+				85C1F7BD1955809B000A0D17 /* UIView+Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		85C1F7C1195580AA000A0D17 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7C2195580AA000A0D17 /* DemoFinders.plist */,
+				85C1F7C3195580AA000A0D17 /* Finders.plist */,
+				85C1F7C4195580AA000A0D17 /* FinderTypes.plist */,
+				85C1F7C5195580AA000A0D17 /* Ringtones.plist */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
+		85C1F7C6195580AA000A0D17 /* ringtone */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7C7195580AA000A0D17 /* beep1.mp3 */,
+				85C1F7C8195580AA000A0D17 /* beep2.mp3 */,
+			);
+			path = ringtone;
+			sourceTree = "<group>";
+		};
+		85C1F7CF19558139000A0D17 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7D019558139000A0D17 /* DeviceListTableViewController.h */,
+				85C1F7D119558139000A0D17 /* DeviceListTableViewController.m */,
+				85C1F7D219558139000A0D17 /* DeviceSettingViewController.h */,
+				85C1F7D319558139000A0D17 /* DeviceSettingViewController.m */,
+				85C1F7D419558139000A0D17 /* DistanceViewController.h */,
+				85C1F7D519558139000A0D17 /* DistanceViewController.m */,
+				85C1F7D619558139000A0D17 /* FinderDetailViewController.h */,
+				85C1F7D719558139000A0D17 /* FinderDetailViewController.m */,
+				85C1F7D819558139000A0D17 /* FinderListViewController.h */,
+				85C1F7D919558139000A0D17 /* FinderListViewController.m */,
+				85C1F7DA19558139000A0D17 /* FinderMapViewController.h */,
+				85C1F7DB19558139000A0D17 /* FinderMapViewController.m */,
+				85C1F7DC19558139000A0D17 /* FinderStatusViewController.h */,
+				85C1F7DD19558139000A0D17 /* FinderStatusViewController.m */,
+				85C1F7DE19558139000A0D17 /* FinderTypeViewController.h */,
+				85C1F7DF19558139000A0D17 /* FinderTypeViewController.m */,
+				85C1F7E019558139000A0D17 /* SingleSelectViewController.h */,
+				85C1F7E119558139000A0D17 /* SingleSelectViewController.m */,
+				85C1F7E219558139000A0D17 /* WelcomeViewController.h */,
+				85C1F7E319558139000A0D17 /* WelcomeViewController.m */,
+			);
+			name = controller;
+			path = Sources/controller;
+			sourceTree = "<group>";
+		};
+		85C1F7EE19558149000A0D17 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				85C1F7EF19558149000A0D17 /* Common.h */,
+				85C1F7F019558149000A0D17 /* Utils.h */,
+				85C1F7F119558149000A0D17 /* Utils.m */,
+				85C1F7F3195583B6000A0D17 /* BleManager.h */,
+				85C1F7F4195583B6000A0D17 /* BleManager.m */,
+				85C1F7F6195583E8000A0D17 /* BlePeripheral.h */,
+				85C1F7F7195583E8000A0D17 /* BlePeripheral.m */,
+			);
+			name = lib;
+			path = Sources/lib;
 			sourceTree = "<group>";
 		};
 		85EE2929194979640085A6EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				85C1F7C1195580AA000A0D17 /* plist */,
+				85C1F7C6195580AA000A0D17 /* ringtone */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		85F6AABB194C1DBC00F0573A /* LeveyPopListView */ = {
-			isa = PBXGroup;
-			children = (
-				85F6AABC194C1DBC00F0573A /* LeveyPopListView.h */,
-				85F6AABD194C1DBC00F0573A /* LeveyPopListView.m */,
-				85F6AABE194C1DBC00F0573A /* LeveyPopListViewCell.h */,
-				85F6AABF194C1DBC00F0573A /* LeveyPopListViewCell.m */,
-			);
-			name = LeveyPopListView;
-			path = 3rd/LeveyPopListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,14 +435,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85C1F7CD195580AA000A0D17 /* beep1.mp3 in Resources */,
+				85C1F7CA195580AA000A0D17 /* Finders.plist in Resources */,
 				8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */,
-				85450C8B1952F6B500A9BB8A /* Ringtones.plist in Resources */,
-				85D81E811954855E0017AB00 /* Finders.plist in Resources */,
-				85450C871952F63500A9BB8A /* FinderTypes.plist in Resources */,
+				85C1F7CC195580AA000A0D17 /* Ringtones.plist in Resources */,
+				85C1F7C9195580AA000A0D17 /* DemoFinders.plist in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,
 				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
-				85450C8C1952F6B500A9BB8A /* DemoFinders.plist in Resources */,
+				85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */,
+				85C1F7CE195580AA000A0D17 /* beep2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,26 +463,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85EE29251949773C0085A6EB /* UIView+Toast.m in Sources */,
-				85EE292119495DDD0085A6EB /* FinderListViewController.m in Sources */,
-				85D81E7F195434D10017AB00 /* DistanceViewController.m in Sources */,
-				85F6AABA194B6F2A00F0573A /* DeviceSettingViewController.m in Sources */,
-				85EE291E19487BA90085A6EB /* FinderDetailViewController.m in Sources */,
-				85450C8F1952FCC400A9BB8A /* DataManager.m in Sources */,
-				8509F8F4193A53E20021EC57 /* ViewController.m in Sources */,
-				85CC6E1E194C7A6C00F79C10 /* BleFinder.m in Sources */,
-				85F6AAC1194C1DBC00F0573A /* LeveyPopListViewCell.m in Sources */,
-				85D81E7C195434B20017AB00 /* FinderTypeViewController.m in Sources */,
-				8570B5CF1946E33F00CEC06E /* DeviceListTableViewController.m in Sources */,
-				85804712193CF6EA004F73CB /* WelcomeViewController.m in Sources */,
-				85450C851952E4E900A9BB8A /* FinderMapViewController.m in Sources */,
+				85C1F7BE1955809B000A0D17 /* LeveyPopListView.m in Sources */,
+				85C1F7E619558139000A0D17 /* DistanceViewController.m in Sources */,
+				85C1F7E519558139000A0D17 /* DeviceSettingViewController.m in Sources */,
+				85C1F7E719558139000A0D17 /* FinderDetailViewController.m in Sources */,
+				85C1F7B219558000000A0D17 /* BleFinder.m in Sources */,
+				85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */,
+				85C1F7B119558000000A0D17 /* BleDevice.m in Sources */,
+				85C1F7EB19558139000A0D17 /* FinderTypeViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
-				85F6AAC0194C1DBC00F0573A /* LeveyPopListView.m in Sources */,
-				85804715193CF752004F73CB /* Utils.m in Sources */,
+				85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */,
+				85C1F7F219558149000A0D17 /* Utils.m in Sources */,
+				85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */,
+				85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */,
+				85C1F7E919558139000A0D17 /* FinderMapViewController.m in Sources */,
+				85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */,
+				85C1F7B319558000000A0D17 /* DataManager.m in Sources */,
+				85C1F7E819558139000A0D17 /* FinderListViewController.m in Sources */,
+				85C1F7BF1955809B000A0D17 /* LeveyPopListViewCell.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
-				85CC6E21194D72C900F79C10 /* BleDevice.m in Sources */,
-				85D81E871954AE440017AB00 /* FinderStatusViewController.m in Sources */,
-				85F6AAB4194B627800F0573A /* SingleSelectViewController.m in Sources */,
+				85C1F7E419558139000A0D17 /* DeviceListTableViewController.m in Sources */,
+				85C1F7C01955809B000A0D17 /* UIView+Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

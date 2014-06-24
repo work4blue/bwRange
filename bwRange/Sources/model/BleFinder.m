@@ -188,6 +188,25 @@
     return [ BleFinder imageWithStatus:_status ];
 }
 
+-(UILocalNotification *)createNotification{
+    //本地通知
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    if (notification != nil) {
+        NSDate *now = [NSDate new];
+        notification.fireDate = [now dateByAddingTimeInterval:10];
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.alertBody = @"报警";
+        notification.soundName = @"beep1.mp3";
+        notification.applicationIconBadgeNumber = 1;
+        notification.alertAction = @"关闭";
+        
+        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+        
+    }
+    
+    return notification;
+}
+
 
 
 @end

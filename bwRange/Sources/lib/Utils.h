@@ -29,6 +29,8 @@
 + (void) writeToSandboxFile: (NSString*)fileName withData:(NSMutableArray *)data;
 + (NSMutableArray *) readFromSandboxFile: (NSString *)fileName;
 
++ (void)playMp3:(NSString *)fileName;
+
 @end
 
 
