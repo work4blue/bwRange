@@ -16,11 +16,17 @@
 #define DEBUG_PERIPHERAL NO
 #define DEBUG_PROXIMITY NO
 
+
+#define SCAN_MODE_NEW_DEVICE (0)
+#define SCAN_MODE_DETECTE_FINDER (1)
+
+
 #define UPDATE_INTERVAL 1.0f
 
 @interface BleFinderService() <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * nBleFinders;
+
 @end
 
 @implementation BleFinderService{
@@ -29,6 +35,7 @@
     
     NSTimer *detectorTimer;
     int connectDevices ;
+    int scanMode ; //0 = scan new device 1= detected finder ;
 }
 
 //将设备相关信息清除
@@ -50,7 +57,7 @@
     _isDetecting = YES;
 }
 
-- (void)stopDetecting
+- (void)stopScanning
 {
     _isDetecting = NO;
     
@@ -81,7 +88,7 @@
     double delayInSeconds = 10.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self stopDetecting ];
+        [self stopScanning ];
         
         if(connectDevices > 0)
         [self connectFinders ];
@@ -132,7 +139,9 @@
         centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
       
         // centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-           }
+        scanMode = SCAN_MODE_NEW_DEVICE;
+        
+    }
     
     return self;
 }
@@ -141,8 +150,23 @@
 
 #pragma mark - CBCentralManagerDelegate
 
-
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral
+     advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+    
+    if(scanMode == SCAN_MODE_NEW_DEVICE)
+        [ self centralManager:central didScanNewPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI ];
+    else
+        [ self centralManager:central didDectectFinderPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI ];
+}
+//新增设备
+- (void)centralManager:(CBCentralManager *)central didScanNewPeripheral:(CBPeripheral *)peripheral
+     advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+    
+}
+
+
+//查找防丢器的操作
+- (void)centralManager:(CBCentralManager *)central didDectectFinderPeripheral:(CBPeripheral *)peripheral
      advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
      [centralManager stopScan];
