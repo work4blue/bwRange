@@ -1275,35 +1275,6 @@
             </objects>
             <point key="canvasLocation" x="442" y="1510"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
-        <scene sceneID="v0g-IW-c8W">
-            <objects>
-                <tableViewController id="Fpq-BM-IgZ" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lI8-7W-LJm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4lz-ME-cep">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4lz-ME-cep" id="ZcZ-2a-Kfa">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Fpq-BM-IgZ" id="Y3t-ST-UDe"/>
-                            <outlet property="delegate" destination="Fpq-BM-IgZ" id="uYx-wT-vMd"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ejB-Ot-xcq"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b5B-LT-I1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1282" y="3127"/>
-        </scene>
         <!--Navigation Controller - 日志-->
         <scene sceneID="abe-Ea-hpW">
             <objects>
@@ -1313,12 +1284,53 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Fpq-BM-IgZ" kind="relationship" relationship="rootViewController" id="szM-pQ-yGs"/>
+                        <segue destination="hfS-Du-ztB" kind="relationship" relationship="rootViewController" id="EEr-X6-c7t"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYH-Yh-9LU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="815" y="1628"/>
+            <point key="canvasLocation" x="931" y="1934"/>
+        </scene>
+        <!--Log View Controller - 日志-->
+        <scene sceneID="p7b-4Y-N2O">
+            <objects>
+                <viewController id="hfS-Du-ztB" customClass="LogViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hVK-u7-ptk"/>
+                        <viewControllerLayoutGuide type="bottom" id="ohw-e4-KUx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L1e-Q3-jhA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="log..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLl-Z5-buj">
+                                <rect key="frame" x="0.0" y="63" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="Bxu-X4-rJ1"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="日志" id="8EW-Z9-l9p">
+                        <barButtonItem key="rightBarButtonItem" title="清除" id="KGw-D0-d71">
+                            <connections>
+                                <action selector="clearLog:" destination="hfS-Du-ztB" id="AVV-8K-dGS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="logView" destination="OLl-Z5-buj" id="yBD-J5-L9S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQr-xi-vhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1285" y="2302"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="M80-ii-mRO">

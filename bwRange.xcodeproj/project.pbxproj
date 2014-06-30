@@ -48,6 +48,7 @@
 		85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F4195583B6000A0D17 /* BleManager.m */; };
 		85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F7195583E8000A0D17 /* BlePeripheral.m */; };
 		85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F8011959693F000A0D17 /* BleFinderService.m */; };
+		85D5F2DC19613D99007DBE00 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2DB19613D99007DBE00 /* LogViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,8 @@
 		85C1F8001959693F000A0D17 /* BleFinderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleFinderService.h; sourceTree = "<group>"; };
 		85C1F8011959693F000A0D17 /* BleFinderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleFinderService.m; sourceTree = "<group>"; };
 		85C1F80319596D2B000A0D17 /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
+		85D5F2DA19613D99007DBE00 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		85D5F2DB19613D99007DBE00 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,8 @@
 				85C1F7E119558139000A0D17 /* SingleSelectViewController.m */,
 				85C1F7E219558139000A0D17 /* WelcomeViewController.h */,
 				85C1F7E319558139000A0D17 /* WelcomeViewController.m */,
+				85D5F2DA19613D99007DBE00 /* LogViewController.h */,
+				85D5F2DB19613D99007DBE00 /* LogViewController.m */,
 			);
 			name = controller;
 			path = Sources/controller;
@@ -487,6 +492,7 @@
 				85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */,
 				85C1F7B119558000000A0D17 /* BleDevice.m in Sources */,
 				85C1F7EB19558139000A0D17 /* FinderTypeViewController.m in Sources */,
+				85D5F2DC19613D99007DBE00 /* LogViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
 				85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */,
 				85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */,

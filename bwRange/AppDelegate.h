@@ -25,6 +25,8 @@
 +(DataManager*)getManager;
 +(BleFinderService*)getFinderService;
 
+
+
 #define APP_DATA_MANAGER [AppDelegate sharedInstance].dataManager]
 
 @end

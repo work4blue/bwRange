@@ -211,5 +211,10 @@
 
 
 
++ (UIViewController *)getOtherPageController:(UIViewController *)currentPageController index:(int)index{
+    return [currentPageController.tabBarController.view.subviews objectAtIndex:index] ;
+}
+
+
 
 @end

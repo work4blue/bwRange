@@ -31,6 +31,10 @@
 
 + (void)playMp3:(NSString *)fileName;
 
+//一个页去调用另一个页的方法。
++ (UIViewController *)getOtherPageController:(UIViewController *)currentPageController index:(int)index;
+
+
 @end
 
 
