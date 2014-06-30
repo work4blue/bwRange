@@ -1230,35 +1230,6 @@
             </objects>
             <point key="canvasLocation" x="1875" y="2743"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
-        <scene sceneID="c8O-7T-968">
-            <objects>
-                <tableViewController id="miF-Ku-a7T" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QBD-vA-vsm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ihk-R6-c8N">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihk-R6-c8N" id="sCe-8W-Jll">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="miF-Ku-a7T" id="C6i-Vw-Rpp"/>
-                            <outlet property="delegate" destination="miF-Ku-a7T" id="ygD-7z-YLf"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="U8Y-hC-H5b"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zon-Ua-pG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="993" y="3070"/>
-        </scene>
         <!--Navigation Controller - 照相-->
         <scene sceneID="czE-4b-h7L">
             <objects>
@@ -1268,12 +1239,53 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="miF-Ku-a7T" kind="relationship" relationship="rootViewController" id="lMV-zR-pLy"/>
+                        <segue destination="XzR-gZ-wM9" kind="relationship" relationship="rootViewController" id="BNX-3b-FBV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItB-8K-kEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="442" y="1510"/>
+        </scene>
+        <!--Camera View Controller - 远程照相-->
+        <scene sceneID="gCX-a8-yQo">
+            <objects>
+                <viewController id="XzR-gZ-wM9" customClass="CameraViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m6w-wj-SxT"/>
+                        <viewControllerLayoutGuide type="bottom" id="NQH-8j-vUl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tmx-eQ-4j1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VgX-el-8o1">
+                                <rect key="frame" x="0.0" y="65" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="没有照片，请点击“拍照”" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQd-HA-yFv">
+                                <rect key="frame" x="68" y="209" width="185" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="远程照相" id="rOU-hf-T8S">
+                        <barButtonItem key="rightBarButtonItem" title="拍照" id="6IK-hr-bY6">
+                            <connections>
+                                <action selector="showPicker:" destination="XzR-gZ-wM9" id="hje-dS-MdY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="VgX-el-8o1" id="7vh-gj-wAB"/>
+                        <outlet property="label" destination="xQd-HA-yFv" id="kLU-z6-YEt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyy-GP-cpU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575" y="2126"/>
         </scene>
         <!--Navigation Controller - 日志-->
         <scene sceneID="abe-Ea-hpW">

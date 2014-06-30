@@ -49,6 +49,28 @@
 		85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7F7195583E8000A0D17 /* BlePeripheral.m */; };
 		85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F8011959693F000A0D17 /* BleFinderService.m */; };
 		85D5F2DC19613D99007DBE00 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2DB19613D99007DBE00 /* LogViewController.m */; };
+		85D5F2E019618330007DBE00 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2DF19618330007DBE00 /* CameraViewController.m */; };
+		85D5F2EC1961846A007DBE00 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2E31961846A007DBE00 /* UIImage+Alpha.m */; };
+		85D5F2ED1961846A007DBE00 /* UIImage+Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2E51961846A007DBE00 /* UIImage+Cut.m */; };
+		85D5F2EE1961846A007DBE00 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2E71961846A007DBE00 /* UIImage+Resize.m */; };
+		85D5F2EF1961846A007DBE00 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2E91961846A007DBE00 /* UIImage+RoundedCorner.m */; };
+		85D5F2F01961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2EB1961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m */; };
+		85D5F2FC19618568007DBE00 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2F419618568007DBE00 /* CustomImagePickerController.m */; };
+		85D5F2FD19618568007DBE00 /* ImageFilterProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2F619618568007DBE00 /* ImageFilterProcessViewController.m */; };
+		85D5F2FE19618568007DBE00 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2F819618568007DBE00 /* ImageUtil.m */; };
+		85D5F2FF19618568007DBE00 /* IphoneScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F2FA19618568007DBE00 /* IphoneScreen.m */; };
+		85D5F30D19618640007DBE00 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30119618640007DBE00 /* btn_back.png */; };
+		85D5F30E19618640007DBE00 /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30219618640007DBE00 /* btn_back@2x.png */; };
+		85D5F30F19618640007DBE00 /* camera_album.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30319618640007DBE00 /* camera_album.png */; };
+		85D5F31019618640007DBE00 /* camera_album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30419618640007DBE00 /* camera_album@2x.png */; };
+		85D5F31119618640007DBE00 /* camera_btn_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30519618640007DBE00 /* camera_btn_ok.png */; };
+		85D5F31219618640007DBE00 /* camera_btn_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30619618640007DBE00 /* camera_btn_ok@2x.png */; };
+		85D5F31319618640007DBE00 /* camera_button_switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30719618640007DBE00 /* camera_button_switch_camera.png */; };
+		85D5F31419618640007DBE00 /* camera_button_switch_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30819618640007DBE00 /* camera_button_switch_camera@2x.png */; };
+		85D5F31519618640007DBE00 /* camera_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30919618640007DBE00 /* camera_cancel.png */; };
+		85D5F31619618640007DBE00 /* camera_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30A19618640007DBE00 /* camera_cancel@2x.png */; };
+		85D5F31719618640007DBE00 /* camera_shoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30B19618640007DBE00 /* camera_shoot.png */; };
+		85D5F31819618640007DBE00 /* camera_shoot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30C19618640007DBE00 /* camera_shoot@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +154,40 @@
 		85C1F80319596D2B000A0D17 /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
 		85D5F2DA19613D99007DBE00 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		85D5F2DB19613D99007DBE00 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
+		85D5F2DE19618330007DBE00 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		85D5F2DF19618330007DBE00 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		85D5F2E21961846A007DBE00 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		85D5F2E31961846A007DBE00 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		85D5F2E41961846A007DBE00 /* UIImage+Cut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cut.h"; sourceTree = "<group>"; };
+		85D5F2E51961846A007DBE00 /* UIImage+Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cut.m"; sourceTree = "<group>"; };
+		85D5F2E61961846A007DBE00 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		85D5F2E71961846A007DBE00 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		85D5F2E81961846A007DBE00 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		85D5F2E91961846A007DBE00 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		85D5F2EA1961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SplitImageIntoTwoParts.h"; sourceTree = "<group>"; };
+		85D5F2EB1961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SplitImageIntoTwoParts.m"; sourceTree = "<group>"; };
+		85D5F2F219618568007DBE00 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
+		85D5F2F319618568007DBE00 /* CustomImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickerController.h; sourceTree = "<group>"; };
+		85D5F2F419618568007DBE00 /* CustomImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImagePickerController.m; sourceTree = "<group>"; };
+		85D5F2F519618568007DBE00 /* ImageFilterProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFilterProcessViewController.h; sourceTree = "<group>"; };
+		85D5F2F619618568007DBE00 /* ImageFilterProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFilterProcessViewController.m; sourceTree = "<group>"; };
+		85D5F2F719618568007DBE00 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		85D5F2F819618568007DBE00 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		85D5F2F919618568007DBE00 /* IphoneScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneScreen.h; sourceTree = "<group>"; };
+		85D5F2FA19618568007DBE00 /* IphoneScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneScreen.m; sourceTree = "<group>"; };
+		85D5F2FB19618568007DBE00 /* PickerAndFitlerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerAndFitlerAppDelegate.h; sourceTree = "<group>"; };
+		85D5F30119618640007DBE00 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
+		85D5F30219618640007DBE00 /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
+		85D5F30319618640007DBE00 /* camera_album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_album.png; sourceTree = "<group>"; };
+		85D5F30419618640007DBE00 /* camera_album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_album@2x.png"; sourceTree = "<group>"; };
+		85D5F30519618640007DBE00 /* camera_btn_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_btn_ok.png; sourceTree = "<group>"; };
+		85D5F30619618640007DBE00 /* camera_btn_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_btn_ok@2x.png"; sourceTree = "<group>"; };
+		85D5F30719618640007DBE00 /* camera_button_switch_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_switch_camera.png; sourceTree = "<group>"; };
+		85D5F30819618640007DBE00 /* camera_button_switch_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_button_switch_camera@2x.png"; sourceTree = "<group>"; };
+		85D5F30919618640007DBE00 /* camera_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_cancel.png; sourceTree = "<group>"; };
+		85D5F30A19618640007DBE00 /* camera_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_cancel@2x.png"; sourceTree = "<group>"; };
+		85D5F30B19618640007DBE00 /* camera_shoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_shoot.png; sourceTree = "<group>"; };
+		85D5F30C19618640007DBE00 /* camera_shoot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_shoot@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +392,8 @@
 				85C1F7E319558139000A0D17 /* WelcomeViewController.m */,
 				85D5F2DA19613D99007DBE00 /* LogViewController.h */,
 				85D5F2DB19613D99007DBE00 /* LogViewController.m */,
+				85D5F2DE19618330007DBE00 /* CameraViewController.h */,
+				85D5F2DF19618330007DBE00 /* CameraViewController.m */,
 			);
 			name = controller;
 			path = Sources/controller;
@@ -344,6 +402,8 @@
 		85C1F7EE19558149000A0D17 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				85D5F2F119618568007DBE00 /* CustomImagePicker */,
+				85D5F2E11961846A007DBE00 /* UIImage-Extensions */,
 				85C1F80319596D2B000A0D17 /* GCDSingleton.h */,
 				85C1F7EF19558149000A0D17 /* Common.h */,
 				85C1F7F019558149000A0D17 /* Utils.h */,
@@ -367,9 +427,63 @@
 			path = Sources/service;
 			sourceTree = "<group>";
 		};
+		85D5F2E11961846A007DBE00 /* UIImage-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85D5F2E21961846A007DBE00 /* UIImage+Alpha.h */,
+				85D5F2E31961846A007DBE00 /* UIImage+Alpha.m */,
+				85D5F2E41961846A007DBE00 /* UIImage+Cut.h */,
+				85D5F2E51961846A007DBE00 /* UIImage+Cut.m */,
+				85D5F2E61961846A007DBE00 /* UIImage+Resize.h */,
+				85D5F2E71961846A007DBE00 /* UIImage+Resize.m */,
+				85D5F2E81961846A007DBE00 /* UIImage+RoundedCorner.h */,
+				85D5F2E91961846A007DBE00 /* UIImage+RoundedCorner.m */,
+				85D5F2EA1961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.h */,
+				85D5F2EB1961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m */,
+			);
+			path = "UIImage-Extensions";
+			sourceTree = "<group>";
+		};
+		85D5F2F119618568007DBE00 /* CustomImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				85D5F2F219618568007DBE00 /* ColorMatrix.h */,
+				85D5F2F319618568007DBE00 /* CustomImagePickerController.h */,
+				85D5F2F419618568007DBE00 /* CustomImagePickerController.m */,
+				85D5F2F519618568007DBE00 /* ImageFilterProcessViewController.h */,
+				85D5F2F619618568007DBE00 /* ImageFilterProcessViewController.m */,
+				85D5F2F719618568007DBE00 /* ImageUtil.h */,
+				85D5F2F819618568007DBE00 /* ImageUtil.m */,
+				85D5F2F919618568007DBE00 /* IphoneScreen.h */,
+				85D5F2FA19618568007DBE00 /* IphoneScreen.m */,
+				85D5F2FB19618568007DBE00 /* PickerAndFitlerAppDelegate.h */,
+			);
+			path = CustomImagePicker;
+			sourceTree = "<group>";
+		};
+		85D5F30019618640007DBE00 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				85D5F30119618640007DBE00 /* btn_back.png */,
+				85D5F30219618640007DBE00 /* btn_back@2x.png */,
+				85D5F30319618640007DBE00 /* camera_album.png */,
+				85D5F30419618640007DBE00 /* camera_album@2x.png */,
+				85D5F30519618640007DBE00 /* camera_btn_ok.png */,
+				85D5F30619618640007DBE00 /* camera_btn_ok@2x.png */,
+				85D5F30719618640007DBE00 /* camera_button_switch_camera.png */,
+				85D5F30819618640007DBE00 /* camera_button_switch_camera@2x.png */,
+				85D5F30919618640007DBE00 /* camera_cancel.png */,
+				85D5F30A19618640007DBE00 /* camera_cancel@2x.png */,
+				85D5F30B19618640007DBE00 /* camera_shoot.png */,
+				85D5F30C19618640007DBE00 /* camera_shoot@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		85EE2929194979640085A6EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				85D5F30019618640007DBE00 /* images */,
 				85C1F7C1195580AA000A0D17 /* plist */,
 				85C1F7C6195580AA000A0D17 /* ringtone */,
 			);
@@ -456,13 +570,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D5F30E19618640007DBE00 /* btn_back@2x.png in Resources */,
 				85C1F7CD195580AA000A0D17 /* beep1.mp3 in Resources */,
+				85D5F31119618640007DBE00 /* camera_btn_ok.png in Resources */,
+				85D5F31619618640007DBE00 /* camera_cancel@2x.png in Resources */,
+				85D5F30D19618640007DBE00 /* btn_back.png in Resources */,
 				85C1F7CA195580AA000A0D17 /* Finders.plist in Resources */,
 				8509F8F6193A53E20021EC57 /* Images.xcassets in Resources */,
+				85D5F31219618640007DBE00 /* camera_btn_ok@2x.png in Resources */,
+				85D5F30F19618640007DBE00 /* camera_album.png in Resources */,
 				85C1F7CC195580AA000A0D17 /* Ringtones.plist in Resources */,
+				85D5F31719618640007DBE00 /* camera_shoot.png in Resources */,
+				85D5F31019618640007DBE00 /* camera_album@2x.png in Resources */,
 				85C1F7C9195580AA000A0D17 /* DemoFinders.plist in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
+				85D5F31419618640007DBE00 /* camera_button_switch_camera@2x.png in Resources */,
+				85D5F31819618640007DBE00 /* camera_shoot@2x.png in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,
+				85D5F31519618640007DBE00 /* camera_cancel.png in Resources */,
+				85D5F31319618640007DBE00 /* camera_button_switch_camera.png in Resources */,
 				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
 				85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */,
 				85C1F7CE195580AA000A0D17 /* beep2.mp3 in Resources */,
@@ -488,14 +614,24 @@
 				85C1F7E619558139000A0D17 /* DistanceViewController.m in Sources */,
 				85C1F7E519558139000A0D17 /* DeviceSettingViewController.m in Sources */,
 				85C1F7E719558139000A0D17 /* FinderDetailViewController.m in Sources */,
+				85D5F2FF19618568007DBE00 /* IphoneScreen.m in Sources */,
 				85C1F7B219558000000A0D17 /* BleFinder.m in Sources */,
+				85D5F2EE1961846A007DBE00 /* UIImage+Resize.m in Sources */,
 				85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */,
+				85D5F2FE19618568007DBE00 /* ImageUtil.m in Sources */,
 				85C1F7B119558000000A0D17 /* BleDevice.m in Sources */,
+				85D5F2F01961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				85C1F7EB19558139000A0D17 /* FinderTypeViewController.m in Sources */,
+				85D5F2ED1961846A007DBE00 /* UIImage+Cut.m in Sources */,
 				85D5F2DC19613D99007DBE00 /* LogViewController.m in Sources */,
+				85D5F2FC19618568007DBE00 /* CustomImagePickerController.m in Sources */,
+				85D5F2E019618330007DBE00 /* CameraViewController.m in Sources */,
 				8509F8EE193A53E20021EC57 /* AppDelegate.m in Sources */,
 				85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */,
 				85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */,
+				85D5F2FD19618568007DBE00 /* ImageFilterProcessViewController.m in Sources */,
+				85D5F2EC1961846A007DBE00 /* UIImage+Alpha.m in Sources */,
+				85D5F2EF1961846A007DBE00 /* UIImage+RoundedCorner.m in Sources */,
 				85C1F7F219558149000A0D17 /* Utils.m in Sources */,
 				85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */,
 				85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */,
