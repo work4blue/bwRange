@@ -30,8 +30,8 @@
 
 -(IBAction)clearLog:(id)sender;
 
-+(LogViewController *)getLogView:(UIViewController *)currentpage;
++(LogViewController *)getLogView:(UIViewController *)controller;
 
-+(void)addLog:(UIViewController *)currentpage log:(NSString *)log, ...;
++(void)addLog:(UIViewController *)controller log:(NSString *)log, ...;
 
 @end

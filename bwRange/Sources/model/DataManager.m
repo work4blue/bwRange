@@ -16,6 +16,7 @@
 
 @property  BOOL isDemoData; //演示数据
 
+
 @end
 
 @implementation DataManager
@@ -274,6 +275,66 @@
     
     
 }
+
+//将设备相关信息清除
+-(void) resetFinders{
+    self.scanCount = 0;
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        NSLog(@"Reset %@",device);
+        [device reset];
+    }
+    
+}
+
+//扫描到BLE设备，并检测是否防丢品，返回值，表示是防丢器
+-(BOOL) scanedDevice:(CBPeripheral *)peripheral{
+    
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        
+         NSString * newUUID = [ peripheral.identifier UUIDString ];
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        DLog(@"%@,",device);
+        
+        NSString * uuid = device.UUID;
+        
+        
+        if ([ uuid isEqual:newUUID]) {
+            
+            [device setPeripheral:peripheral ];
+            
+            self.scanCount ++;
+            
+            return YES;
+        }
+    }
+    return NO;
+}
+
+//所有设备都扫描到
+-(BOOL) isAllScaned{
+    return (self.scanCount == self.nBleFinders.count);
+}
+
+-(BleFinder *)getFinder:(CBPeripheral *)peripheral{
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        if([ peripheral isEqual:[ device getPeripheral]])
+            return device;
+    }
+    
+    return nil;
+}
+
+
+
+
 
 - (void)startDetect{
     

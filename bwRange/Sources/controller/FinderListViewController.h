@@ -11,7 +11,7 @@
 
 //,UINavigationControllerDelegate
 
-@interface FinderListViewController : UITableViewController<CBCentralManagerDelegate,CBPeripheralDelegate,UINavigationControllerDelegate>
+@interface FinderListViewController : UITableViewController<UINavigationControllerDelegate>
 
 @property (strong,nonatomic) NSMutableArray *nFinders;
 @property (nonatomic) int currentLine ;
@@ -22,6 +22,6 @@
 
 -(IBAction) funcClicked:(id)sender;
 
-
+-(IBAction) refreshClicked:(id)sender;
 
 @end

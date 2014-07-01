@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSString  * DevName;
 @property (nonatomic, strong) NSNumber  * RSSI;
 
+@property (strong,nonatomic) NSMutableArray *nServices;
+@property (strong,nonatomic) NSMutableArray *nCharacteristics;
+
 -(id) init;
 
 -(void) setPeripheral:(CBPeripheral *)peripheral;

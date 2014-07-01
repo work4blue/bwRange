@@ -29,7 +29,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [ self.logView setText:@"finder server running..."];
+   // [ self.logView setText:@"finder server running..."];
+    
+    DLog(@"Log Page Loading....");
+    
+    BW_INFO_LOG(@"Finder service running");
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +53,8 @@
    // _logView.text = [NSString stringWithFormat:@"%lu: %@\n%@", (unsigned long)lineCounter, output, outputLabel.text];
     
     static unsigned int liner_count = 0;
+    
+        
     [_logView setText:[NSString stringWithFormat:@"[ %d ]  %@\r\n%@",liner_count,output,_logView.text]];
     
    // NSLog(@"%@",s);
@@ -62,13 +68,28 @@
     [ _logView setText:@"" ];
 }
 
-+(LogViewController *)getLogView:(UIViewController *)currentpage{
++(LogViewController *)getLogView:(UIViewController *)controller{
     
     static int logPageIndex = -1;
     
+    UITabBarController *tabBarController = nil;
+    
+    if([ controller isKindOfClass:[UITabBarController class] ]){
+        tabBarController = (UITabBarController *)controller;
+    }
+    else {
+        tabBarController = controller.tabBarController;
+    }
+    
+    
     if(logPageIndex < 0){
-        for(int i = 0; i < currentpage.tabBarController.view.subviews.count ; i++){
-           UIViewController * viewController =  [currentpage.tabBarController.view.subviews objectAtIndex:i];
+        for(int i = 0; i < tabBarController.viewControllers.count ; i++){
+           UIViewController * viewController =  [ tabBarController.viewControllers objectAtIndex:i];
+            
+            if( [ viewController isKindOfClass:[UINavigationController class]])
+                 {
+                     viewController =  ((UINavigationController *)viewController).topViewController;
+                 }
             
             if([ viewController isKindOfClass:[LogViewController class] ]){
                 logPageIndex = i;
@@ -80,11 +101,24 @@
     if(logPageIndex < 0 )
         return nil;
     
-    return [Utils getOtherPageController:currentpage index:logPageIndex] ;
+    UIViewController * viewController  = [tabBarController.viewControllers objectAtIndex:logPageIndex];
+    if( [ viewController isKindOfClass:[UINavigationController class]])
+    {
+        return (LogViewController *)((UINavigationController *)viewController).topViewController;
+    }
+    else
+        return (LogViewController *)viewController;
+    
+    
+    //return (LogViewController *)[Utils getOtherPageController:currentpage index:logPageIndex] ;
 }
 
 +(void)addLog:(UIViewController *)currentpage log:(NSString *)log, ...{
-    LogViewController * ctrl = [LogViewController  getLogView:currentpage];
+    
+    static LogViewController * ctrl = nil;
+    
+    if(ctrl == nil)
+       ctrl = [LogViewController  getLogView:currentpage];
     
      //[ ctrl logStringWithFormat:log,...];
     
@@ -94,6 +128,8 @@
     va_end(args);
     
     [ ctrl logStringWithFormat:output];
+    
+    //[ ctrl.view setNeedsDisplay ];
     
 #ifdef DEBUG
     NSLog(output);

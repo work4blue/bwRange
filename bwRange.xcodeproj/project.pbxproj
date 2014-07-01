@@ -71,6 +71,7 @@
 		85D5F31619618640007DBE00 /* camera_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30A19618640007DBE00 /* camera_cancel@2x.png */; };
 		85D5F31719618640007DBE00 /* camera_shoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30B19618640007DBE00 /* camera_shoot.png */; };
 		85D5F31819618640007DBE00 /* camera_shoot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30C19618640007DBE00 /* camera_shoot@2x.png */; };
+		85D5F31B1961C1A2007DBE00 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F31A1961C1A2007DBE00 /* MainTabController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,8 @@
 		85D5F30A19618640007DBE00 /* camera_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_cancel@2x.png"; sourceTree = "<group>"; };
 		85D5F30B19618640007DBE00 /* camera_shoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_shoot.png; sourceTree = "<group>"; };
 		85D5F30C19618640007DBE00 /* camera_shoot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_shoot@2x.png"; sourceTree = "<group>"; };
+		85D5F3191961C1A2007DBE00 /* MainTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabController.h; sourceTree = "<group>"; };
+		85D5F31A1961C1A2007DBE00 /* MainTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +397,8 @@
 				85D5F2DB19613D99007DBE00 /* LogViewController.m */,
 				85D5F2DE19618330007DBE00 /* CameraViewController.h */,
 				85D5F2DF19618330007DBE00 /* CameraViewController.m */,
+				85D5F3191961C1A2007DBE00 /* MainTabController.h */,
+				85D5F31A1961C1A2007DBE00 /* MainTabController.m */,
 			);
 			name = controller;
 			path = Sources/controller;
@@ -634,6 +639,7 @@
 				85D5F2EF1961846A007DBE00 /* UIImage+RoundedCorner.m in Sources */,
 				85C1F7F219558149000A0D17 /* Utils.m in Sources */,
 				85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */,
+				85D5F31B1961C1A2007DBE00 /* MainTabController.m in Sources */,
 				85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */,
 				85C1F7E919558139000A0D17 /* FinderMapViewController.m in Sources */,
 				85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */,

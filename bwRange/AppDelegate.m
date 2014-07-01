@@ -17,7 +17,7 @@
     
     self.dataManager = [[ DataManager alloc] init];
     
-    self.finderService = [[ BleFinderService alloc] init];
+  //  self.finderService = [[ BleFinderService alloc] init];
     
 
     UIStoryboard *mainStoryboard = nil;
@@ -72,9 +72,9 @@
     return [AppDelegate sharedInstance].dataManager;
 }
 
-+(BleFinderService*)getFinderService{
-    return [AppDelegate sharedInstance].finderService;
-  
-}
+//+(BleFinderService*)getFinderService{
+//    return [AppDelegate sharedInstance].finderService;
+//  
+//}
 
 @end

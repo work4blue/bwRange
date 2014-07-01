@@ -283,13 +283,17 @@
                                 <action selector="funcClicked:" destination="Y5T-O4-Mda" id="7W3-ot-Fek"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="navbar_gridview_icon" id="6hM-yH-jL0"/>
+                        <barButtonItem key="rightBarButtonItem" image="navbar_gridview_icon" id="6hM-yH-jL0">
+                            <connections>
+                                <action selector="refreshClicked:" destination="Y5T-O4-Mda" id="T4r-N5-F60"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAt-Qa-ZkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2333" y="820"/>
+            <point key="canvasLocation" x="2187" y="950"/>
         </scene>
         <!--Finder Map View Controller - 我的物品-->
         <scene sceneID="aax-4v-axw">
@@ -1412,10 +1416,10 @@
             </objects>
             <point key="canvasLocation" x="1521" y="1112"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Controller-->
         <scene sceneID="NCa-V2-hEz">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qrb-qw-0A9" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qrb-qw-0A9" customClass="MainTabController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Sbu-xc-37D">

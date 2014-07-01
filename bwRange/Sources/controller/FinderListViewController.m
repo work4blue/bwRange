@@ -14,6 +14,8 @@
 #import "AppDelegate.h"
 #import "FinderStatusViewController.h"
 
+#import "MainTabController.h"
+
 
 @interface FinderListViewController ()
 
@@ -61,11 +63,14 @@
         self.navigationItem.leftBarButtonItem.title = @"退出";
     }
     
+    DLog(@"FinderList Page Loading....");
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-   if(![self isDemoMode])
-        [ [ AppDelegate getFinderService ] startDetectingFinders ];
+    if(![self isDemoMode]){
+        //[ [ AppDelegate getFinderService ] startDetectingFinders ];
+    }
     
     [self.tableView reloadData];
 }
@@ -246,6 +251,9 @@
 //
 //}
 
+-(IBAction) refreshClicked:(id)sender{
+    [ MAIN_TAB_CONTROLLER scanBleFinder ];
+}
 
 -(IBAction) buttonClicked:(id)sender {
     

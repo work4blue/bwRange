@@ -16,7 +16,7 @@
 @property (strong,nonatomic) NSMutableArray *nFinderTypes;
 
 
-
+@property (nonatomic) int scanCount; //扫描设备总数
 
 
 -(id) init;
@@ -35,11 +35,16 @@
 - (void) saveFinder;
 
 
-
+-(void) resetFinders;
 
 -(BOOL)isDemoMode;
 
 -(void)load;
 
+-(BOOL) scanedDevice:(CBPeripheral *)peripheral;
+-(BOOL) isAllScaned;
+
+//根据设备名反查Finder对象
+-(BleFinder *)getFinder:(CBPeripheral *)peripheral;
 
 @end

@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    DLog(@"FinderMap Page Loading....");
 }
 
 - (void)didReceiveMemoryWarning

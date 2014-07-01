@@ -16,14 +16,14 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DataManager *dataManager;
-@property (strong, nonatomic) BleFinderService *finderService;
+//@property (strong, nonatomic) BleFinderService *finderService;
 
 //AppDelegate *delegate=(AppDelegate*)[[UIApplicationsharedApplication]delegate];
 //delegate.dataManager;
 
 +(AppDelegate*)sharedInstance;
 +(DataManager*)getManager;
-+(BleFinderService*)getFinderService;
+//+(BleFinderService*)getFinderService;
 
 
 

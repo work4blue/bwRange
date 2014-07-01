@@ -19,7 +19,8 @@
     if (self=[super init]) {
         self.blePeripheral = nil;
         
-        
+        self.nServices = [NSMutableArray arrayWithCapacity:4];
+        self.nCharacteristics = [NSMutableArray arrayWithCapacity:4];
         
     }
     
@@ -41,10 +42,16 @@
 
 -(void) setPeripheral:(CBPeripheral *)peripheral{
     
+    [ self.nServices removeAllObjects];
+    [ self.nCharacteristics removeAllObjects];
+    
     if(peripheral == nil){
         //self.UUID = nil;
         self.DevName  = nil;
         self.blePeripheral = nil;
+        
+       
+        
         return ;
     }
     self.UUID = [ peripheral.identifier UUIDString];

@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    DLog(@"Camera Page  Load....");
     // Do any additional setup after loading the view.
     [ self showPicker:self ];
 }

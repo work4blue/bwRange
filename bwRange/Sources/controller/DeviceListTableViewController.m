@@ -11,11 +11,13 @@
 #import "UIView+Toast.h"
 #import "BleDevice.h"
 
-#import "LogViewController.h"
+
 
 #import "FinderTypeViewController.h"
 
 #define SCAN_TIME_MS (10)
+
+#define NS_LOG NSLog
 
 @interface DeviceListTableViewController ()
 
@@ -71,7 +73,7 @@
     
     [self.manager stopScan];
     [self.activity stopAnimating];
-    BW_INFO_LOG(@"扫描超时,停止扫描");
+    NS_LOG(@"扫描超时,停止扫描");
     self.isRefreshing = false;
     
     [ self.navigationItem.rightBarButtonItem setTitle:@"重新扫描"];
@@ -159,7 +161,7 @@
 //扫描
 -(void)scanClick
 {
-    BW_INFO_LOG(@"正在扫描外设...");
+    NS_LOG(@"正在扫描外设...");
     //[_activity startAnimating];
     
     if(self.isRefreshing)
@@ -245,7 +247,7 @@
 {
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:
-            BW_INFO_LOG(@"蓝牙已打开,请扫描外设");
+            NS_LOG(@"蓝牙已打开,请扫描外设");
             break;
         default:
             break;
@@ -255,7 +257,7 @@
 //查到外设后的处理事件，停止扫描，连接设备
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    BW_INFO_LOG(@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData);
+    NS_LOG(@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData);
     self.peripheral = peripheral;
     DLog(@"%@",self.peripheral);
     [self.manager stopScan];
@@ -327,11 +329,11 @@
 
 //连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    BW_INFO_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
+    NS_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
     
     [self.peripheral setDelegate:self];
     [self.peripheral discoverServices:nil];
-    BW_INFO_LOG(@"扫描服务");
+    NS_LOG(@"扫描服务");
     
 }
 //连接外设失败
@@ -352,13 +354,13 @@
 //已发现服务
 -(void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
     
-    BW_INFO_LOG(@"发现服务.");
+    NS_LOG(@"发现服务.");
     int i=0;
     for (CBService *s in peripheral.services) {
         [self.nServices addObject:s];
     }
     for (CBService *s in peripheral.services) {
-        BW_INFO_LOG(@"%d :服务 UUID: %@(%@)",i,s.UUID.data,s.UUID);
+        NS_LOG(@"%d :服务 UUID: %@(%@)",i,s.UUID.data,s.UUID);
         i++;
         [peripheral discoverCharacteristics:nil forService:s];
     }
@@ -366,10 +368,10 @@
 
 //已搜索到Characteristics
 -(void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
-    BW_INFO_LOG(@"发现特征的服务:%@ (%@)",service.UUID.data ,service.UUID);
+    NS_LOG(@"发现特征的服务:%@ (%@)",service.UUID.data ,service.UUID);
     
     for (CBCharacteristic *c in service.characteristics) {
-        BW_INFO_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
+        NS_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
         
         if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A06"]]) {
             _writeCharacteristic = c;
