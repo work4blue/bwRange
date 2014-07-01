@@ -17,7 +17,7 @@
 @property (nonatomic) int currentLine ;
 
 @property (nonatomic, strong) CBCentralManager *bleManager;
-@property (strong,nonatomic) CBPeripheral *blePeripheral; //当前联接设备
+
 
 
 -(IBAction) funcClicked:(id)sender;

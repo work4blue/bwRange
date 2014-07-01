@@ -16,10 +16,12 @@
 
 @property (nonatomic, strong) NSString  * UUID; //对应外部设备
 @property (nonatomic, strong) NSString  * DevName;
-@property (nonatomic, strong) NSNumber  * RSSI;
+@property (nonatomic, strong) NSNumber  * RSSI;  //实际信号强度，可以推算远/近和距离。
+@property (nonatomic) CGFloat  distance;  //实际距离，米为单位
 
 @property (strong,nonatomic) NSMutableArray *nServices;
 @property (strong,nonatomic) NSMutableArray *nCharacteristics;
+@property(nonatomic) float batteryValue;
 
 -(id) init;
 

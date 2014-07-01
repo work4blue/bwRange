@@ -95,7 +95,7 @@
 }
 
 -(NSString *) description{
-    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d",self.UUID,self.finderType,[self getName],self.range,self.status ];
+    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d,rssi %f,distance %f",self.UUID,self.finderType,[self getName],self.range,self.status , [self.RSSI  floatValue],self.distance ];
 }
 
 -(void) initWithDictionary:(NSDictionary *)map{
@@ -233,7 +233,7 @@
 -(void)setDevRSSI:(NSNumber *)rssi{
     self.RSSI = rssi;
     
-    [self detectDistance:abs([rssi intValue])];
+    self.distance = [self detectDistance:abs([rssi intValue])];
     
     CGFloat proximity  = [rssi floatValue];
     if (proximity < -70)

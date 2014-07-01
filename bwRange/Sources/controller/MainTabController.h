@@ -11,9 +11,9 @@
 
 #define MAIN_TAB_CONTROLLER  ((MainTabController*)(self.tabBarController))
 
-@interface MainTabController : UITabBarController<CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface MainTabController : UITabBarController
 
-@property (nonatomic, strong) CBCentralManager * bleManager;
+//@property (nonatomic, strong) CBCentralManager * bleManager;
 @property (nonatomic,strong) UIActivityIndicatorView *activity;
 
 

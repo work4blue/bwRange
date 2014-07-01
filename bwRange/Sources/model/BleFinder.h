@@ -53,7 +53,10 @@
 @property (nonatomic) int finderType ; //wallet ,bag ...
 @property (nonatomic) int status     ; //
 
-@property (nonatomic) int range     ;
+@property (nonatomic) int range     ; //用户设定的距离
+
+
+
 @property (nonatomic) int sensitivity     ;
 
 @property (nonatomic) bool vibrate     ; //震动

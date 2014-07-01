@@ -14,12 +14,12 @@
 #import "AppDelegate.h"
 #import "FinderStatusViewController.h"
 
-#import "MainTabController.h"
+#import "LogViewController.h"
 
 
 @interface FinderListViewController ()
 
-
+@property (nonatomic) BOOL isScanning;
 
 
 @end
@@ -63,7 +63,10 @@
         self.navigationItem.leftBarButtonItem.title = @"退出";
     }
     
+    [self initBle ];
     DLog(@"FinderList Page Loading....");
+    
+     [ self scanBleFinder ];
     
 }
 
@@ -79,51 +82,104 @@
     return [[AppDelegate sharedInstance].dataManager isDemoMode];
 }
 
-
-
-- (void)initFinderDataOld
-{
+-(void)initBle{
+    _bleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
-    NSDictionary *finder1;
-    
-    finder1 = [NSDictionary dictionaryWithObjectsAndKeys:
-               [NSString stringWithFormat:@"%d", 1],@"id",
-               @"笔记本电脑", @"name",
-               @"icon_laptop", @"image",
-               @"status_far", @"state",
-               @"OFF", @"power",
-               @"a:b:c:d:e:f", @"addr",
-               nil];
-    
-    [ self.nFinders addObject:finder1 ];
-    
-    NSDictionary *finder2;
-    
-    finder2 = [NSDictionary dictionaryWithObjectsAndKeys:
-               [NSString stringWithFormat:@"%d", 2],@"id",
-               @"钱包", @"name",
-               @"icon_bag", @"image",
-               @"status_near", @"state",
-                @"OFF", @"power",
-               @"a:b:c:d:e:f", @"addr",
-               nil];
-    
-     [ self.nFinders addObject:finder2 ];
-    
-    
-     NSDictionary *finder3;
-    finder3 = [NSDictionary dictionaryWithObjectsAndKeys:
-               [NSString stringWithFormat:@"%d", 3],@"id",
-               @"钥匙", @"name",
-               @"icon_keys", @"image",
-               @"status_linkloss", @"state",
-                @"OFF", @"power",
-               @"a:b:c:d:e:f", @"addr",
-               nil];
-    
-    [ self.nFinders addObject:finder3 ];
     
 }
+
+-(void)stopScan{
+    [self.bleManager stopScan];
+    //[_activity stopAnimating];
+    BW_INFO_LOG(@"停止扫描");
+    
+    self.isScanning = NO;
+}
+
+
+-(void)scanBleFinder
+{
+    
+    if(self.isScanning){
+        [self stopScan];
+    }
+    
+    BW_INFO_LOG(@"正在扫描外设...");
+    
+    
+    self.isScanning = YES;
+    
+    //[_activity startAnimating];
+    [_bleManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    
+    double delayInSeconds = 30.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        NSLog(@"scan timeout");
+        if(self.isScanning){
+            BW_INFO_LOG(@"扫描超时,扫描到%d个设备",[ AppDelegate getManager].scanCount);
+            [ self stopScan ];
+           // [ self connectFinders];
+        }
+    });
+}
+
+
+
+// 开始连接
+-(void)connectPeripheral:(CBPeripheral*)peripheral
+{
+    if(peripheral == nil)
+        return ;
+    
+    NSLog(@"connectPeripheral %@",peripheral);
+    
+    if (![peripheral isConnected]){
+        // 连接设备
+        BW_INFO_LOG(@"联接设备 %@ ",[ peripheral.identifier UUIDString]);
+        [_bleManager connectPeripheral:peripheral options:nil];
+    }
+    else{
+        // 检测已连接Peripherals
+        float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+        if (version >= 6.0){
+            BW_INFO_LOG(@"设备 %@ 重连",[ peripheral.identifier UUIDString ]);
+            //  [_bleManager retrieveConnectedPeripherals];
+        }
+    }
+    
+}
+
+
+
+
+
+-(int)connectFinders{
+    
+    int count = 0;
+    for (int i=0; i < [ AppDelegate getManager].nBleFinders.count; i++) {
+        BleFinder * device = (BleFinder *)[ [ AppDelegate getManager].nBleFinders objectAtIndex:i];
+        
+        CBPeripheral * peripheral = [ device getPeripheral ];
+        
+        if(peripheral != nil)
+        {
+            count ++;
+            [self connectPeripheral:peripheral ];
+        }
+        
+        
+    }
+    
+    return count;
+    
+}
+
+
+
+
+
 
 - (void)initFinderData
 {
@@ -238,21 +294,10 @@
     
 }
 
-//-(IBAction) funcClickedOld:(id)sender{
-//    UIActionSheet *sheet = [UIActionSheet alloc];
-//    if([self isDemoMode]){
-//        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出演示" otherButtonTitles: nil];
-//    }
-//    else{
-//        [ sheet initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除物品" otherButtonTitles: @"新增物品",nil];
-//    }
-//    
-//    [sheet showInView:self.view];
-//
-//}
+
 
 -(IBAction) refreshClicked:(id)sender{
-    [ MAIN_TAB_CONTROLLER scanBleFinder ];
+    [ self scanBleFinder ];
 }
 
 -(IBAction) buttonClicked:(id)sender {
@@ -326,22 +371,145 @@
     return cell;
 }
 
+#pragma mark - CoreBluetooth Delegate
+
+//开始查看服务，蓝牙开启
+-(void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    switch (central.state) {
+        case CBCentralManagerStatePoweredOn:
+            BW_INFO_LOG(@"蓝牙已打开,请扫描外设");
+            break;
+        default:
+            break;
+    }
+}
+
+
+//查到外设后，停止扫描，连接设备
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    BW_INFO_LOG(@"已发现 peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, [ peripheral.identifier UUIDString ], advertisementData);
+    
+    [[ AppDelegate getManager] scanedDevice:peripheral];
+    
+    if([[ AppDelegate getManager] isAllScaned])
+    {
+        [ self stopScan ];
+        
+        [ self connectFinders];
+    }
+    
+}
 
 //连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    DLog(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.UUID);
+     BW_INFO_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
     
-    self.blePeripheral = peripheral;
+    BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
-    [self.blePeripheral setDelegate:self];
-    [self.blePeripheral discoverServices:nil];
+//    [ finder setDevRSSI:peripheral.RSSI];
+//    
+//    BW_INFO_LOG(@"设备状态 %@",finder);
+    
+  
+    
+    [ peripheral readRSSI]; //强制读取rssi数据
+    
+    
+    [peripheral setDelegate:self];
+    [peripheral discoverServices:nil];
+    
+    BW_INFO_LOG(@"开始扫描设备service");
+    
 }
-
 //连接外设失败
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"%@",error);
 }
+
+-(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+     [ finder setDevRSSI:peripheral.RSSI];
+    BW_INFO_LOG(@"设备状态 %@",finder);
+      [ self.tableView reloadData ];
+    
+    int rssi = abs([peripheral.RSSI intValue]);
+    CGFloat ci = (rssi - 49) / (10 * 4.);
+    BW_INFO_LOG(@"发现BLT4.0热点:%@,距离:%.1fm",peripheral,pow(10,ci));
+   }
+//已发现服务
+-(void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
+    
+    BW_INFO_LOG(@"发现服务.");
+    
+    BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+    
+    
+
+    int i=0;
+    for (CBService *s in peripheral.services) {
+        [finder.nServices addObject:s];
+    }
+    for (CBService *s in peripheral.services) {
+        BW_INFO_LOG(@"%d :服务 UUID: %@(%@)",i,s.UUID.data,s.UUID);
+        i++;
+        //开始查找服务中属性
+        [peripheral discoverCharacteristics:nil forService:s];
+    }
+}
+
+//已搜索到Characteristics
+-(void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
+    BW_INFO_LOG(@"发现特征的服务:%@ (%@)",service.UUID.data ,service.UUID);
+    
+     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+    
+    for (CBCharacteristic *c in service.characteristics) {
+        BW_INFO_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
+        
+//        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A06"]]) {
+//            _writeCharacteristic = c;
+//        }
+//        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
+//            [peripheral readValueForCharacteristic:c];
+//        }
+//        
+//        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
+//            [peripheral readRSSI];
+//        }
+       
+        
+        [ finder.nCharacteristics addObject:c];
+    }
+}
+
+
+//获取外设发来的数据，不论是read和notify,获取数据都是从这个方法中读取。
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    // BOOL isSaveSuccess;
+     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+    
+    
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
+        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        finder.batteryValue = [value floatValue];
+        BW_INFO_LOG(@"电量%f",finder.batteryValue);
+    }
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
+        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        //_batteryValue = [value floatValue];
+      //  NSLog(@"信号%@",value);
+    }
+    
+    else
+        BW_INFO_LOG(@"didUpdateValueForCharacteristic%@",[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
+}
+
+
 
 
 

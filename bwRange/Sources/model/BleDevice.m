@@ -87,6 +87,10 @@
    // return pow(10,ci);
 }
 
+-(void)updateStatus:(int)rssi{
+    
+}
+
 
 
 
