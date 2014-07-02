@@ -16,6 +16,18 @@
 
 #import "LogViewController.h"
 
+// BleFinder:UUID B8A0EC41-8C1F-6C2B-DDCB-7B6EA9A8BE1F, type 0, Name 钥匙,range 1,status 2,rssi -62.000000,distance 2.000000
+/*
+ // Proximity Profile Service UUIDs
+ #define LINK_LOSS_SERVICE_UUID          0x1803
+ #define IMMEDIATE_ALERT_SERVICE_UUID    0x1802
+ #define TX_PWR_LEVEL_SERVICE_UUID       0x1804
+ 
+ // Proximity Profile Attribute UUIDs
+ #define PROXIMITY_ALERT_LEVEL_UUID      0x2A06
+ #define PROXIMITY_TX_PWR_LEVEL_UUID     0x2A07
+ */
+
 
 @interface FinderListViewController ()
 
@@ -66,13 +78,19 @@
     [self initBle ];
     DLog(@"FinderList Page Loading....");
     
-     [ self scanBleFinder ];
+    // [ self scanBleFinder ];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     if(![self isDemoMode]){
         //[ [ AppDelegate getFinderService ] startDetectingFinders ];
+        
+        
+      if([[AppDelegate getManager] isNeedRescan])
+        [ self scanBleFinder ];
+        
+        DLog(@"FinderList Page willApper....");
     }
     
     [self.tableView reloadData];
@@ -230,6 +248,7 @@
     return [ self.nFinders count ];
 }
 
+
 //静音开关，目前只把当成一个开关
 -(IBAction)connectSwitchAction:(id)sender {
     UISwitch *switchButton = (UISwitch*)sender;
@@ -300,20 +319,22 @@
     [ self scanBleFinder ];
 }
 
--(IBAction) buttonClicked:(id)sender {
+-(IBAction) AlarmClicked:(id)sender {
     
    
     UITableViewCell* cell= [Utils getCellBySender:sender ];
     NSIndexPath* indexPath= [self.tableView indexPathForCell:cell];
     
     
-    DLog(@"click row %d",indexPath.row);
+    BW_INFO_LOG(@"报警 %d",indexPath.row);
     
      BleFinder *finder = [ self.nFinders objectAtIndex:indexPath.row];
     
     
+    
    
-    if ( [self isDemoMode ]){
+    if ( [self isDemoMode ])
+    {
     
         NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"发出哔的声音."];
     
@@ -324,7 +345,22 @@
                    image:[UIImage imageNamed:@"leash_default_icon_bg"]];
     }
     else{
+        
+         BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
+        UIButton * checkbox = (UIButton *)sender;
+        if(checkbox.tag == 0){
+            [checkbox setSelected:YES];
+            checkbox.tag = 1;
+            [ finder trigeFinderAlert:YES ];
+        }
+        else {
+            [checkbox setSelected:NO];
+            checkbox.tag = 0;
+            [ finder trigeFinderAlert:NO ];
+        }
         //调用蓝牙发送函数
+       
+        
     }
 }
 
@@ -393,6 +429,9 @@
     
     [[ AppDelegate getManager] scanedDevice:peripheral];
     
+    BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+    [ finder setDevRSSI:RSSI];
+    
     if([[ AppDelegate getManager] isAllScaned])
     {
         [ self stopScan ];
@@ -407,10 +446,6 @@
      BW_INFO_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
     
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
-    
-//    [ finder setDevRSSI:peripheral.RSSI];
-//    
-//    BW_INFO_LOG(@"设备状态 %@",finder);
     
   
     
@@ -429,11 +464,14 @@
     NSLog(@"%@",error);
 }
 
+
+//由CBPeripheral readRssi 触发
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
      [ finder setDevRSSI:peripheral.RSSI];
     BW_INFO_LOG(@"设备状态 %@",finder);
+    
       [ self.tableView reloadData ];
     
     int rssi = abs([peripheral.RSSI intValue]);
@@ -470,13 +508,20 @@
     for (CBCharacteristic *c in service.characteristics) {
         BW_INFO_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
         
-//        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A06"]]) {
-//            _writeCharacteristic = c;
-//        }
-//        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
-//            [peripheral readValueForCharacteristic:c];
-//        }
-//        
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_ALERT_LEVEL]]) {
+            finder.alertLevelCharacteristic = c; //警告触发按钮
+        }
+        
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
+            //订阅设备按钮值
+            [peripheral setNotifyValue:YES forCharacteristic:c];
+            finder.keyPressCharacteristic = c; //远程按钮
+        }
+        if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_BATTERY_LEVEL]]) {
+            finder.batteryLevelCharacteristic = c;
+            [peripheral readValueForCharacteristic:c];
+        }
+//
 //        if ([c.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
 //            [peripheral readRSSI];
 //        }
@@ -494,12 +539,16 @@
      BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
     
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
         NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
         finder.batteryValue = [value floatValue];
         BW_INFO_LOG(@"电量%f",finder.batteryValue);
     }
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
+    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_BATTERY_LEVEL]]){
+        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        [self handleRemoteKey:finder key:[value intValue]];
+    }
+    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
         NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
         //_batteryValue = [value floatValue];
       //  NSLog(@"信号%@",value);
@@ -507,6 +556,34 @@
     
     else
         BW_INFO_LOG(@"didUpdateValueForCharacteristic%@",[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
+}
+
+//中心读取外设实时数据
+//它由特征的值用setNotifyValue:forCharacteristic: 触发，更新后，外设就会通知它的delegate。
+//外设的 delegate 就会接收到
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    if (error) {
+        BW_INFO_LOG(@"Error changing notification state: %@", error.localizedDescription);
+    }
+    // Notification has started
+    if (characteristic.isNotifying) {
+        [peripheral readValueForCharacteristic:characteristic];
+        
+    } else { // Notification has stopped
+        // so disconnect from the peripheral
+        BW_INFO_LOG(@"Notification stopped on %@.  Disconnecting", characteristic);
+        [self.bleManager cancelPeripheralConnection:peripheral];
+    }
+}
+//用于检测中心向外设写数据是否成功
+-(void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"发送失败=%@%@",characteristic,error.userInfo);
+    }else{
+        BW_INFO_LOG(@"发送数据成功 %@",characteristic);
+    }
 }
 
 
@@ -527,6 +604,24 @@
         destViewController.bleFinder = finder;
     }
 }
+
+-(void)handleRemoteKey:(BleFinder *)finder key:(int)key{
+    BW_INFO_LOG(@"远程按键 %d",key);
+    
+    switch(key){
+        case REMOTE_KEY_ALERT_START:
+            [ finder startAlarm ];
+            break;
+        case REMOTE_KEY_ALERT_STOP:
+            [ finder stopAlarm ];
+            break;
+            
+        case REMOTE_KEY_ALERT_CAMERA:
+            break;
+    }
+}
+
+
 
 //回退事件
 

@@ -23,6 +23,8 @@
         
         self.range = 5;
         
+        self.AlertNotification = [[UILocalNotification alloc]init];
+        
        
         
      }
@@ -228,6 +230,8 @@
     self.status = FINDER_STATUS_LINKLOSS;
     [  self setPeripheral:nil ];
     
+    self.alertLevelCharacteristic = nil;
+    
 }
 
 -(void)setDevRSSI:(NSNumber *)rssi{
@@ -245,6 +249,37 @@
 
     
 }
+
+//通知防丢器设备发出警报 start == YES 开始警报， NO 停止
+-(void) trigeFinderAlert:(BOOL)start{
+    unsigned char data;
+    if(start)
+        data = 0x01; //
+    else
+        data = 0x0;
+    
+    [  [ self getPeripheral ] writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:self.alertLevelCharacteristic type:CBCharacteristicWriteWithoutResponse];
+}
+
+-(NSString *)getRingtoneFile{
+   return  [self.ringtone objectForKey:@"RINGTONE"];
+}
+
+
+-(void)startAlarm{
+    
+    UILocalNotification *notification = self.AlertNotification ;
+    notification.alertBody = [NSString stringWithFormat:@" %@ 报警",[self getName]];
+    notification.soundName = [self getRingtoneFile];
+    notification.applicationIconBadgeNumber = 1;
+    notification.alertAction = @"关闭";
+}
+
+-(void)stopAlarm{
+    [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
+}
+
+
 
 
 @end

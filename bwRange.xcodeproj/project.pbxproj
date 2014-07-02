@@ -72,6 +72,8 @@
 		85D5F31719618640007DBE00 /* camera_shoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30B19618640007DBE00 /* camera_shoot.png */; };
 		85D5F31819618640007DBE00 /* camera_shoot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D5F30C19618640007DBE00 /* camera_shoot@2x.png */; };
 		85D5F31B1961C1A2007DBE00 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5F31A1961C1A2007DBE00 /* MainTabController.m */; };
+		85D5F31D1963BA2A007DBE00 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D5F31C1963BA2A007DBE00 /* AVFoundation.framework */; };
+		85D5F31F1963BB0D007DBE00 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D5F31E1963BB0D007DBE00 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		85D5F30C19618640007DBE00 /* camera_shoot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_shoot@2x.png"; sourceTree = "<group>"; };
 		85D5F3191961C1A2007DBE00 /* MainTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabController.h; sourceTree = "<group>"; };
 		85D5F31A1961C1A2007DBE00 /* MainTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabController.m; sourceTree = "<group>"; };
+		85D5F31C1963BA2A007DBE00 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		85D5F31E1963BB0D007DBE00 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D5F31F1963BB0D007DBE00 /* MediaPlayer.framework in Frameworks */,
+				85D5F31D1963BA2A007DBE00 /* AVFoundation.framework in Frameworks */,
 				8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */,
 				8509F8E0193A53E20021EC57 /* CoreGraphics.framework in Frameworks */,
 				8509F8E2193A53E20021EC57 /* UIKit.framework in Frameworks */,
@@ -240,6 +246,8 @@
 		8509F8DC193A53E20021EC57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85D5F31E1963BB0D007DBE00 /* MediaPlayer.framework */,
+				85D5F31C1963BA2A007DBE00 /* AVFoundation.framework */,
 				8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */,
 				8509F8DD193A53E20021EC57 /* Foundation.framework */,
 				8509F8DF193A53E20021EC57 /* CoreGraphics.framework */,
@@ -786,6 +794,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bwRange/bwRange-Prefix.pch";
 				INFOPLIST_FILE = "bwRange/bwRange-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -802,6 +811,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bwRange/bwRange-Prefix.pch";
 				INFOPLIST_FILE = "bwRange/bwRange-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

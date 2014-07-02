@@ -20,7 +20,7 @@
 
 
 
--(IBAction) funcClicked:(id)sender;
+-(IBAction) AlarmClicked:(id)sender;
 
 -(IBAction) refreshClicked:(id)sender;
 

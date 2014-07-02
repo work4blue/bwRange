@@ -10,6 +10,10 @@
 #import "IphoneScreen.h"
 #import "UIImage+Cut.h"
 
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MPVolumeView.h>
+
+
 @interface CustomImagePickerController ()
 
 @end
@@ -94,12 +98,41 @@
     }
 }
 
+- (void)initVolumeCapture{
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(volumeChanged:)
+     name:@"AVSystemController_SystemVolumeDidChangeNotification"
+     object:nil];
+    
+//    AVAudioPlayer* p = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"photoshutter.wav"]] error:NULL];
+//    [p prepareToPlay];
+//    [p stop];
+//    
+//    //make MPVolumeView Offscreen
+//    CGRect frame = CGRectMake(-1000, -1000, 100, 100);
+//    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:frame];
+//    [volumeView sizeToFit];
+//    [self.view addSubview:volumeView];
+    
+    
+}
+
+- (void)volumeChanged:(NSNotification *)notification{
+    DLog(@"valueChanged:+++----");
+    [self takePicture ];
+}
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.delegate = self;
 	// Do any additional setup after loading the view.
+    [self initVolumeCapture ];
+    
 }
 
 - (void)didReceiveMemoryWarning

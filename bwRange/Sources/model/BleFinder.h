@@ -63,6 +63,32 @@
 @property (nonatomic) bool mute     ; //是否静音
 @property (nonatomic, strong) NSDictionary * ringtone  ;
 
+//远端警告通知
+@property (nonatomic, strong) UILocalNotification * AlertNotification  ;
+
+
+#define UUID_PROPERTY_ALERT_LEVEL         @"2A06"
+#define UUID_PROPERTY_KEY_PRESS_STATE     @"FFE1"
+#define UUID_PROPERTY_BATTERY_LEVEL       @"2A19"
+
+
+#define REMOTE_KEY_ALERT_START     (0x01)
+#define REMOTE_KEY_ALERT_STOP      (0x02)
+#define REMOTE_KEY_ALERT_CAMERA    (0x03)
+
+
+
+
+//用于向设备触发警报（比如设备蜂鸣器响）使用 Link Loss (0x1802)的 ALERT_LEVEL (0x2a06)
+@property (strong ,nonatomic) CBCharacteristic *alertLevelCharacteristic;
+
+//用于接收设备按钮信息，用于手机报警，远程拍照。 按键服务 0xFFE0  Key Press State (0xFFE1)
+@property (strong ,nonatomic) CBCharacteristic *keyPressCharacteristic;
+
+//电池服务 Battery Service ,0x180F,Battery Level ()
+@property (strong ,nonatomic) CBCharacteristic *batteryLevelCharacteristic;
+
+
 
 
 -(id) init;
@@ -87,8 +113,14 @@
 
 + (NSString  *)stringWithFinderDistance:(int)type;
 
+-(void) trigeFinderAlert:(BOOL)start;
+
 
 
 
 -(NSDictionary *)newDict;
+
+-(void)startAlarm;
+-(void)stopAlarm;
+
 @end

@@ -70,6 +70,27 @@
     [self.label setHidden:YES];
     [self.imageView setHidden:NO] ;
     [self.imageView setImage:image];
+    
+    //保存到相册中
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+// 相册保存方法回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+	NSString *msg = nil ;
+	if(error != NULL){
+		msg = [ NSString stringWithFormat:@"保存图片失败 %@",error] ;
+	}else{
+		//msg = @"保存图片成功" ;
+        return;
+	}
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示"
+                                                    message:msg
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 

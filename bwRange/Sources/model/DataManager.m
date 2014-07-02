@@ -15,7 +15,7 @@
 @interface DataManager ()
 
 @property  BOOL isDemoData; //演示数据
-
+@property  BOOL isModify; // 数据被修改，这样让界面重新联接
 
 @end
 
@@ -82,6 +82,8 @@
         
         
     }
+    
+    self.isModify = YES;
     
     return temp.count;
     
@@ -173,6 +175,8 @@
         [self loadFinders ];
         
     }
+    
+    self.isModify = YES;
     return YES;
 }
 
@@ -248,8 +252,10 @@
     
     [self.nBleFinders addObject:finder];
     
+    self.isModify = YES;
     
-    return self.nBleFinders.count;
+    
+    return (self.nBleFinders.count - 1);
 }
 
 - (void) saveFinder{
@@ -319,7 +325,7 @@
     return (self.scanCount == self.nBleFinders.count);
 }
 
--(BleFinder *)getFinder:(CBPeripheral *)peripheral{
+-(BleFinder *)getFinderOld:(CBPeripheral *)peripheral{
     for (int i=0; i < self.nBleFinders.count; i++) {
         
         
@@ -331,13 +337,79 @@
     
     return nil;
 }
+-(BleFinder *)getFinder:(CBPeripheral *)peripheral{
+    return [ self queryFinder:[ peripheral.identifier UUIDString ]];
+}
+
+-(BleFinder *)queryFinder:(NSString *)UUIDString{
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        
+       
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        DLog(@"%@,",device);
+        
+        NSString * uuid = device.UUID;
+        
+        
+        if ([ uuid isEqual:UUIDString]) {
+            
+            return device;
+        }
+    }
+    return nil;
+}
+
+-(int)queryFinderIndex:(NSString *)UUIDString{
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        
+        
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        DLog(@"%@,",device);
+        
+        NSString * uuid = device.UUID;
+        
+        
+        if ([ uuid isEqual:UUIDString]) {
+            
+            return i;
+        }
+    }
+    return -1;
+}
 
 
 
-
+-(int)replaceFinder:(BleFinder *)finder{
+    int pos = [self queryFinderIndex:finder.UUID];
+    
+    if(pos >= 0){
+        [self.nBleFinders replaceObjectAtIndex:(NSInteger)pos withObject:finder];
+        //self.isModify = YES;
+        return pos;
+    }
+    else
+    {
+       return  [self addFinder:finder];
+    }
+}
 
 - (void)startDetect{
     
+}
+
+-(BOOL) isNeedRescan{
+    
+    if(self.isModify)
+    {
+        self.isModify = NO;
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

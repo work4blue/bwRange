@@ -47,7 +47,7 @@
    // self.navigationItem.title  = [ device name];
     self.navigationItem.title  =  self.bleDevice.DevName;
     
-    self.navigationController.delegate=self;
+   // self.navigationController.delegate=self;
     
     
 
@@ -70,8 +70,8 @@
     //UITableViewCell * cell = [self tableView:table cellForRowAtIndexPath:indexPath ];
     
     
-   DLog(@"tableView count %d,", [ self tableView:self.tableView numberOfRowsInSection:0]);
-   DLog(@"tableView scount %d,", [ self numberOfSectionsInTableView:self.tableView ]);
+//   DLog(@"tableView count %d,", [ self tableView:self.tableView numberOfRowsInSection:0]);
+//   DLog(@"tableView scount %d,", [ self numberOfSectionsInTableView:self.tableView ]);
 }
 
 
@@ -216,18 +216,23 @@
    // _infoLabel.text = @"You have cancelled";
 }
 
+-(void)saveFinder{
+    self.bleFinder.UUID = self.bleDevice.UUID;
+    [[AppDelegate getManager]  replaceFinder:self.bleFinder ];
+    [[AppDelegate getManager] saveFinder ];
+    
+    self.isNewDevice = NO;
+}
 
 #pragma mark - 操作处理
 - (IBAction)finishClick:(id)sender{
     if([self isNewDevice]){
         //保存并跳转
         
-       // self.bleFinder.UUID = [ self.bleDevice objectForKey:@"UUID" ];
-        self.bleFinder.UUID = self.bleDevice.UUID;
-        [[AppDelegate sharedInstance].dataManager  addFinder:self.bleFinder ];
-         [[AppDelegate sharedInstance].dataManager  saveFinder ];
+       
         
-        self.isNewDevice = NO;
+       
+         [self saveFinder];
         
         //[self dismissViewControllerAnimated:YES completion:nil];
        
