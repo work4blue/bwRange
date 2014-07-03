@@ -16,6 +16,8 @@
 
 #import "LogViewController.h"
 
+#import "ti_ble.h"
+
 // BleFinder:UUID B8A0EC41-8C1F-6C2B-DDCB-7B6EA9A8BE1F, type 0, Name 钥匙,range 1,status 2,rssi -62.000000,distance 2.000000
 /*
  // Proximity Profile Service UUIDs
@@ -319,6 +321,16 @@
     [ self scanBleFinder ];
 }
 
+-(void) showMessage:(BleFinder*)finder  {
+    NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"抱警."];
+    
+    
+    [ self.view makeToast:title
+                 duration:3.0
+                 position:@"bottom"
+                    image:[UIImage imageNamed:@"leash_default_icon_bg"]];
+}
+
 -(IBAction) AlarmClicked:(id)sender {
     
    
@@ -539,14 +551,30 @@
      BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
     
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
-        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-        finder.batteryValue = [value floatValue];
-        BW_INFO_LOG(@"电量%f",finder.batteryValue);
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_BATTERY_LEVEL]]) {
+       // NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+       
+        char batlevel;
+        [characteristic.value getBytes:&batlevel length:TI_KEYFOB_LEVEL_SERVICE_READ_LEN];
+        
+        finder.batteryValue = batlevel;
+        BW_INFO_LOG(@"电量 %@,%f",characteristic.value,finder.batteryValue);
+        
+     
     }
-    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_BATTERY_LEVEL]]){
-        NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-        [self handleRemoteKey:finder key:[value intValue]];
+    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]){
+        NSLog(@"value %@",characteristic.value);
+       
+        char keys;
+        [characteristic.value getBytes:&keys length:TI_KEYFOB_KEYS_NOTIFICATION_READ_LEN];
+        
+//        if (keys & 0x01) self.key1 = YES;
+//        else self.key1 = NO;
+//        if (keys & 0x02) self.key2 = YES;
+//        else self.key2 = NO;
+       
+
+        [self handleRemoteKey:finder key:keys];
     }
     else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
         NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
@@ -554,8 +582,8 @@
       //  NSLog(@"信号%@",value);
     }
     
-    else
-        BW_INFO_LOG(@"didUpdateValueForCharacteristic%@",[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
+    
+        BW_INFO_LOG(@"读取属性%@ %@",characteristic,[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
 }
 
 //中心读取外设实时数据
@@ -610,10 +638,11 @@
     
     switch(key){
         case REMOTE_KEY_ALERT_START:
-            [ finder startAlarm ];
+            [ self showMessage:finder ];
+            [ finder startLocalAlarm ];
             break;
         case REMOTE_KEY_ALERT_STOP:
-            [ finder stopAlarm ];
+            [ finder stopLocalAlarm ];
             break;
             
         case REMOTE_KEY_ALERT_CAMERA:

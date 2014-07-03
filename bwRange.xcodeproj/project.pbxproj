@@ -32,8 +32,6 @@
 		85C1F7CA195580AA000A0D17 /* Finders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C3195580AA000A0D17 /* Finders.plist */; };
 		85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C4195580AA000A0D17 /* FinderTypes.plist */; };
 		85C1F7CC195580AA000A0D17 /* Ringtones.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C5195580AA000A0D17 /* Ringtones.plist */; };
-		85C1F7CD195580AA000A0D17 /* beep1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C7195580AA000A0D17 /* beep1.mp3 */; };
-		85C1F7CE195580AA000A0D17 /* beep2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85C1F7C8195580AA000A0D17 /* beep2.mp3 */; };
 		85C1F7E419558139000A0D17 /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D119558139000A0D17 /* DeviceListTableViewController.m */; };
 		85C1F7E519558139000A0D17 /* DeviceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D319558139000A0D17 /* DeviceSettingViewController.m */; };
 		85C1F7E619558139000A0D17 /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7D519558139000A0D17 /* DistanceViewController.m */; };
@@ -123,8 +121,6 @@
 		85C1F7C3195580AA000A0D17 /* Finders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Finders.plist; sourceTree = "<group>"; };
 		85C1F7C4195580AA000A0D17 /* FinderTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FinderTypes.plist; sourceTree = "<group>"; };
 		85C1F7C5195580AA000A0D17 /* Ringtones.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ringtones.plist; sourceTree = "<group>"; };
-		85C1F7C7195580AA000A0D17 /* beep1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep1.mp3; sourceTree = "<group>"; };
-		85C1F7C8195580AA000A0D17 /* beep2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep2.mp3; sourceTree = "<group>"; };
 		85C1F7D019558139000A0D17 /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListTableViewController.h; sourceTree = "<group>"; };
 		85C1F7D119558139000A0D17 /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListTableViewController.m; sourceTree = "<group>"; };
 		85C1F7D219558139000A0D17 /* DeviceSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingViewController.h; sourceTree = "<group>"; };
@@ -195,6 +191,7 @@
 		85D5F31A1961C1A2007DBE00 /* MainTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabController.m; sourceTree = "<group>"; };
 		85D5F31C1963BA2A007DBE00 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		85D5F31E1963BB0D007DBE00 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		85D5F321196431F6007DBE00 /* ti_ble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ti_ble.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,8 +369,6 @@
 		85C1F7C6195580AA000A0D17 /* ringtone */ = {
 			isa = PBXGroup;
 			children = (
-				85C1F7C7195580AA000A0D17 /* beep1.mp3 */,
-				85C1F7C8195580AA000A0D17 /* beep2.mp3 */,
 			);
 			path = ringtone;
 			sourceTree = "<group>";
@@ -407,6 +402,7 @@
 				85D5F2DF19618330007DBE00 /* CameraViewController.m */,
 				85D5F3191961C1A2007DBE00 /* MainTabController.h */,
 				85D5F31A1961C1A2007DBE00 /* MainTabController.m */,
+				85D5F321196431F6007DBE00 /* ti_ble.h */,
 			);
 			name = controller;
 			path = Sources/controller;
@@ -584,7 +580,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				85D5F30E19618640007DBE00 /* btn_back@2x.png in Resources */,
-				85C1F7CD195580AA000A0D17 /* beep1.mp3 in Resources */,
 				85D5F31119618640007DBE00 /* camera_btn_ok.png in Resources */,
 				85D5F31619618640007DBE00 /* camera_cancel@2x.png in Resources */,
 				85D5F30D19618640007DBE00 /* btn_back.png in Resources */,
@@ -604,7 +599,6 @@
 				85D5F31319618640007DBE00 /* camera_button_switch_camera.png in Resources */,
 				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
 				85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */,
-				85C1F7CE195580AA000A0D17 /* beep2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

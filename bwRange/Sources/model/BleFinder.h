@@ -74,7 +74,7 @@
 
 #define REMOTE_KEY_ALERT_START     (0x01)
 #define REMOTE_KEY_ALERT_STOP      (0x02)
-#define REMOTE_KEY_ALERT_CAMERA    (0x03)
+#define REMOTE_KEY_ALERT_CAMERA    (0x04)
 
 
 
@@ -120,7 +120,7 @@
 
 -(NSDictionary *)newDict;
 
--(void)startAlarm;
--(void)stopAlarm;
+-(void)startLocalAlarm;
+-(void)stopLocalAlarm;
 
 @end

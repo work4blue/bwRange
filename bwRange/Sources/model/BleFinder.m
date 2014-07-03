@@ -265,18 +265,51 @@
    return  [self.ringtone objectForKey:@"RINGTONE"];
 }
 
-
--(void)startAlarm{
-    
-    UILocalNotification *notification = self.AlertNotification ;
-    notification.alertBody = [NSString stringWithFormat:@" %@ 报警",[self getName]];
-    notification.soundName = [self getRingtoneFile];
-    notification.applicationIconBadgeNumber = 1;
-    notification.alertAction = @"关闭";
+-(void)startLocalAlarm{
+    //本地通知
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    if (notification != nil) {
+        NSDate *now = [NSDate new];
+        notification.fireDate = [now dateByAddingTimeInterval:10];
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.alertBody = @"报警";
+        notification.soundName = @"雷达咚咚音效.mp3";
+        notification.applicationIconBadgeNumber = 1;
+        notification.alertAction = @"关闭";
+        
+        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+        
+    }
 }
 
--(void)stopAlarm{
-    [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
+-(void)startLocalAlarm2{
+    
+    DLog(@"start Alarm");
+ //UILocalNotification *notification = self.AlertNotification ;
+     UILocalNotification *notification = [[UILocalNotification alloc]init];
+    notification.alertBody = [NSString stringWithFormat:@" %@ 报警",[self getName]];
+   // notification.soundName = [self getRingtoneFile];
+    notification.soundName = @"beep3.mp3";
+    notification.applicationIconBadgeNumber = 1;
+    notification.alertAction = @"关闭";
+    
+    NSDate *now = [NSDate new];
+    notification.fireDate = [now dateByAddingTimeInterval:10];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+
+    [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+    
+    
+//    NSNotification *notification = [NSNotification notificationWithName:@"Alarm" object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:notification waitUntilDone:NO];
+   
+    
+   // [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
+-(void)stopLocalAlarm{
+   // [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
 }
 
 
