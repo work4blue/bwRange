@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "CustomImagePickerController.h"
+#import "AppDelegate.h"
 
 @interface CameraViewController ()
 
@@ -20,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.needTake = NO;
     }
     return self;
 }
@@ -49,7 +51,13 @@
         [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }
     [picker setCustomDelegate:self];
+    
+    [ AppDelegate sharedInstance ].cameraView = picker;
     [self presentModalViewController:picker animated:YES];
+    
+    if(self.needTake){
+        [picker takePicture];
+    }
    
 }
 
@@ -62,14 +70,25 @@
 //    [self presentModalViewController:fitler animated:YES];
     
     [self imageFitlerProcessDone:image ];
+    self.needTake = NO;
     
 }
+
+- (void)cancelCamera{
+     [ AppDelegate sharedInstance ].cameraView = nil;
+    
+    self.needTake = NO;
+}
+
 
 - (void)imageFitlerProcessDone:(UIImage *)image //图片处理完
 {
     [self.label setHidden:YES];
     [self.imageView setHidden:NO] ;
     [self.imageView setImage:image];
+    
+    
+     [ AppDelegate sharedInstance ].cameraView = nil;
     
     //保存到相册中
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
@@ -91,6 +110,8 @@
                                           cancelButtonTitle:@"确定"
                                           otherButtonTitles:nil];
     [alert show];
+    
+    
 }
 
 

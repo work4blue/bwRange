@@ -412,4 +412,32 @@
     return NO;
 }
 
+-(BOOL)setFinderMute:(int)row mute:(BOOL)mute{
+    if( (row < 0 ) || (row >= self.nBleFinders.count))
+        return NO;
+    BleFinder * finder = [self.nBleFinders objectAtIndex:row];
+    if( finder.mute ==  mute )
+        return NO;
+    
+    
+    
+    
+    finder.mute =  mute ;
+    self.isModify = YES;
+    return YES;
+    
+    
+}
+
+-(void)setDelegate:(id<FinderStateNotifyDelegate>)delegate{
+    for (int i=0; i < self.nBleFinders.count; i++) {
+        
+        
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        device.delegate = delegate;
+    }
+}
+
 @end

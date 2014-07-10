@@ -16,6 +16,7 @@
 
 @interface FinderDetailViewController ()
 @property (nonatomic) BOOL isNewDevice;
+@property (nonatomic) BOOL isModify;
 
 @end
 
@@ -52,9 +53,7 @@
     
 
     
-    if(self.isNewDevice == YES){
-        self.navigationItem.rightBarButtonItem.title =@"保存";
-    }
+    [ self changeState ];
     
     
     
@@ -72,6 +71,19 @@
     
 //   DLog(@"tableView count %d,", [ self tableView:self.tableView numberOfRowsInSection:0]);
 //   DLog(@"tableView scount %d,", [ self numberOfSectionsInTableView:self.tableView ]);
+}
+
+-(void)changeState{
+    if((self.isNewDevice == YES) || (self.isModify == YES)){
+        self.navigationItem.rightBarButtonItem.title =@"保存";
+        self.isModify = YES;
+        
+    }
+    
+    if(self.isModify == NO){
+        self.navigationItem.rightBarButtonItem.title =@"完成";
+    }
+
 }
 
 
@@ -243,7 +255,8 @@
         
     }
     else{
-       [[AppDelegate sharedInstance].dataManager  saveFinder ];
+       if([self isModify])
+         [[AppDelegate sharedInstance].dataManager  saveFinder ];
     }
 }
 
@@ -337,6 +350,22 @@
             }
             break;
         }
+}
+
+-(IBAction)vibrateSwitchAction:(id)sender{
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isVibrateOn = [switchButton isOn];
+    
+    if(self.bleFinder.vibrate == isVibrateOn )
+        return ;
+    
+    DLog(@"change vibrate %d",isVibrateOn);
+    
+    self.bleFinder.vibrate = isVibrateOn;
+    
+    self.isModify = YES;
+    
+    [ self changeState ];
 }
 
 

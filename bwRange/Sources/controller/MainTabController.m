@@ -91,6 +91,7 @@
         BW_INFO_LOG(@"成功连接%s,但不是防丢器",uuid);
     }
     
+    
     [ peripheral setDelegate:self];
     [ peripheral discoverServices:nil];
     BW_INFO_LOG(@"扫描服务:%s",uuid);

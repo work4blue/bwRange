@@ -16,10 +16,13 @@
 }
 @property(nonatomic)BOOL isSingle;
 @property(nonatomic,assign)id<CustomImagePickerControllerDelegate> customDelegate;
+
+- (void)takePicture;
 @end
 
 @protocol CustomImagePickerControllerDelegate <NSObject>
 
 - (void)cameraPhoto:(UIImage *)image;
 - (void)cancelCamera;
+
 @end

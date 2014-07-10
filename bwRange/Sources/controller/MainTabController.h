@@ -11,6 +11,8 @@
 
 #define MAIN_TAB_CONTROLLER  ((MainTabController*)(self.tabBarController))
 
+#define MAIN_TAB_CAMERA  (2)
+
 @interface MainTabController : UITabBarController
 
 //@property (nonatomic, strong) CBCentralManager * bleManager;

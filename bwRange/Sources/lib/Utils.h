@@ -35,6 +35,8 @@
 + (UIViewController *)getOtherPageController:(UIViewController *)currentPageController index:(int)index;
 
 
++(void) playVibrate;
+
 @end
 
 

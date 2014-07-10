@@ -9,14 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
+#import "BleFinder.h"
+
+#import "W4bAudioPlayer.h"
+
 //,UINavigationControllerDelegate
 
-@interface FinderListViewController : UITableViewController<UINavigationControllerDelegate>
+#define NotificationFinderStateChanged  @"Notification_FinderStateChanged"
+
+@interface FinderListViewController : UITableViewController<UINavigationControllerDelegate,FinderStateNotifyDelegate,
+UIAlertViewDelegate>
 
 @property (strong,nonatomic) NSMutableArray *nFinders;
 @property (nonatomic) int currentLine ;
 
 @property (nonatomic, strong) CBCentralManager *bleManager;
+
+
+
 
 
 

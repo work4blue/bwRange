@@ -212,9 +212,23 @@
 
 
 + (UIViewController *)getOtherPageController:(UIViewController *)currentPageController index:(int)index{
-    return [currentPageController.tabBarController.view.subviews objectAtIndex:index] ;
+    UIViewController * controller = [currentPageController.tabBarController.viewControllers objectAtIndex:index] ;
+    
+    if(controller == nil)
+        return nil;
+    
+    if( [ controller isKindOfClass:[UINavigationController class]])
+        return ((UINavigationController *)controller).topViewController;
+    else
+        return controller;
+    
 }
 
+//need add AudioToolbox framework
++(void) playVibrate{
+    DLog(@"playVibrate");
+    AudioServicesPlaySystemSound ( kSystemSoundID_Vibrate) ;
+}
 
 
 @end

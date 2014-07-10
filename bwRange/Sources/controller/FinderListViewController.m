@@ -13,8 +13,11 @@
 #import "Utils.h"
 #import "AppDelegate.h"
 #import "FinderStatusViewController.h"
+#import "CustomImagePickerController.h"
 
 #import "LogViewController.h"
+#import "MainTabController.h"
+#import "CameraViewController.h"
 
 #import "ti_ble.h"
 
@@ -35,6 +38,8 @@
 
 @property (nonatomic) BOOL isScanning;
 
+@property (nonatomic) BOOL isFirstRemoteKey ;
+
 
 @end
 
@@ -45,6 +50,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -82,6 +88,43 @@
     
     // [ self scanBleFinder ];
     
+    [[AppDelegate getManager] setDelegate:self];
+    
+    self.isFirstRemoteKey = YES;
+    [self initObserver];
+    
+    
+    
+    
+}
+#pragma mark -- Finder State Notification
+- (void) refreshFinderState: (NSNotification*) aNotification
+{
+    //self.userProfile = [aNotification object];
+    
+    
+    DLog(@"refresh Finder List Status");
+    [self.tableView reloadData];
+    
+   
+}
+//触发消息
+//[[NSNotificationCenter defaultCenter] postNotificationName:NotificationFinderStateChanged object:finder_index userInfo:nil];
+
+-(void) initObserver{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFinderState:) name:NotificationFinderStateChanged object:nil];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewDidAppear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -96,6 +139,10 @@
     }
     
     [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
 }
 
 - (BOOL)isDemoMode{
@@ -148,7 +195,7 @@
 
 
 // 开始连接
--(void)connectPeripheral:(CBPeripheral*)peripheral
+-(void)connectPeripheralOld:(CBPeripheral*)peripheral
 {
     if(peripheral == nil)
         return ;
@@ -171,12 +218,21 @@
     
 }
 
+-(void)connectPeripheral:(CBPeripheral*)peripheral
+{
 
+    NSDictionary* connectOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey];
+
+//NSLog(@"Connecting to tag %@...", [tag name]);
+    [_bleManager connectPeripheral:peripheral options:connectOptions];
+
+}
 
 
 
 -(int)connectFinders{
     
+    [[AppDelegate getAudioPlayer ] stop ];
     int count = 0;
     for (int i=0; i < [ AppDelegate getManager].nBleFinders.count; i++) {
         BleFinder * device = (BleFinder *)[ [ AppDelegate getManager].nBleFinders objectAtIndex:i];
@@ -269,6 +325,15 @@
     
     self.currentLine = indexPath.row; //取得当前行
     
+    BOOL isMute =!isButtonOn;
+    
+    BW_INFO_LOG(@" row %d set Mute %d",self.currentLine,isMute);
+    
+    
+    [[AppDelegate getManager] setFinderMute:indexPath.row mute:isMute ];
+    
+    
+    
     
 //    if(isButtonOn)
 //        [self.bleManager cancelPeripheralConnection:peripheral];
@@ -321,8 +386,12 @@
     [ self scanBleFinder ];
 }
 
--(void) showMessage:(BleFinder*)finder  {
-    NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"抱警."];
+-(void) showMessage:(NSString *)title {
+    
+//    if(finder.mute ==YES){
+//        return;
+//    }
+  //  NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"抱警."];
     
     
     [ self.view makeToast:title
@@ -331,7 +400,17 @@
                     image:[UIImage imageNamed:@"leash_default_icon_bg"]];
 }
 
+-(void) showAlarmMessage:(BleFinder *)finder {
+    
+   
+      NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"抱警."];
+    
+    [self showMessage:title];
+    
+}
+
 -(IBAction) AlarmClicked:(id)sender {
+    
     
    
     UITableViewCell* cell= [Utils getCellBySender:sender ];
@@ -341,6 +420,8 @@
     BW_INFO_LOG(@"报警 %d",indexPath.row);
     
      BleFinder *finder = [ self.nFinders objectAtIndex:indexPath.row];
+    
+    
     
     
     
@@ -357,6 +438,12 @@
                    image:[UIImage imageNamed:@"leash_default_icon_bg"]];
     }
     else{
+        
+        if(finder.status == FINDER_STATUS_LINKLOSS){
+            [ self scanBleFinder ]  ;
+            [ self showMessage:[ NSString stringWithFormat:@"%@未联接",[ finder getName ] ]];
+            return ;
+        }
         
          BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
         UIButton * checkbox = (UIButton *)sender;
@@ -460,6 +547,7 @@
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
   
+     [finder setState:PROXIMITY_TAG_STATE_BONDING];
     
     [ peripheral readRSSI]; //强制读取rssi数据
     
@@ -469,6 +557,25 @@
     
     BW_INFO_LOG(@"开始扫描设备service");
     
+}
+
+- (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+    if (!finder) {
+        NSLog(@"Disconnected %@, but couldn't find a tag for this peripheral. Will not reconnect.", [peripheral name]);
+        return;
+    }
+  //  [_delegate didUpdateData:tag];
+   // [tag didDisconnect];
+    
+    [finder didDisconnect];
+    
+   
+    
+    NSLog(@"Did disconnect peripheral, %@ with error %@. Trying to reconnect...", [peripheral name], error);
+    
+    [self connectPeripheral:peripheral];
 }
 //连接外设失败
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -482,13 +589,19 @@
 {
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
      [ finder setDevRSSI:peripheral.RSSI];
-    BW_INFO_LOG(@"设备状态 %@",finder);
+       BW_INFO_LOG(@"%@ 状态 ，%d",[finder getName],finder.status );
+    
+    
     
       [ self.tableView reloadData ];
     
     int rssi = abs([peripheral.RSSI intValue]);
     CGFloat ci = (rssi - 49) / (10 * 4.);
-    BW_INFO_LOG(@"发现BLT4.0热点:%@,距离:%.1fm",peripheral,pow(10,ci));
+    BW_INFO_LOG(@"RSSI %@更新:%f,距离:%.1fm",[finder getName],[ peripheral.RSSI floatValue ] ,pow(10,ci));
+    
+     NSLog(@"RSSI %@更新:%f,距离:%.1fm",[finder getName],[ peripheral.RSSI floatValue ] ,pow(10,ci));
+    
+   
    }
 //已发现服务
 -(void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
@@ -521,7 +634,7 @@
         BW_INFO_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
         
         if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_ALERT_LEVEL]]) {
-            finder.alertLevelCharacteristic = c; //警告触发按钮
+            finder.linkLossAlertLevelCharacteristic = c; //警告触发按钮
         }
         
         if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
@@ -611,6 +724,14 @@
         NSLog(@"发送失败=%@%@",characteristic,error.userInfo);
     }else{
         BW_INFO_LOG(@"发送数据成功 %@",characteristic);
+        
+         BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
+        
+        // If we have successfully written something, bonding has been successful
+        if (finder.state == PROXIMITY_TAG_STATE_BONDING)
+        {
+            [finder setState:PROXIMITY_TAG_STATE_BONDED];
+        }
     }
 }
 
@@ -636,17 +757,150 @@
 -(void)handleRemoteKey:(BleFinder *)finder key:(int)key{
     BW_INFO_LOG(@"远程按键 %d",key);
     
+    if( self.isFirstRemoteKey ==YES)
+    {
+        self.isFirstRemoteKey =NO; //每次重启都会收到上一次联接的远程按键，只能用软件逻辑去掉。
+        return ;
+    }
+    
     switch(key){
         case REMOTE_KEY_ALERT_START:
-            [ self showMessage:finder ];
+            [ self showAlarmMessage:finder ];
             [ finder startLocalAlarm ];
+            
+           
+           
             break;
         case REMOTE_KEY_ALERT_STOP:
             [ finder stopLocalAlarm ];
+            
+          
             break;
             
         case REMOTE_KEY_ALERT_CAMERA:
+            
+        {
+            
+           CustomImagePickerController * ctrl =  (CustomImagePickerController *)([ AppDelegate sharedInstance].cameraView);
+            
+            
+            if(ctrl != nil)
+            {
+               
+                
+                [ ctrl takePicture ];
+            }
+        
+        else
+        {
+            
+//          UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"请打开照机" message:@"需手工打照相机，并长按后拍照" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+//                
+//                [dialog show];
+            
+            
+//
+              CameraViewController * view =  [ Utils getOtherPageController:self index:MAIN_TAB_CAMERA];
+            
+               view.needTake = YES;
+            
+               MAIN_TAB_CONTROLLER.selectedIndex = MAIN_TAB_CAMERA;
+            
+            }
+        }
+        break;
+    }
+}
+#pragma mark -- Finder Notitfy
+
+- (void) showFailedConnectDialog:(BleFinder*) finder
+{
+    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"物品联接失败" message:[NSString stringWithFormat:@"无法联接到 %@. \n\n可能是断线或超出范围.", [ finder getName ]] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    
+    dialog.tag = 1;
+    
+    [dialog show];
+    
+    UILocalNotification *alarm = [[UILocalNotification alloc] init];
+    alarm.alertBody = [NSString stringWithFormat:@"> %@ 断线.", [ finder getName ] ];
+    alarm.alertAction = @"确定";
+    
+    
+    if(finder.vibrate == YES)
+        [Utils playVibrate];
+    
+    
+    
+    int number = 1;
+    
+    alarm.soundName = @"alarm-sound.wav";
+    alarm.applicationIconBadgeNumber = number;
+    
+    
+    
+    // alarm.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] presentLocalNotificationNow:alarm];
+    
+   
+    // [[UIApplication sharedApplication] setApplicationIconBadgeNumber:number];
+    
+    [[AppDelegate getAudioPlayer ] play ];
+}
+
+- (void) showOutOfRangeDialog:(BleFinder*) finder
+{
+   // if (alertLevel != PROXIMITY_TAG_ALERT_LEVEL_NONE)
+    {
+        UILocalNotification *alarm = [[UILocalNotification alloc] init];
+        alarm.alertBody = [NSString stringWithFormat:@"%@ 已经超过范围.", [ finder getName ] ];
+        alarm.alertAction = @"确认";
+        
+//        if (alertLevel == PROXIMITY_TAG_ALERT_LEVEL_HIGH)
+//        {
+//            alarm.soundName = @"alarm-sound.wav";
+//        }
+//        else
+//        {
+//            alarm.soundName = UILocalNotificationDefaultSoundName;
+//        }
+        
+        if(finder.vibrate == YES)
+            [Utils playVibrate];
+        
+        [[UIApplication sharedApplication] presentLocalNotificationNow:alarm];
+        
+        [[AppDelegate getAudioPlayer ] play ];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+   // NSLog(@"clickButtonAtIndex:%d",0);
+    [[AppDelegate getAudioPlayer ] stop ];
+}
+
+-(void)alertViewCancel:(UIAlertView *)alertView
+{
+    NSLog(@"alertViewCancel");
+}
+
+-(void) FinderStateNotifyDelegateAction:(BleFinder* ) finder state:(int)state{
+    
+     [self.tableView reloadData];
+    
+    switch(state){
+        case   FINDER_NOTIFY_CONNECT :
+           
             break;
+        case   FINDER_NOTIFY_FAIL :
+            [self showFailedConnectDialog:finder];
+            break;
+        case   FINDER_NOTIFY_OUTRANGE :
+            [self showOutOfRangeDialog:finder];
+            break;
+            
+            
     }
 }
 

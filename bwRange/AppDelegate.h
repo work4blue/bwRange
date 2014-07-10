@@ -10,12 +10,19 @@
 
 #import "DataManager.h"
 #import "BleFinderService.h"
+#import "W4bAudioPlayer.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DataManager *dataManager;
+
+@property (nonatomic, strong) W4bAudioPlayer *audioPlayer;
+
+
+@property (nonatomic) id  cameraView;
+
 //@property (strong, nonatomic) BleFinderService *finderService;
 
 //AppDelegate *delegate=(AppDelegate*)[[UIApplicationsharedApplication]delegate];
@@ -23,7 +30,11 @@
 
 +(AppDelegate*)sharedInstance;
 +(DataManager*)getManager;
+
++(W4bAudioPlayer*)getAudioPlayer;
 //+(BleFinderService*)getFinderService;
+
+
 
 
 

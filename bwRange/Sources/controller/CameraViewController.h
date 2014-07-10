@@ -16,6 +16,8 @@
 @property(nonatomic, retain) IBOutlet UIImageView * imageView;
 @property(nonatomic, retain) IBOutlet UILabel * label;
 
+@property(nonatomic) BOOL needTake ;
+
 - (IBAction)showPicker:(id)sender;
 
 

@@ -10,6 +10,12 @@
 
 #import "Common.h"
 
+@interface AppDelegate() {
+   
+}
+@end
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,6 +24,12 @@
     self.dataManager = [[ DataManager alloc] init];
     
   //  self.finderService = [[ BleFinderService alloc] init];
+    
+    [W4bAudioPlayer initBackgroudMode ];
+    
+     self.audioPlayer = [[ W4bAudioPlayer alloc] init];
+    
+    self.cameraView = nil;
     
 
     UIStoryboard *mainStoryboard = nil;
@@ -71,6 +83,11 @@
 +(DataManager*)getManager{
     return [AppDelegate sharedInstance].dataManager;
 }
+
++(W4bAudioPlayer*)getAudioPlayer{
+   return [AppDelegate sharedInstance].audioPlayer;
+}
+
 
 //+(BleFinderService*)getFinderService{
 //    return [AppDelegate sharedInstance].finderService;

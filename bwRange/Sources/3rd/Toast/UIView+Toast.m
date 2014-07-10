@@ -21,7 +21,7 @@ static const CGFloat CSToastMaxHeight           = 0.8;      // 80% of parent vie
 static const CGFloat CSToastHorizontalPadding   = 10.0;
 static const CGFloat CSToastVerticalPadding     = 10.0;
 
-static const CGFloat  CSToastBottomPadding      = 70; //add ,fix bottom mode ,by Andrew Huang .
+static const CGFloat  CSToastBottomPadding      = 120; //add ,fix bottom mode ,by Andrew Huang . //70
 static const CGFloat CSToastCornerRadius        = 10.0;
 static const CGFloat CSToastOpacity             = 0.8;
 static const CGFloat CSToastFontSize            = 16.0;

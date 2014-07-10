@@ -27,4 +27,5 @@
 - (void)setFinder:(BleFinder *)finder;
 
 - (IBAction)finishClick:(id)sender;
+-(IBAction)vibrateSwitchAction:(id)sender;
 @end

@@ -10,6 +10,8 @@
 #import "IphoneScreen.h"
 #import "UIImage+Cut.h"
 
+
+
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MPVolumeView.h>
 
@@ -95,6 +97,9 @@
         [overlyView addSubview:photoBtn];
         
         self.cameraOverlayView = overlyView;
+       
+        
+        
     }
 }
 

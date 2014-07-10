@@ -9,7 +9,15 @@
 #import "BleFinder.h"
 #import "BleDevice.h"
 
+#import "SharedUI.h"
+
+#import "AppDelegate.h"
+#import "Utils.h"
+
 @interface BleFinder()
+
+@property (strong ,nonatomic) NSTimer *rssiTimer; //信号检测定时器
+@property (strong ,nonatomic) NSTimer *readTimer; //
 
 @end
 
@@ -25,6 +33,16 @@
         
         self.AlertNotification = [[UILocalNotification alloc]init];
         
+        
+        _linkLossAlertLevelOnTag = PROXIMITY_TAG_ALERT_LEVEL_HIGH;
+        _linkLossAlertLevelOnPhone = PROXIMITY_TAG_ALERT_LEVEL_MILD;
+        
+        self.vibrate = YES;
+       
+        
+       
+        
+        [self reset];
        
         
      }
@@ -97,7 +115,7 @@
 }
 
 -(NSString *) description{
-    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d,rssi %f,distance %f",self.UUID,self.finderType,[self getName],self.range,self.status , [self.RSSI  floatValue],self.distance ];
+    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d,rssi %f,distance %f",self.UUID,self.finderType,[self getName],self.range,self.status , self.rssiLevel,self.distance ];
 }
 
 -(void) initWithDictionary:(NSDictionary *)map{
@@ -230,22 +248,55 @@
     self.status = FINDER_STATUS_LINKLOSS;
     [  self setPeripheral:nil ];
     
-    self.alertLevelCharacteristic = nil;
+    self.linkLossAlertLevelCharacteristic = nil;
+    self.keyPressCharacteristic = nil;
+    
+     _state = PROXIMITY_TAG_STATE_UNINITIALIZED;
+    
+    _rssiThreshold = -50.0f;
+    _hasBeenBonded = NO;
+    
     
 }
 
 -(void)setDevRSSI:(NSNumber *)rssi{
-    self.RSSI = rssi;
+    self.rssiLevel = [ rssi floatValue ];
     
     self.distance = [self detectDistance:abs([rssi intValue])];
     
-    CGFloat proximity  = [rssi floatValue];
-    if (proximity < -70)
-         self.status  = FINDER_STATUS_FAR;
-    else if (proximity < -55)
-        self.status  = FINDER_STATUS_NEAR;
-    else if (proximity < 0)
-        self.status  = FINDER_STATUS_LINKLOSS;
+    
+  
+    if (self.rangeMonitoringIsEnabled && self.isBonded)
+    {
+        [self handleRSSIReading:self.rssiLevel];
+    }
+    
+//    CGFloat proximity  = [rssi floatValue];
+//    if (proximity < -70)
+//        self.status  = FINDER_STATUS_FAR;
+//    else if (proximity < -55)
+//        self.status  = FINDER_STATUS_NEAR;
+//    else if (proximity < 0)
+//        self.status  = FINDER_STATUS_LINKLOSS;
+    
+    CGFloat proximity  = abs([rssi floatValue]);
+    
+    
+    
+    
+        if (proximity == 0)
+            self.status  = FINDER_STATUS_LINKLOSS;
+        else if (proximity < 55)
+            self.status  = FINDER_STATUS_NEAR;
+        else if (proximity < 77)
+            self.status  = FINDER_STATUS_FAR;
+        else
+           self.status  = FINDER_STATUS_LINKLOSS;
+    
+    NSLog(@"setDevRSSI %f (%f) status %d",self.rssiLevel,proximity,self.status);
+    
+    [self.delegate FinderStateNotifyDelegateAction:self state:FINDER_NOTIFY_CONNECT];
+    
 
     
 }
@@ -254,32 +305,50 @@
 -(void) trigeFinderAlert:(BOOL)start{
     unsigned char data;
     if(start)
-        data = 0x01; //
+        data = ALERT_FINDME; //
     else
-        data = 0x0;
+        data = ALERT_STOP;
     
-    [  [ self getPeripheral ] writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:self.alertLevelCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    [self findMeTag:data];
+}
+
+-(void) findMeTag:(unsigned char)data{
+   
+    [  [ self getPeripheral ] writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:self.linkLossAlertLevelCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
 -(NSString *)getRingtoneFile{
    return  [self.ringtone objectForKey:@"RINGTONE"];
 }
 
+
+
 -(void)startLocalAlarm{
     //本地通知
-    UILocalNotification *notification = [[UILocalNotification alloc]init];
-    if (notification != nil) {
-        NSDate *now = [NSDate new];
-        notification.fireDate = [now dateByAddingTimeInterval:10];
-        notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.alertBody = @"报警";
-        notification.soundName = @"雷达咚咚音效.mp3";
-        notification.applicationIconBadgeNumber = 1;
-        notification.alertAction = @"关闭";
-        
-        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
-        
-    }
+//    UILocalNotification *notification = [[UILocalNotification alloc]init];
+//    if (notification != nil) {
+//        NSDate *now = [NSDate new];
+//        notification.fireDate = [now dateByAddingTimeInterval:10];
+//        notification.timeZone = [NSTimeZone defaultTimeZone];
+//        notification.alertBody = @"报警";
+//       // notification.soundName = @"雷达咚咚音效.mp3";
+//        notification.applicationIconBadgeNumber = 1;
+//        notification.alertAction = @"关闭";
+//        
+//        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+//        
+//    }
+    
+    if(!self.mute)
+        [[AppDelegate getAudioPlayer ] play ];
+    
+    
+    if(self.vibrate == YES)
+        [Utils playVibrate];
+    
+    
+    
+    
 }
 
 -(void)startLocalAlarm2{
@@ -310,8 +379,214 @@
 
 -(void)stopLocalAlarm{
    // [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
+    
+    if(!self.mute)
+        [ [AppDelegate getAudioPlayer ] stop];
 }
 
+
+- (void) startRangeMonitoringIfEnabled
+{
+    if (self.rangeMonitoringIsEnabled)
+    {
+        [self startRangeMonitoring];
+    }
+}
+
+-(float)getRssiRange{
+    switch(self.range){
+        case FINDER_RANGE_FAR:
+            return -70;
+        case FINDER_RANGE_NEAR:
+            return -55;
+        default:
+            return 0;
+       
+    }
+   
+}
+
+//开始进行
+- (void) startRangeMonitoring
+{
+    if (![self isConnected])
+    {
+        NSLog(@"Can not start monitoring range of a not connected device, %@", [self getName]);
+        return;
+    }
+    
+     self.rssiThreshold = [self getRssiRange];
+    NSLog(@"Starting range monitoring of %@,targe rssi %f", [self getName],self.rssiThreshold);
+    
+   
+    
+    [self.rssiTimer invalidate];
+    //直接调用CBPeripheral readRssi 读取信号强度
+    self.rssiTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(readRSSI)    userInfo:nil repeats:YES];
+    
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.rssiTimer forMode:NSRunLoopCommonModes];
+    
+    
+    [self.readTimer invalidate];
+    self.readTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(readLinkLossAlert) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.readTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void) stopRangeMonitoring
+{
+    NSLog(@"Stopping range monitoring of %@", [self getName]);
+    [self.rssiTimer invalidate];
+    [self.readTimer invalidate];
+}
+
+- (BOOL) isConnected
+{
+    // If we are initialized, not disconnected and not link lost, we are connected
+    return self.state != PROXIMITY_TAG_STATE_UNINITIALIZED &&
+    self.state != PROXIMITY_TAG_STATE_DISCONNECTED &&
+    self.state != PROXIMITY_TAG_STATE_LINK_LOST;
+}
+
+- (BOOL) isBonded
+{
+    // If we are connected and not bonding, we are bonded
+    return self.isConnected && (self.state != PROXIMITY_TAG_STATE_BONDING);
+}
+
+- (void) setState:(ProximityTagState) newState
+{
+    NSLog(@"Set state of %@ to %d", [ self getName ], newState);
+    switch (newState)
+    {
+        case PROXIMITY_TAG_STATE_BONDING:
+            break;
+            
+        case PROXIMITY_TAG_STATE_BONDED:
+            self.hasBeenBonded = YES;
+            [self startRangeMonitoringIfEnabled];
+    //        [self startLocationMonitoringIfEnabled];
+            break;
+            
+        case PROXIMITY_TAG_STATE_DISCONNECTED:
+        case PROXIMITY_TAG_STATE_LINK_LOST:
+            self.rssiLevel = 0;
+            self.status = FINDER_STATUS_LINKLOSS;
+            [self stopRangeMonitoring];
+    //        [self stopLocationMonitoring];
+            
+            // Only store the location if we are currently bonded (i.e. the link was lost now, and we are not just initializing this object)
+            if ([self isBonded])
+            {
+          //      [self storeLocationIfEnabled];
+                
+                //[SharedUI showOutOfRangeDialog:self.linkLossAlertLevelOnPhone forTag:self];
+                
+                [self.delegate FinderStateNotifyDelegateAction:self state:FINDER_NOTIFY_OUTRANGE];
+            }
+            // If the tag has never been bonded, and then disconnected, this indicates a failed connect.
+            else if (!self.hasBeenBonded)
+            {
+              // [SharedUI showFailedConnectDialog:self];
+                [self.delegate FinderStateNotifyDelegateAction:self state:FINDER_NOTIFY_FAIL];
+            }
+            break;
+            
+        case PROXIMITY_TAG_STATE_CLOSE:
+       //     [self startLocationMonitoringIfEnabled];
+            break;
+            
+        case PROXIMITY_TAG_STATE_REMOTE:
+         //   [self stopLocationMonitoring];
+         //   [self storeLocationIfEnabled];
+            
+            //[SharedUI showOutOfRangeDialog:self.linkLossAlertLevelOnPhone forTag:self];
+             [self.delegate FinderStateNotifyDelegateAction:self state:FINDER_NOTIFY_OUTRANGE];
+            break;
+            
+        default:
+            break;
+    }
+    _state = newState;
+  //  [self.delegate didUpdateData:self];
+}
+
+- (void) readRSSI{
+    
+    DLog(@"Read RSSI");
+    [[ self getPeripheral ] readRSSI];
+}
+
+- (void) readLinkLossAlert
+{
+    DLog(@"Read LinkLossAlert");
+    [[ self getPeripheral ] readValueForCharacteristic:self.linkLossAlertLevelCharacteristic];
+}
+
+- (void) handleRSSIReading:(float)rssiValue
+{
+    if(self.rssiLevel == 0) {
+        self.rssiLevel = rssiValue;
+        if (self.rssiLevel > self.rssiThreshold)
+        {
+            [self setState:PROXIMITY_TAG_STATE_CLOSE];
+        }
+        else
+        {
+            [self setState:PROXIMITY_TAG_STATE_REMOTE];
+        }
+    }
+    
+    float requiredRSSIChange = 0.15 * ABS(self.rssiThreshold);
+    NSLog(@"RSSI: %f, change: %f, limit: %f", self.rssiLevel, requiredRSSIChange, self.rssiThreshold);
+    
+    if ((self.rssiLevel < (self.rssiThreshold - requiredRSSIChange)) &&
+        (self.state != PROXIMITY_TAG_STATE_REMOTE))
+    {
+        if(self.state == PROXIMITY_TAG_STATE_REMOTING)
+        {
+            [self setState:PROXIMITY_TAG_STATE_REMOTE];
+            //[self findTag:PROXIMITY_TAG_ALERT_LEVEL_HIGH]; //通知对方报警
+            [self findMeTag:ALERT_OUTRANGE];
+        }
+        else if (self.state != PROXIMITY_TAG_STATE_REMOTING)
+        {
+            [self setState:PROXIMITY_TAG_STATE_REMOTING];
+        }
+        else
+        {
+            [self setState:PROXIMITY_TAG_STATE_CLOSE];
+        }
+    }
+    else if ((self.rssiLevel > (self.rssiThreshold + requiredRSSIChange)) &&
+             (self.state != PROXIMITY_TAG_STATE_CLOSE))
+    {
+        if (self.state == PROXIMITY_TAG_STATE_CLOSING)
+        {
+            [self setState:PROXIMITY_TAG_STATE_CLOSE];
+        //    [self findTag:PROXIMITY_TAG_ALERT_LEVEL_NONE];
+            [self findMeTag:ALERT_STOP];
+        }
+        else if (self.state != PROXIMITY_TAG_STATE_CLOSING)
+        {
+            [self setState:PROXIMITY_TAG_STATE_CLOSING];
+        }
+        else
+        {
+            [self setState:PROXIMITY_TAG_STATE_REMOTE];
+        }
+    }
+  //  [self.delegate didUpdateData:self];
+}
+
+-(void)didDisconnect{
+     [ self setState:PROXIMITY_TAG_STATE_DISCONNECTED ];
+    
+    [self setPeripheral:nil];
+   
+    
+    
+}
 
 
 

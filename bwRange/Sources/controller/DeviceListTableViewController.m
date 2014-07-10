@@ -290,6 +290,8 @@
             //[ self.nDevices replaceObjectAtIndex:i withObject:device];
              [device setPeripheral:peripheral ];
             
+               [ self.tableView reloadData];
+            
             replace = YES;
             break;
         }
@@ -302,8 +304,10 @@
         
         [ self.nDevices addObject:device];
         
+        [ self.tableView reloadData];
+        
        //[self performSelector:@selector(handleData) withObject:nil afterDelay:0];
-        [ self stopScan];
+        //[ self stopScan];
     }
 }
 

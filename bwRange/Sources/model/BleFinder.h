@@ -20,9 +20,35 @@
 #define FINDER_RANGE_NEAR (0)
 #define FINDER_RANGE_FAR (1)
 
-#define FINDER_STATUS_FAR (1)
-#define FINDER_STATUS_NEAR (2)
+#define FINDER_STATUS_FAR (1)  // (10-20)米 RSSI = -70
+#define FINDER_STATUS_NEAR (2) // (1-10)米  RSSI = -50;
 #define FINDER_STATUS_LINKLOSS (3)
+
+#define ALERT_STOP (0)
+#define ALERT_FINDME (1)
+#define ALERT_OUTRANGE (4)
+
+#define FINDER_NOTIFY_CONNECT  (0)
+#define FINDER_NOTIFY_OUTRANGE (1)
+#define FINDER_NOTIFY_FAIL     (2)
+
+typedef enum {
+    PROXIMITY_TAG_ALERT_LEVEL_NONE = 0,
+    PROXIMITY_TAG_ALERT_LEVEL_MILD = 2,
+    PROXIMITY_TAG_ALERT_LEVEL_HIGH = 1,
+} ProximityTagAlertLevel;
+
+typedef enum {
+    PROXIMITY_TAG_STATE_UNINITIALIZED,
+    PROXIMITY_TAG_STATE_BONDING,    //设备已经联上，但未发生数据传输
+    PROXIMITY_TAG_STATE_BONDED,     //产生联接
+    PROXIMITY_TAG_STATE_CLOSING,
+    PROXIMITY_TAG_STATE_CLOSE,       //
+    PROXIMITY_TAG_STATE_REMOTING,    //正在远离
+    PROXIMITY_TAG_STATE_REMOTE,      //较远距离
+    PROXIMITY_TAG_STATE_LINK_LOST,   //链接丢失，如设备关电
+    PROXIMITY_TAG_STATE_DISCONNECTED, //主动切断
+} ProximityTagState;
 
 /*
  <key>UUID</key>
@@ -48,6 +74,8 @@
  <string>0</string>
  */
 
+@protocol FinderStateNotifyDelegate;
+
 @interface BleFinder : BleDevice
 
 @property (nonatomic) int finderType ; //wallet ,bag ...
@@ -59,9 +87,11 @@
 
 @property (nonatomic) int sensitivity     ;
 
-@property (nonatomic) bool vibrate     ; //震动
-@property (nonatomic) bool mute     ; //是否静音
+@property (nonatomic) BOOL vibrate     ; //震动
+@property (nonatomic) BOOL mute     ; //是否静音
 @property (nonatomic, strong) NSDictionary * ringtone  ;
+
+@property (nonatomic) ProximityTagState state;
 
 //远端警告通知
 @property (nonatomic, strong) UILocalNotification * AlertNotification  ;
@@ -80,13 +110,32 @@
 
 
 //用于向设备触发警报（比如设备蜂鸣器响）使用 Link Loss (0x1802)的 ALERT_LEVEL (0x2a06)
-@property (strong ,nonatomic) CBCharacteristic *alertLevelCharacteristic;
+@property (strong ,nonatomic) CBCharacteristic *linkLossAlertLevelCharacteristic;
+
 
 //用于接收设备按钮信息，用于手机报警，远程拍照。 按键服务 0xFFE0  Key Press State (0xFFE1)
 @property (strong ,nonatomic) CBCharacteristic *keyPressCharacteristic;
 
 //电池服务 Battery Service ,0x180F,Battery Level ()
 @property (strong ,nonatomic) CBCharacteristic *batteryLevelCharacteristic;
+
+@property float rssiThreshold;
+
+@property (nonatomic) ProximityTagAlertLevel linkLossAlertLevelOnTag;
+@property (nonatomic) ProximityTagAlertLevel linkLossAlertLevelOnPhone;
+
+@property (nonatomic) BOOL locationTrackingIsEnabled;
+@property (nonatomic) BOOL rangeMonitoringIsEnabled;
+@property BOOL hasBeenBonded;
+
+@property (nonatomic, weak) id<FinderStateNotifyDelegate> delegate;
+
+
+- (BOOL) isConnected;
+- (BOOL) isBonded;
+
+
+
 
 
 
@@ -123,4 +172,10 @@
 -(void)startLocalAlarm;
 -(void)stopLocalAlarm;
 
+-(void)didDisconnect;
+
+@end
+
+@protocol FinderStateNotifyDelegate <NSObject>
+- (void) FinderStateNotifyDelegateAction:(BleFinder* ) finder state:(int)state;
 @end

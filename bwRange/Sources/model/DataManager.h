@@ -57,5 +57,9 @@
 
 -(BOOL) isNeedRescan;
 
+-(BOOL)setFinderMute:(int)row mute:(BOOL)mute;
+    
+
+-(void)setDelegate:(id<FinderStateNotifyDelegate>)delegate;
 
 @end
