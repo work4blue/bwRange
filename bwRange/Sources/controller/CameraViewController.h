@@ -11,7 +11,7 @@
 #import "CustomImagePickerController.h"
 #import "ImageFilterProcessViewController.h"
 
-@interface CameraViewController : UIViewController<CustomImagePickerControllerDelegate,ImageFitlerProcessDelegate>
+@interface CameraViewController : UIViewController<CustomImagePickerControllerDelegate,ImageFitlerProcessDelegate,UINavigationControllerDelegate>
 
 @property(nonatomic, retain) IBOutlet UIImageView * imageView;
 @property(nonatomic, retain) IBOutlet UILabel * label;

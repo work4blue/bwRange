@@ -212,7 +212,8 @@
     
     switch(type){
         
-        case FINDER_STATUS_FAR: imageName =@"status_far"; break;
+       // case FINDER_STATUS_FAR: imageName =@"status_far"; break;
+        case FINDER_STATUS_FAR: imageName =@"status_near"; break;
         case FINDER_STATUS_NEAR: imageName =@"status_near"; break;
         case FINDER_STATUS_LINKLOSS: imageName =@"status_linkloss"; break;
             
@@ -286,9 +287,9 @@
     
         if (proximity == 0)
             self.status  = FINDER_STATUS_LINKLOSS;
-        else if (proximity < 55)
+        else if (proximity < 82)
             self.status  = FINDER_STATUS_NEAR;
-        else if (proximity < 77)
+        else if (proximity < 110)
             self.status  = FINDER_STATUS_FAR;
         else
            self.status  = FINDER_STATUS_LINKLOSS;
@@ -387,7 +388,7 @@
 
 - (void) startRangeMonitoringIfEnabled
 {
-    if (self.rangeMonitoringIsEnabled)
+    //if (self.rangeMonitoringIsEnabled)
     {
         [self startRangeMonitoring];
     }
@@ -464,7 +465,9 @@
             
         case PROXIMITY_TAG_STATE_BONDED:
             self.hasBeenBonded = YES;
-            [self startRangeMonitoringIfEnabled];
+          //  [self startRangeMonitoringIfEnabled];
+            
+            
     //        [self startLocationMonitoringIfEnabled];
             break;
             
@@ -582,7 +585,9 @@
 -(void)didDisconnect{
      [ self setState:PROXIMITY_TAG_STATE_DISCONNECTED ];
     
-    [self setPeripheral:nil];
+    //[self setPeripheral:nil];
+    
+    [self stopRangeMonitoring];
    
     
     

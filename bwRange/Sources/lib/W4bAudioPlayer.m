@@ -8,6 +8,7 @@
 
 #import "W4bAudioPlayer.h"
 
+//这个在iPhone4S 下无法播放后台声音
 
 
 @implementation W4bAudioPlayer

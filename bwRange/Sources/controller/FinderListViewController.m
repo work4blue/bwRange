@@ -167,9 +167,9 @@
 -(void)scanBleFinder
 {
     
-    if(self.isScanning){
-        [self stopScan];
-    }
+//    if(self.isScanning){
+//        [self stopScan];
+//    }
     
     BW_INFO_LOG(@"正在扫描外设...");
     
@@ -177,7 +177,7 @@
     self.isScanning = YES;
     
     //[_activity startAnimating];
-    [_bleManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    [_bleManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
     
     double delayInSeconds = 30.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -409,6 +409,22 @@
     
 }
 
+-(IBAction) disconnectClicked:(id)sender {
+    UITableViewCell* cell= [Utils getCellBySender:sender ];
+    NSIndexPath* indexPath= [self.tableView indexPathForCell:cell];
+    
+    BW_INFO_LOG(@"断线 %d",indexPath.row);
+    
+     BleFinder *finder = [ self.nFinders objectAtIndex:indexPath.row];
+    
+    NSString * title = [NSString stringWithFormat:@"确定断开%@?",[finder getName]];
+    
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"消息" message:title delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"断开", nil];
+    
+    alert.tag = 1;
+    [alert show];
+}
+
 -(IBAction) AlarmClicked:(id)sender {
     
     
@@ -417,7 +433,7 @@
     NSIndexPath* indexPath= [self.tableView indexPathForCell:cell];
     
     
-    BW_INFO_LOG(@"报警 %d",indexPath.row);
+    BW_INFO_LOG(@"报警 row %d",indexPath.row);
     
      BleFinder *finder = [ self.nFinders objectAtIndex:indexPath.row];
     
@@ -439,11 +455,26 @@
     }
     else{
         
-        if(finder.status == FINDER_STATUS_LINKLOSS){
-            [ self scanBleFinder ]  ;
-            [ self showMessage:[ NSString stringWithFormat:@"%@未联接",[ finder getName ] ]];
+        CBPeripheral * perpheral = [finder getPeripheral ];
+        
+        DLog(@"AlarmClicked %@",perpheral);
+        
+        if( /*(perpheral== nil) ||*/ ![perpheral isConnected]){
+            //[ self scanBleFinder ]  ;
+            
+             [self connectPeripheral:perpheral];
+            
+   //         [self.bleManager connectPeripheral:<#(CBPeripheral *)#> options:<#(NSDictionary *)#>]
+            
+            
+            BW_INFO_LOG(@"强制重新扫描");
+           // [ self showMessage:[ NSString stringWithFormat:@"%@未联接",[ finder getName ] ]];
+            
+            [self.tableView reloadData];
             return ;
         }
+        
+        
         
          BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
         UIButton * checkbox = (UIButton *)sender;
@@ -489,21 +520,53 @@
     
 
     
-    UIImageView * ImageState = (UIImageView *)[cell viewWithTag:104];
+  //  UIImageView * ImageState = (UIImageView *)[cell viewWithTag:104];
   
-    ImageState.image = [finder getStatusImage];
+   // ImageState.image = [finder getStatusImage];
     
+    UIButton * btnDisconnect = (UIButton *)[cell viewWithTag:104];
+    
+   
+    
+     [btnDisconnect setImage:[finder getStatusImage] forState:UIControlStateNormal];
     
     UIButton * button = (UIButton *)[cell viewWithTag:105];
     
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+  //  [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    //加入长按处理
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(btnLongPress:)];
+    
+    
+    
+    longPress.minimumPressDuration = 0.5; //定义按的时间
+     [button addGestureRecognizer:longPress];
     
     UISwitch * connectSwitch = (UISwitch *)[cell viewWithTag:103];
      [connectSwitch addTarget:self action:@selector(connectSwitchAction:) forControlEvents:UIControlEventValueChanged];
     
     
     return cell;
+}
+
+-(void)btnLongPress:(UILongPressGestureRecognizer *)gestureRecognizer{
+    if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+        DLog(@"长按事件");
+        
+        UITableViewCell* cell= [Utils getCellBySender:gestureRecognizer.view ];
+        NSIndexPath* indexPath= [self.tableView indexPathForCell:cell];
+        
+        self.currentLine = indexPath.row;
+        
+        BleFinder * finder = [[AppDelegate getManager] getFinderByIndex:self.currentLine ];
+        
+        NSString * title = [NSString stringWithFormat:@"确定断开%@?",[finder getName]];
+        
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"消息" message:title delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"断开", nil];
+        
+        alert.tag = 1;
+        [alert show];
+    }
 }
 
 #pragma mark - CoreBluetooth Delegate
@@ -556,6 +619,10 @@
     [peripheral discoverServices:nil];
     
     BW_INFO_LOG(@"开始扫描设备service");
+    
+    [ finder startRangeMonitoring];
+    
+    
     
 }
 
@@ -817,7 +884,7 @@
 {
     UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"物品联接失败" message:[NSString stringWithFormat:@"无法联接到 %@. \n\n可能是断线或超出范围.", [ finder getName ]] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     
-    dialog.tag = 1;
+    dialog.tag = 2;
     
     [dialog show];
     
@@ -877,7 +944,20 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
    // NSLog(@"clickButtonAtIndex:%d",0);
-    [[AppDelegate getAudioPlayer ] stop ];
+    if(alertView.tag == 1)
+    {
+        
+        BleFinder * finder = [[ AppDelegate getManager] getFinderByIndex:self.currentLine];
+        
+        
+        
+        CBPeripheral * per = [finder getPeripheral];
+        DLog(@"Disconnect device %@!!!",per);
+        if(per!=nil)
+         [self.bleManager cancelPeripheralConnection:[finder getPeripheral]];
+    }
+    else if(alertView.tag == 2)
+      [[AppDelegate getAudioPlayer ] stop ];
 }
 
 -(void)alertViewCancel:(UIAlertView *)alertView
@@ -961,15 +1041,8 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

@@ -58,6 +58,8 @@
 -(BOOL) isNeedRescan;
 
 -(BOOL)setFinderMute:(int)row mute:(BOOL)mute;
+
+-(BleFinder *)getFinderByIndex:(int)index;
     
 
 -(void)setDelegate:(id<FinderStateNotifyDelegate>)delegate;

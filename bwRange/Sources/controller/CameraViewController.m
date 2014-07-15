@@ -32,7 +32,7 @@
     
     DLog(@"Camera Page  Load....");
     // Do any additional setup after loading the view.
-    [ self showPicker:self ];
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,6 +113,30 @@
     
     
 }
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewDidAppear:animated];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+  
+     [ self showPicker:self ];
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+}
+
 
 
 /*

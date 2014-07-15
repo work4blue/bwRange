@@ -34,7 +34,8 @@
 
     UIStoryboard *mainStoryboard = nil;
     if (SCREEN_IS_RETIAN4){
-        mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+       // mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+         mainStoryboard = [UIStoryboard storyboardWithName:@"3.5" bundle:nil];
     }
     else{
         mainStoryboard = [UIStoryboard storyboardWithName:@"3.5" bundle:nil];

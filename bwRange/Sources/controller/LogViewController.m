@@ -9,8 +9,10 @@
 #import "LogViewController.h"
 #import "Utils.h"
 
-@interface LogViewController ()
+#import "MainTabController.h"
 
+@interface LogViewController ()
+@property(nonatomic) BOOL mIsPause;
 @end
 
 @implementation LogViewController
@@ -32,6 +34,7 @@
    // [ self.logView setText:@"finder server running..."];
     
     DLog(@"Log Page Loading....");
+    self.mIsPause = false;
     
     BW_INFO_LOG(@"Finder service running");
 }
@@ -44,6 +47,9 @@
 
 - (void)logStringWithFormat:(NSString *)formatString, ...
 {
+    if(self.mIsPause)
+        return ;
+    
     va_list args;
     va_start(args, formatString);
     NSString *output = [[NSString alloc] initWithFormat:formatString arguments:args];
@@ -82,20 +88,21 @@
     }
     
     
-    if(logPageIndex < 0){
-        for(int i = 0; i < tabBarController.viewControllers.count ; i++){
-           UIViewController * viewController =  [ tabBarController.viewControllers objectAtIndex:i];
-            
-            if( [ viewController isKindOfClass:[UINavigationController class]])
-                 {
-                     viewController =  ((UINavigationController *)viewController).topViewController;
-                 }
-            
-            if([ viewController isKindOfClass:[LogViewController class] ]){
-                logPageIndex = i;
-                break;
-            }
-        }
+   if(logPageIndex < 0){
+       logPageIndex = MAIN_TAB_LOG;
+//        for(int i = 0; i < tabBarController.viewControllers.count ; i++){
+//           UIViewController * viewController =  [ tabBarController.viewControllers objectAtIndex:i];
+//            
+//            if( [ viewController isKindOfClass:[UINavigationController class]])
+//                 {
+//                     viewController =  ((UINavigationController *)viewController).topViewController;
+//                 }
+//            
+//            if([ viewController isKindOfClass:[LogViewController class] ]){
+//                logPageIndex = i;
+//                break;
+//            }
+//        }
     }
     
     if(logPageIndex < 0 )
@@ -117,6 +124,8 @@
     
     static LogViewController * ctrl = nil;
     
+    
+    
     if(ctrl == nil)
        ctrl = [LogViewController  getLogView:currentpage];
     
@@ -135,6 +144,22 @@
     NSLog(output);
 #endif
 
+}
+
+-(IBAction)pauseLog:(id)sender{
+    
+    self.mIsPause = ! self.mIsPause;
+    
+     UIBarButtonItem * pauseBtn = (UIBarButtonItem *)sender;
+    
+    if(self.mIsPause)
+    {
+        pauseBtn.title = @"开始";
+        
+    }
+    else
+        pauseBtn.title = @"暂停";
+    
 }
 
 

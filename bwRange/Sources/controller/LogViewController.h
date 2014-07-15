@@ -29,6 +29,7 @@
 - (void)logStringWithFormat:(NSString *)log, ...;
 
 -(IBAction)clearLog:(id)sender;
+-(IBAction)pauseLog:(id)sender;
 
 +(LogViewController *)getLogView:(UIViewController *)controller;
 

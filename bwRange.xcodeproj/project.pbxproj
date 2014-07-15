@@ -22,6 +22,8 @@
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
 		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
 		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
+		85948A631975167300109812 /* BgMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A601975167300109812 /* BgMusicPlayer.m */; };
+		85948A641975167300109812 /* MusicQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A621975167300109812 /* MusicQuery.m */; };
 		85BC99DF19655A9F0050F75B /* SharedUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99DE19655A9F0050F75B /* SharedUI.m */; };
 		85BC99E1196587BD0050F75B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BC99E0196587BD0050F75B /* AudioToolbox.framework */; };
 		85BC99E4196589560050F75B /* W4bAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99E3196589560050F75B /* W4bAudioPlayer.m */; };
@@ -109,6 +111,10 @@
 		8533AD40193E4C8500461C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/3.5.storyboard; sourceTree = "<group>"; };
 		8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
+		85948A5F1975167300109812 /* BgMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgMusicPlayer.h; sourceTree = "<group>"; };
+		85948A601975167300109812 /* BgMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicPlayer.m; sourceTree = "<group>"; };
+		85948A611975167300109812 /* MusicQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicQuery.h; sourceTree = "<group>"; };
+		85948A621975167300109812 /* MusicQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicQuery.m; sourceTree = "<group>"; };
 		85BC99DD19655A9F0050F75B /* SharedUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUI.h; sourceTree = "<group>"; };
 		85BC99DE19655A9F0050F75B /* SharedUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedUI.m; sourceTree = "<group>"; };
 		85BC99E0196587BD0050F75B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -311,6 +317,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		85948A5E1975167300109812 /* bg-player */ = {
+			isa = PBXGroup;
+			children = (
+				85948A5F1975167300109812 /* BgMusicPlayer.h */,
+				85948A601975167300109812 /* BgMusicPlayer.m */,
+				85948A611975167300109812 /* MusicQuery.h */,
+				85948A621975167300109812 /* MusicQuery.m */,
+			);
+			path = "bg-player";
+			sourceTree = "<group>";
+		};
 		85C1F7AA19558000000A0D17 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +443,7 @@
 		85C1F7EE19558149000A0D17 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				85948A5E1975167300109812 /* bg-player */,
 				85D5F2F119618568007DBE00 /* CustomImagePicker */,
 				85D5F2E11961846A007DBE00 /* UIImage-Extensions */,
 				85C1F80319596D2B000A0D17 /* GCDSingleton.h */,
@@ -639,6 +657,7 @@
 				85C1F7E619558139000A0D17 /* DistanceViewController.m in Sources */,
 				85C1F7E519558139000A0D17 /* DeviceSettingViewController.m in Sources */,
 				85C1F7E719558139000A0D17 /* FinderDetailViewController.m in Sources */,
+				85948A641975167300109812 /* MusicQuery.m in Sources */,
 				85BC99DF19655A9F0050F75B /* SharedUI.m in Sources */,
 				85D5F2FF19618568007DBE00 /* IphoneScreen.m in Sources */,
 				85C1F7B219558000000A0D17 /* BleFinder.m in Sources */,
@@ -668,6 +687,7 @@
 				85C1F7E819558139000A0D17 /* FinderListViewController.m in Sources */,
 				85C1F7BF1955809B000A0D17 /* LeveyPopListViewCell.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
+				85948A631975167300109812 /* BgMusicPlayer.m in Sources */,
 				85C1F7E419558139000A0D17 /* DeviceListTableViewController.m in Sources */,
 				85C1F7C01955809B000A0D17 /* UIView+Toast.m in Sources */,
 				85BC99E4196589560050F75B /* W4bAudioPlayer.m in Sources */,

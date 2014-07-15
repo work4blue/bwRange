@@ -165,6 +165,11 @@ typedef enum {
 -(void) trigeFinderAlert:(BOOL)start;
 
 
+- (void) startRangeMonitoring;
+
+- (void) stopRangeMonitoring;
+
+
 
 
 -(NSDictionary *)newDict;

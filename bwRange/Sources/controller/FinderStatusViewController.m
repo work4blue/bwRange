@@ -9,6 +9,8 @@
 #import "FinderStatusViewController.h"
 #import "FinderDetailViewController.h"
 
+#import "LogViewController.h"
+
 @interface FinderStatusViewController ()
 
 @end
@@ -64,16 +66,62 @@
     }
 }
 
-/*
+-(IBAction)alarmClick:(id)sender{
+    
+    BW_INFO_LOG(@"报警 %@,%@",[ self.bleFinder getName ],[self.bleFinder UUID ]);
+    UIButton * checkbox = (UIButton *)sender;
+    if(checkbox.tag == 0){
+        //[checkbox setSelected:YES];
+        checkbox.tag = 1;
+        [ self.bleFinder trigeFinderAlert:YES ];
+    }
+    else {
+        //[checkbox setSelected:NO];
+        checkbox.tag = 0;
+        [ self.bleFinder trigeFinderAlert:NO ];
+    }
+    
+}
+-(IBAction)rangeClick:(id)sender{
+    
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isFar = [switchButton isOn];
+    
+    if(isFar)
+        self.bleFinder.range = FINDER_RANGE_FAR;
+    else
+        self.bleFinder.range = FINDER_RANGE_NEAR;
+    
+    
+    
+}
+
+//静音
+-(IBAction)muteClick:(id)sender{
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isVoice = [switchButton isOn];
+    
+    if(isVoice)
+        self.bleFinder.mute = NO;
+    else
+        self.bleFinder.mute = YES;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *mapId = @"map";
+    
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)mapId];
+    
+   
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

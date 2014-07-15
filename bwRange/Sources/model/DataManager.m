@@ -303,7 +303,12 @@
         
         BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
         
-        DLog(@"%@,",device);
+        DLog(@"scanedDevice %@, per %@",device,peripheral);
+        
+        CBPeripheral * oldPer= [ device getPeripheral];
+        if(oldPer!= nil){
+            DLog(@"scanedDevice old device %@",peripheral);
+        }
         
         NSString * uuid = device.UUID;
         
@@ -438,6 +443,10 @@
         
         device.delegate = delegate;
     }
+}
+
+-(BleFinder *)getFinderByIndex:(int)index{
+    return (BleFinder *)[ self.nBleFinders objectAtIndex:index];
 }
 
 @end

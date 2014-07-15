@@ -11,7 +11,8 @@
 
 #define MAIN_TAB_CONTROLLER  ((MainTabController*)(self.tabBarController))
 
-#define MAIN_TAB_CAMERA  (2)
+#define MAIN_TAB_LOG  (2)
+#define MAIN_TAB_CAMERA  (1)
 
 @interface MainTabController : UITabBarController
 

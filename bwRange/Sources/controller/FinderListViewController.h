@@ -33,5 +33,6 @@ UIAlertViewDelegate>
 -(IBAction) AlarmClicked:(id)sender;
 
 -(IBAction) refreshClicked:(id)sender;
+-(IBAction) disconnectClicked:(id)sender;
 
 @end
