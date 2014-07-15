@@ -344,8 +344,10 @@
         [[AppDelegate getAudioPlayer ] play ];
     
     
-    if(self.vibrate == YES)
+    if(self.vibrate == YES){
         [Utils playVibrate];
+        [Utils playSystemSound];
+    }
     
     
     

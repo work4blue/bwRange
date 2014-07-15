@@ -40,7 +40,7 @@
             block(songResults); 
 		});
 	});
-	dispatch_release(downloadQueue);
+	//dispatch_release(downloadQueue);
 }
 
 -(NSDictionary*)queryForSongs

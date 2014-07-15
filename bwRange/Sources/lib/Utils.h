@@ -37,6 +37,8 @@
 
 +(void) playVibrate;
 
++(void)playSystemSound;
+
 @end
 
 

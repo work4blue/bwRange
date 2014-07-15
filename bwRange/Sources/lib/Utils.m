@@ -230,5 +230,11 @@
     AudioServicesPlaySystemSound ( kSystemSoundID_Vibrate) ;
 }
 
+#define SOUNDID  1005  //1012 -iphone   1152 ipad  1109 ipad
++(void)playSystemSound{
+    AudioServicesPlaySystemSound(SOUNDID);
+
+}
+
 
 @end
