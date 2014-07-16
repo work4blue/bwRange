@@ -333,7 +333,7 @@
 
 //连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    NS_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
+    NS_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,[peripheral.identifier UUIDString]);
     
     [self.peripheral setDelegate:self];
     [self.peripheral discoverServices:nil];

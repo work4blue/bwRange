@@ -614,7 +614,7 @@
     
     
     
-    [peripheral setDelegate:self];
+   
     [peripheral discoverServices:nil];
     
     

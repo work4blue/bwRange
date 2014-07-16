@@ -628,11 +628,14 @@
 
 //连接外设成功，开始发现服务
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-     BW_INFO_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,peripheral.identifier);
+     BW_INFO_LOG(@"成功连接 peripheral: %@ with UUID: %@",peripheral,[peripheral.identifier UUIDString]);
     
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
     [finder showSerivces];
+    
+    [peripheral setDelegate:self];
+    
     [finder didConnect:peripheral];
     
        BW_INFO_LOG(@"开始扫描设备service");
@@ -815,6 +818,21 @@
     }
 }
 
+- (void) centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    //    for (CBPeripheral* p in peripherals){
+    //
+    //    }
+    
+    // [AppDelegate getManager] scanedDevice:<#(CBPeripheral *)#>
+    
+    BW_INFO_LOG(@"centralManager didRetrievePeripherals %@",peripherals);
+    
+    for (CBPeripheral *peripheral in peripherals){
+        DLog(@" didRetrievePeripherals %@",peripheral);
+    }
+}
+
 
 
 
@@ -965,9 +983,15 @@
         
         
         CBPeripheral * per = [finder getPeripheral];
-        DLog(@"Disconnect device %@!!!",per);
-        if(per!=nil)
-         [self.bleManager cancelPeripheralConnection:[finder getPeripheral]];
+        
+        if(per!=nil){
+            [ per setDelegate:self];
+            
+         [self.bleManager cancelPeripheralConnection:per];
+            
+            DLog(@"Disconnect device %@!!!",per);
+            
+        }
     }
     else if(alertView.tag == 2)
       [[AppDelegate getAudioPlayer ] stop ];
@@ -996,6 +1020,8 @@
             
     }
 }
+
+
 
 
 

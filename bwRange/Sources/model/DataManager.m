@@ -465,10 +465,12 @@
        [Identifiers addObject:identifier];
     }
     
+    
     int count = 0;
     
   //  [self addLog:@"[self.cbCentralMgr retrievePeripheralsWithIdentifiers:self.PeripheralIdentifiers]"];
     NSArray * retrievePeripherals = [ bleManager retrievePeripheralsWithIdentifiers:Identifiers];
+    
     for (CBPeripheral* peripheral in retrievePeripherals) {
         BW_INFO_LOG(@"检测到设备%@ name:%@ 已经配对",peripheral.name,peripheral);
         if([self scanedDevice:peripheral]){
@@ -509,10 +511,10 @@
         CBPeripheral * per = [ device getPeripheral];
         if( ( per!= nil) ){
              BW_INFO_LOG(@"联接设备%@ name:%@ ",per.name,per);
-            if( [per isConnected]){
-                   [device didConnect:per];
-            }
-            else
+//            if( [per isConnected]){
+//                   [device didConnect:per];
+//            }
+//            else
                 [ bleManager connectPeripheral:per options:connectOptions ];
             count++;
         }
