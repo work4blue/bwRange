@@ -93,6 +93,18 @@
     
 }
 
+-(int)showSerivces{
+    DLog(@"device %@ all services （%d)",self.blePeripheral.name,self.blePeripheral.services.count);
+    int count = 0;
+    
+    for(CBService * service in self.blePeripheral.services){
+        DLog(@"service %@,%@",[ service.UUID UUIDString],service);
+        count++;
+    }
+    
+    return count;
+}
+
 
 
 

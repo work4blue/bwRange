@@ -64,4 +64,11 @@
 
 -(void)setDelegate:(id<FinderStateNotifyDelegate>)delegate;
 
+-(BOOL)isNeedScan;
+//检测已经联接上设备
+-(int)checkConnectedDevices:(CBCentralManager *)bleManager;
+
+//联接的设备
+-(int)connectFinders:(CBCentralManager *)bleManager;
+
 @end

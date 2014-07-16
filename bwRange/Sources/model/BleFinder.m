@@ -315,6 +315,12 @@
 
 -(void) findMeTag:(unsigned char)data{
    
+    if(self.linkLossAlertLevelCharacteristic == nil)
+    {
+        DLog(@"设备没有linkloss属性！！");
+        return;
+    }
+        
     [  [ self getPeripheral ] writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:self.linkLossAlertLevelCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
@@ -525,6 +531,13 @@
 - (void) readLinkLossAlert
 {
     DLog(@"Read LinkLossAlert");
+    if([ self getPeripheral ] == nil )
+        return ;
+    
+    if(self.linkLossAlertLevelCharacteristic == nil )
+        return ;
+    
+    
     [[ self getPeripheral ] readValueForCharacteristic:self.linkLossAlertLevelCharacteristic];
 }
 
@@ -593,6 +606,43 @@
    
     
     
+}
+
+-(void)didConnect:(CBPeripheral *)peripheral {
+    [self setState:PROXIMITY_TAG_STATE_BONDING];
+    
+    
+    
+    
+    [peripheral setDelegate:self];
+    [peripheral discoverServices:nil];
+    
+    
+    [ peripheral readRSSI]; //强制读取rssi数据
+    
+ 
+    
+    [ self startRangeMonitoring];
+}
+
++(void)cleanup:(CBCentralManager *)centralManager peripheral:(CBPeripheral*)peripheral{
+    
+    
+    if (!peripheral.isConnected) {
+        return;
+    }
+    
+    if (peripheral.services != nil) {
+        for (CBService *service in peripheral.services) {
+            
+            if (service.characteristics != nil) {
+                for(CBCharacteristic * characteristic in service.characteristics)
+                    [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+            }
+        }
+    }
+    
+    [centralManager cancelPeripheralConnection:peripheral];
 }
 
 

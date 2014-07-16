@@ -31,4 +31,8 @@
 
 
 -(int) detectDistance:(int)rssi;
+
+-(int)showSerivces;
+
+-(void)cleanup;
 @end

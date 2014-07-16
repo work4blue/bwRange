@@ -179,6 +179,12 @@ typedef enum {
 
 -(void)didDisconnect;
 
+-(void)didConnect:(CBPeripheral *)peripheral ;
+
++(void)cleanup:(CBCentralManager *)centralManager peripheral:(CBPeripheral*)peripheral;
+
+
+
 @end
 
 @protocol FinderStateNotifyDelegate <NSObject>

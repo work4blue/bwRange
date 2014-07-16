@@ -10,6 +10,8 @@
 #import "BleFinder.h"
 #import "Utils.h"
 
+#import "LogViewController.h"
+
 #define FINDER_PLIST_NAME @"Finders.plist"
 
 @interface DataManager ()
@@ -448,5 +450,79 @@
 -(BleFinder *)getFinderByIndex:(int)index{
     return (BleFinder *)[ self.nBleFinders objectAtIndex:index];
 }
+
+//检测在打开应用前是否已经联接，返回值为联接数量
+-(int)checkConnectedDevices:(CBCentralManager *)bleManager {
+    NSMutableArray * Identifiers = [NSMutableArray array];
+    
+    
+    for (int i=0; i < self.nBleFinders.count; i++){
+        
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        NSUUID * identifier =  [[NSUUID alloc]initWithUUIDString: [ device UUID ]];
+        
+       [Identifiers addObject:identifier];
+    }
+    
+    int count = 0;
+    
+  //  [self addLog:@"[self.cbCentralMgr retrievePeripheralsWithIdentifiers:self.PeripheralIdentifiers]"];
+    NSArray * retrievePeripherals = [ bleManager retrievePeripheralsWithIdentifiers:Identifiers];
+    for (CBPeripheral* peripheral in retrievePeripherals) {
+        BW_INFO_LOG(@"检测到设备%@ name:%@ 已经配对",peripheral.name,peripheral);
+        if([self scanedDevice:peripheral]){
+           // DLog(@"检测到设备已经联接 %@ ",peripheral);
+            count++;
+        }
+        
+        
+    }
+    
+    return count;
+
+}
+//判断是否需要打开BLE扫描
+-(BOOL)isNeedScan{
+    
+   
+        
+    for (int i=0; i < self.nBleFinders.count; i++){
+         BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        if( ([ device getPeripheral] == nil) )
+            return YES;
+        
+        
+    }
+    
+    return NO;
+}
+
+-(int)connectFinders:(CBCentralManager *)bleManager{
+    
+      NSDictionary* connectOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey];
+    
+    int count ;
+    
+    for (int i=0; i < self.nBleFinders.count; i++){
+        BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        CBPeripheral * per = [ device getPeripheral];
+        if( ( per!= nil) ){
+             BW_INFO_LOG(@"联接设备%@ name:%@ ",per.name,per);
+            if( [per isConnected]){
+                   [device didConnect:per];
+            }
+            else
+                [ bleManager connectPeripheral:per options:connectOptions ];
+            count++;
+        }
+            
+        
+        
+    }
+    
+    return count;
+}
+
 
 @end

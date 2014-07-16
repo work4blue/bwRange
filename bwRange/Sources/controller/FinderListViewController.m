@@ -88,7 +88,10 @@
     
     // [ self scanBleFinder ];
     
-    [[AppDelegate getManager] setDelegate:self];
+    
+    
+   
+    
     
     self.isFirstRemoteKey = YES;
     [self initObserver];
@@ -97,14 +100,18 @@
     
     
 }
+
+-(void) refreshUI{
+    DLog(@"refresh Finder List Status");
+    [self.tableView reloadData];
+}
 #pragma mark -- Finder State Notification
 - (void) refreshFinderState: (NSNotification*) aNotification
 {
     //self.userProfile = [aNotification object];
     
-    
-    DLog(@"refresh Finder List Status");
-    [self.tableView reloadData];
+    [self refreshUI];
+   
     
    
 }
@@ -132,7 +139,7 @@
         //[ [ AppDelegate getFinderService ] startDetectingFinders ];
         
         
-      if([[AppDelegate getManager] isNeedRescan])
+     if([[AppDelegate getManager] isNeedRescan])
         [ self scanBleFinder ];
         
         DLog(@"FinderList Page willApper....");
@@ -151,6 +158,11 @@
 
 -(void)initBle{
     _bleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    
+    [[AppDelegate getManager] setDelegate:self];
+    
+   
+    
     
     
 }
@@ -227,30 +239,30 @@
     [_bleManager connectPeripheral:peripheral options:connectOptions];
 
 }
-
-
-
--(int)connectFinders{
-    
-    [[AppDelegate getAudioPlayer ] stop ];
-    int count = 0;
-    for (int i=0; i < [ AppDelegate getManager].nBleFinders.count; i++) {
-        BleFinder * device = (BleFinder *)[ [ AppDelegate getManager].nBleFinders objectAtIndex:i];
-        
-        CBPeripheral * peripheral = [ device getPeripheral ];
-        
-        if(peripheral != nil)
-        {
-            count ++;
-            [self connectPeripheral:peripheral ];
-        }
-        
-        
-    }
-    
-    return count;
-    
-}
+//
+//
+//
+//-(int)connectFinders{
+//    
+//    [[AppDelegate getAudioPlayer ] stop ];
+//    int count = 0;
+//    for (int i=0; i < [ AppDelegate getManager].nBleFinders.count; i++) {
+//        BleFinder * device = (BleFinder *)[ [ AppDelegate getManager].nBleFinders objectAtIndex:i];
+//        
+//        CBPeripheral * peripheral = [ device getPeripheral ];
+//        
+//        if(peripheral != nil)
+//        {
+//            count ++;
+//            [self connectPeripheral:peripheral ];
+//        }
+//        
+//        
+//    }
+//    
+//    return count;
+//    
+//}
 
 
 
@@ -576,7 +588,17 @@
 {
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:
-            BW_INFO_LOG(@"蓝牙已打开,请扫描外设");
+            BW_INFO_LOG(@"蓝牙已打开,请重联或检测外设");
+            
+             //[self retrieveKnownPeripherals];
+            //检测已经联接
+            if([[AppDelegate getManager] checkConnectedDevices:[self bleManager] ] > 0){
+                [ [AppDelegate getManager] connectFinders:[self bleManager]];
+                //[_bleManager retrieveConnectedPeripherals];
+            }
+            
+        //if([[AppDelegate getManager] isNeedScan])
+                [ self scanBleFinder ];
             break;
         default:
             break;
@@ -594,11 +616,12 @@
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     [ finder setDevRSSI:RSSI];
     
-    if([[ AppDelegate getManager] isAllScaned])
+    if(![[ AppDelegate getManager] isNeedScan ])
     {
         [ self stopScan ];
         
-        [ self connectFinders];
+       // [ self connectFinders];
+        [[ AppDelegate getManager] connectFinders:self.bleManager];
     }
     
 }
@@ -609,20 +632,10 @@
     
     BleFinder * finder = [[ AppDelegate getManager] getFinder:peripheral];
     
-  
-     [finder setState:PROXIMITY_TAG_STATE_BONDING];
+    [finder showSerivces];
+    [finder didConnect:peripheral];
     
-    [ peripheral readRSSI]; //强制读取rssi数据
-    
-    
-    [peripheral setDelegate:self];
-    [peripheral discoverServices:nil];
-    
-    BW_INFO_LOG(@"开始扫描设备service");
-    
-    [ finder startRangeMonitoring];
-    
-    
+       BW_INFO_LOG(@"开始扫描设备service");
     
 }
 
