@@ -14,6 +14,8 @@
 #import "AppDelegate.h"
 #import "Utils.h"
 
+#import "LogViewController.h"
+
 @interface BleFinder()
 
 @property (strong ,nonatomic) NSTimer *rssiTimer; //信号检测定时器
@@ -36,6 +38,8 @@
         
         _linkLossAlertLevelOnTag = PROXIMITY_TAG_ALERT_LEVEL_HIGH;
         _linkLossAlertLevelOnPhone = PROXIMITY_TAG_ALERT_LEVEL_MILD;
+        
+        self.isFailAlarm = NO;
         
         self.vibrate = YES;
        
@@ -247,7 +251,10 @@
 
 -(void) reset{
     self.status = FINDER_STATUS_LINKLOSS;
+    
     [  self setPeripheral:nil ];
+    
+    
     
     self.linkLossAlertLevelCharacteristic = nil;
     self.keyPressCharacteristic = nil;
@@ -256,6 +263,8 @@
     
     _rssiThreshold = -50.0f;
     _hasBeenBonded = NO;
+    
+    //self.isFirstRemoteKey = YES; //用过过滤，上电后第一个按钮值，这是bug
     
     
 }
@@ -282,7 +291,7 @@
     
     CGFloat proximity  = abs([rssi floatValue]);
     
-    
+    int old_state = self.status;
     
     
         if (proximity == 0)
@@ -296,6 +305,10 @@
     
     NSLog(@"setDevRSSI %f (%f) status %d",self.rssiLevel,proximity,self.status);
     
+    
+    BW_INFO_LOG(@"Finder Status change %d to %d",old_state,self.status);
+    
+   if(old_state != self.status)
     [self.delegate FinderStateNotifyDelegateAction:self state:FINDER_NOTIFY_CONNECT];
     
 
@@ -331,20 +344,9 @@
 
 
 -(void)startLocalAlarm{
-    //本地通知
-//    UILocalNotification *notification = [[UILocalNotification alloc]init];
-//    if (notification != nil) {
-//        NSDate *now = [NSDate new];
-//        notification.fireDate = [now dateByAddingTimeInterval:10];
-//        notification.timeZone = [NSTimeZone defaultTimeZone];
-//        notification.alertBody = @"报警";
-//       // notification.soundName = @"雷达咚咚音效.mp3";
-//        notification.applicationIconBadgeNumber = 1;
-//        notification.alertAction = @"关闭";
-//        
-//        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
-//        
-//    }
+
+    if(self.isFailAlarm ==YES)
+        return ;
     
     if(!self.mute)
         //[[AppDelegate getAudioPlayer ] play ];
@@ -362,9 +364,13 @@
     }
     
     
+    self.isFailAlarm =YES;
+    
     
     
 }
+
+
 
 -(void)startLocalAlarm2{
     
@@ -402,6 +408,7 @@
     
     [[AppDelegate getSystemAudioPlayer ] stopVibrate ] ;
     
+    self.isFailAlarm = NO;
 }
 
 
@@ -613,8 +620,8 @@
     
     //[self setPeripheral:nil];
     
-    [[AppDelegate getSystemAudioPlayer] stopVibrate];
-     [[AppDelegate getSystemAudioPlayer] stop];
+//    [[AppDelegate getSystemAudioPlayer] stopVibrate];
+//     [[AppDelegate getSystemAudioPlayer] stop];
     
     [self stopRangeMonitoring];
    
@@ -626,7 +633,8 @@
     [self setState:PROXIMITY_TAG_STATE_BONDING];
     
     
-    
+    if(self.isFailAlarm)
+        [self stopLocalAlarm];
     
    
     [peripheral discoverServices:nil];

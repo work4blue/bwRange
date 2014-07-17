@@ -97,13 +97,17 @@ typedef enum {
 @property (nonatomic, strong) UILocalNotification * AlertNotification  ;
 
 
+#define UUID_SERIVCE_ALERT_LEVEL          @"1802"
 #define UUID_PROPERTY_ALERT_LEVEL         @"2A06"
+
+#define UUID_SERIVCE_KEY_PRESS_STATE      @"FFE0"
 #define UUID_PROPERTY_KEY_PRESS_STATE     @"FFE1"
+
 #define UUID_PROPERTY_BATTERY_LEVEL       @"2A19"
 
 
-#define REMOTE_KEY_ALERT_START     (0x01)
-#define REMOTE_KEY_ALERT_STOP      (0x02)
+#define REMOTE_KEY_ALERT_START     (0x10)
+#define REMOTE_KEY_ALERT_STOP      (0x20)
 #define REMOTE_KEY_ALERT_CAMERA    (0x04)
 
 
@@ -128,7 +132,11 @@ typedef enum {
 @property (nonatomic) BOOL rangeMonitoringIsEnabled;
 @property BOOL hasBeenBonded;
 
+@property BOOL isFailAlarm; //在失败振铃
+
 @property (nonatomic, weak) id<FinderStateNotifyDelegate> delegate;
+
+
 
 
 - (BOOL) isConnected;

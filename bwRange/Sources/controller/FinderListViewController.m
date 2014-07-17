@@ -38,7 +38,7 @@
 
 @property (nonatomic) BOOL isScanning;
 
-@property (nonatomic) BOOL isFirstRemoteKey ;
+
 
 
 @end
@@ -93,7 +93,7 @@
    
     
     
-    self.isFirstRemoteKey = YES;
+    
     [self initObserver];
     
     
@@ -652,6 +652,8 @@
   //  [_delegate didUpdateData:tag];
    // [tag didDisconnect];
     
+    NSLog(@"didDisconnectPeripheral %@",peripheral);
+    
     [finder didDisconnect];
     
    
@@ -716,11 +718,11 @@
     for (CBCharacteristic *c in service.characteristics) {
         BW_INFO_LOG(@"特征 UUID: %@ (%@)",c.UUID.data,c.UUID);
         
-        if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_ALERT_LEVEL]]) {
+        if ([service.UUID isEqual:[CBUUID UUIDWithString:UUID_SERIVCE_ALERT_LEVEL]] && [c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_ALERT_LEVEL]]) {
             finder.linkLossAlertLevelCharacteristic = c; //警告触发按钮
         }
         
-        if ([c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
+        if ([service.UUID isEqual:[CBUUID UUIDWithString:UUID_SERIVCE_KEY_PRESS_STATE]] &&   [c.UUID isEqual:[CBUUID UUIDWithString:UUID_PROPERTY_KEY_PRESS_STATE]]) {
             //订阅设备按钮值
             [peripheral setNotifyValue:YES forCharacteristic:c];
             finder.keyPressCharacteristic = c; //远程按钮
@@ -855,11 +857,11 @@
 -(void)handleRemoteKey:(BleFinder *)finder key:(int)key{
     BW_INFO_LOG(@"远程按键 %d",key);
     
-    if( self.isFirstRemoteKey ==YES)
-    {
-        self.isFirstRemoteKey =NO; //每次重启都会收到上一次联接的远程按键，只能用软件逻辑去掉。
-        return ;
-    }
+//    if( finder.isFirstRemoteKey ==YES)
+//    {
+//        finder.isFirstRemoteKey =NO; //每次重启都会收到上一次联接的远程按键，只能用软件逻辑去掉。
+//        return ;
+//    }
     
     switch(key){
         case REMOTE_KEY_ALERT_START:
