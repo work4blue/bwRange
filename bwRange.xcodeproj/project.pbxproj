@@ -23,13 +23,6 @@
 		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
 		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
 		85881E5319768B0600D8ADC2 /* SystemAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */; };
-		859375671977CFEE00F2EB46 /* KTPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859375591977CFEE00F2EB46 /* KTPhotoBrowser.bundle */; };
-		859375681977CFEE00F2EB46 /* KTPhotoBrowserGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593755C1977CFEE00F2EB46 /* KTPhotoBrowserGlobal.m */; };
-		859375691977CFEE00F2EB46 /* KTPhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593755E1977CFEE00F2EB46 /* KTPhotoScrollViewController.m */; };
-		8593756A1977CFEE00F2EB46 /* KTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 859375601977CFEE00F2EB46 /* KTPhotoView.m */; };
-		8593756B1977CFEE00F2EB46 /* KTThumbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 859375621977CFEE00F2EB46 /* KTThumbsView.m */; };
-		8593756C1977CFEE00F2EB46 /* KTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859375641977CFEE00F2EB46 /* KTThumbsViewController.m */; };
-		8593756D1977CFEE00F2EB46 /* KTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 859375661977CFEE00F2EB46 /* KTThumbView.m */; };
 		85948A631975167300109812 /* BgMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A601975167300109812 /* BgMusicPlayer.m */; };
 		85948A641975167300109812 /* MusicQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A621975167300109812 /* MusicQuery.m */; };
 		85BC99DF19655A9F0050F75B /* SharedUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99DE19655A9F0050F75B /* SharedUI.m */; };
@@ -121,20 +114,6 @@
 		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
 		85881E5119768B0600D8ADC2 /* SystemAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemAudioPlayer.h; sourceTree = "<group>"; };
 		85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemAudioPlayer.m; sourceTree = "<group>"; };
-		859375591977CFEE00F2EB46 /* KTPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KTPhotoBrowser.bundle; sourceTree = "<group>"; };
-		8593755A1977CFEE00F2EB46 /* KTPhotoBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserDataSource.h; sourceTree = "<group>"; };
-		8593755B1977CFEE00F2EB46 /* KTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
-		8593755C1977CFEE00F2EB46 /* KTPhotoBrowserGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoBrowserGlobal.m; sourceTree = "<group>"; };
-		8593755D1977CFEE00F2EB46 /* KTPhotoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoScrollViewController.h; sourceTree = "<group>"; };
-		8593755E1977CFEE00F2EB46 /* KTPhotoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoScrollViewController.m; sourceTree = "<group>"; };
-		8593755F1977CFEE00F2EB46 /* KTPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoView.h; sourceTree = "<group>"; };
-		859375601977CFEE00F2EB46 /* KTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoView.m; sourceTree = "<group>"; };
-		859375611977CFEE00F2EB46 /* KTThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbsView.h; sourceTree = "<group>"; };
-		859375621977CFEE00F2EB46 /* KTThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbsView.m; sourceTree = "<group>"; };
-		859375631977CFEE00F2EB46 /* KTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbsViewController.h; sourceTree = "<group>"; };
-		859375641977CFEE00F2EB46 /* KTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbsViewController.m; sourceTree = "<group>"; };
-		859375651977CFEE00F2EB46 /* KTThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbView.h; sourceTree = "<group>"; };
-		859375661977CFEE00F2EB46 /* KTThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbView.m; sourceTree = "<group>"; };
 		85948A5F1975167300109812 /* BgMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgMusicPlayer.h; sourceTree = "<group>"; };
 		85948A601975167300109812 /* BgMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicPlayer.m; sourceTree = "<group>"; };
 		85948A611975167300109812 /* MusicQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicQuery.h; sourceTree = "<group>"; };
@@ -341,27 +320,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		859375581977CFEE00F2EB46 /* KTPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				859375591977CFEE00F2EB46 /* KTPhotoBrowser.bundle */,
-				8593755A1977CFEE00F2EB46 /* KTPhotoBrowserDataSource.h */,
-				8593755B1977CFEE00F2EB46 /* KTPhotoBrowserGlobal.h */,
-				8593755C1977CFEE00F2EB46 /* KTPhotoBrowserGlobal.m */,
-				8593755D1977CFEE00F2EB46 /* KTPhotoScrollViewController.h */,
-				8593755E1977CFEE00F2EB46 /* KTPhotoScrollViewController.m */,
-				8593755F1977CFEE00F2EB46 /* KTPhotoView.h */,
-				859375601977CFEE00F2EB46 /* KTPhotoView.m */,
-				859375611977CFEE00F2EB46 /* KTThumbsView.h */,
-				859375621977CFEE00F2EB46 /* KTThumbsView.m */,
-				859375631977CFEE00F2EB46 /* KTThumbsViewController.h */,
-				859375641977CFEE00F2EB46 /* KTThumbsViewController.m */,
-				859375651977CFEE00F2EB46 /* KTThumbView.h */,
-				859375661977CFEE00F2EB46 /* KTThumbView.m */,
-			);
-			path = KTPhotoBrowser;
-			sourceTree = "<group>";
-		};
 		85948A5E1975167300109812 /* bg-player */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,7 +446,6 @@
 		85C1F7EE19558149000A0D17 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				859375581977CFEE00F2EB46 /* KTPhotoBrowser */,
 				85948A5E1975167300109812 /* bg-player */,
 				85D5F2F119618568007DBE00 /* CustomImagePicker */,
 				85D5F2E11961846A007DBE00 /* UIImage-Extensions */,
@@ -674,7 +631,6 @@
 				85D5F31719618640007DBE00 /* camera_shoot.png in Resources */,
 				85BC99E619658EA10050F75B /* alarm-sound.wav in Resources */,
 				85D5F31019618640007DBE00 /* camera_album@2x.png in Resources */,
-				859375671977CFEE00F2EB46 /* KTPhotoBrowser.bundle in Resources */,
 				85C1F7C9195580AA000A0D17 /* DemoFinders.plist in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				85D5F31419618640007DBE00 /* camera_button_switch_camera@2x.png in Resources */,
@@ -713,7 +669,6 @@
 				85D5F2EE1961846A007DBE00 /* UIImage+Resize.m in Sources */,
 				85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */,
 				85881E5319768B0600D8ADC2 /* SystemAudioPlayer.m in Sources */,
-				859375691977CFEE00F2EB46 /* KTPhotoScrollViewController.m in Sources */,
 				85D5F2FE19618568007DBE00 /* ImageUtil.m in Sources */,
 				85C1F7B119558000000A0D17 /* BleDevice.m in Sources */,
 				85D5F2F01961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
@@ -726,27 +681,22 @@
 				85C1F7EC19558139000A0D17 /* SingleSelectViewController.m in Sources */,
 				85C1F8021959693F000A0D17 /* BleFinderService.m in Sources */,
 				85D5F2FD19618568007DBE00 /* ImageFilterProcessViewController.m in Sources */,
-				8593756A1977CFEE00F2EB46 /* KTPhotoView.m in Sources */,
 				85D5F2EC1961846A007DBE00 /* UIImage+Alpha.m in Sources */,
 				85D5F2EF1961846A007DBE00 /* UIImage+RoundedCorner.m in Sources */,
 				85C1F7F219558149000A0D17 /* Utils.m in Sources */,
-				8593756C1977CFEE00F2EB46 /* KTThumbsViewController.m in Sources */,
 				85C1F7F8195583E8000A0D17 /* BlePeripheral.m in Sources */,
 				85D5F31B1961C1A2007DBE00 /* MainTabController.m in Sources */,
 				85C1F7EA19558139000A0D17 /* FinderStatusViewController.m in Sources */,
 				85C1F7E919558139000A0D17 /* FinderMapViewController.m in Sources */,
 				85C1F7F5195583B6000A0D17 /* BleManager.m in Sources */,
 				85C1F7B319558000000A0D17 /* DataManager.m in Sources */,
-				8593756D1977CFEE00F2EB46 /* KTThumbView.m in Sources */,
 				85C1F7E819558139000A0D17 /* FinderListViewController.m in Sources */,
-				8593756B1977CFEE00F2EB46 /* KTThumbsView.m in Sources */,
 				85C1F7BF1955809B000A0D17 /* LeveyPopListViewCell.m in Sources */,
 				8509F8EA193A53E20021EC57 /* main.m in Sources */,
 				85948A631975167300109812 /* BgMusicPlayer.m in Sources */,
 				85C1F7E419558139000A0D17 /* DeviceListTableViewController.m in Sources */,
 				85C1F7C01955809B000A0D17 /* UIView+Toast.m in Sources */,
 				85BC99E4196589560050F75B /* W4bAudioPlayer.m in Sources */,
-				859375681977CFEE00F2EB46 /* KTPhotoBrowserGlobal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

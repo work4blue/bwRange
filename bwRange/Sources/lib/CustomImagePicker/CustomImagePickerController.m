@@ -183,6 +183,7 @@
 }
 - (void)takePicture
 {
+  if(self.sourceType == UIImagePickerControllerSourceTypeCamera)
     [super takePicture];
 }
 
@@ -229,6 +230,28 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     }
 }
 
+/*
+ if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+ 
+ imagePickerController = [[UIImagePickerController alloc] init];
+ imagePickerController.delegate = self;
+ imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+ 
+ if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
+ 
+ imagePickerController.cameraDevice =  UIImagePickerControllerCameraDeviceFront;
+ } else {
+ imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+ }
+ 
+ [self presentModalViewController:imagePickerController animated:YES];
+ [imagePickerController release];
+ }
+ else {
+ // do stuff ///....Alert
+ }
+
+ */
 
 
 

@@ -1303,6 +1303,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="远程照相" id="rOU-hf-T8S">
+                        <barButtonItem key="leftBarButtonItem" title="相册" id="dxv-rv-vbt">
+                            <connections>
+                                <action selector="showPhotoLibrary:" destination="XzR-gZ-wM9" id="PQr-BY-CUc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="拍照" id="6IK-hr-bY6">
                             <connections>
                                 <action selector="showPicker:" destination="XzR-gZ-wM9" id="hje-dS-MdY"/>
