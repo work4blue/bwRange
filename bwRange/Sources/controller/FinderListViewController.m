@@ -471,35 +471,64 @@
         
         DLog(@"AlarmClicked %@",perpheral);
         
-        if( /*(perpheral== nil) ||*/ ![perpheral isConnected]){
-            //[ self scanBleFinder ]  ;
-            
-             [self connectPeripheral:perpheral];
-            
-   //         [self.bleManager connectPeripheral:<#(CBPeripheral *)#> options:<#(NSDictionary *)#>]
-            
-            
-            BW_INFO_LOG(@"强制重新扫描");
-           // [ self showMessage:[ NSString stringWithFormat:@"%@未联接",[ finder getName ] ]];
-            
-            [self.tableView reloadData];
-            return ;
-        }
-        
-        
-        
-         BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
         UIButton * checkbox = (UIButton *)sender;
-        if(checkbox.tag == 0){
-            [checkbox setSelected:YES];
-            checkbox.tag = 1;
-            [ finder trigeFinderAlert:YES ];
+        
+        if(perpheral == nil){
+             //设备为时空打开扫描，
+            if(checkbox.tag == 0){
+           
+               [ self showMessage:[ NSString stringWithFormat:@"%@设备未配对,请同时长按设备按键进行",[ finder getName ] ]];
+                BW_INFO_LOG(@"正在查找配对 %@,%@",[ finder getName ],[finder UUID ]);
+
+                [ self scanBleFinder ];
+            }
+            else {
+                [ self stopScan ];
+            }
+            
+            if(checkbox.tag == 0){
+                [checkbox setSelected:YES];
+                checkbox.tag = 1;
+                //  [ finder trigeFinderAlert:YES ];
+            }
+            else {
+                [checkbox setSelected:NO];
+                checkbox.tag = 0;
+                //  [ finder trigeFinderAlert:NO ];
+            }
+               
+        }
+        else if(![perpheral isConnected]){
+              [ self showMessage:[ NSString stringWithFormat:@"正在联接%@设备",[ finder getName ] ]];
+              [self connectPeripheral:perpheral];
         }
         else {
-            [checkbox setSelected:NO];
-            checkbox.tag = 0;
-            [ finder trigeFinderAlert:NO ];
+             BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
+             if(checkbox.tag == 0)
+                 [ finder trigeFinderAlert:YES ];
+              else
+                  [ finder trigeFinderAlert:NO ];
+                 
+            
+            if(checkbox.tag == 0){
+                [checkbox setSelected:YES];
+                checkbox.tag = 1;
+                //  [ finder trigeFinderAlert:YES ];
+            }
+            else {
+                [checkbox setSelected:NO];
+                checkbox.tag = 0;
+                //  [ finder trigeFinderAlert:NO ];
+            }
         }
+        
+     
+        
+        [self.tableView reloadData];
+        
+        
+        
+       
         //调用蓝牙发送函数
        
         
