@@ -134,6 +134,8 @@ typedef enum {
 
 @property BOOL isFailAlarm; //在失败振铃
 
+@property BOOL isFirstRemoteKey;
+
 @property (nonatomic, weak) id<FinderStateNotifyDelegate> delegate;
 
 

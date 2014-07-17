@@ -859,11 +859,11 @@
 -(void)handleRemoteKey:(BleFinder *)finder key:(int)key{
     BW_INFO_LOG(@"远程按键 %d",key);
     
-//    if( finder.isFirstRemoteKey ==YES)
-//    {
-//        finder.isFirstRemoteKey =NO; //每次重启都会收到上一次联接的远程按键，只能用软件逻辑去掉。
-//        return ;
-//    }
+    if( finder.isFirstRemoteKey ==YES)
+    {
+        finder.isFirstRemoteKey =NO; //每次重启都会收到上一次联接的远程按键，只能用软件逻辑去掉。
+        return ;
+    }
     
     switch(key){
         case REMOTE_KEY_ALERT_START:

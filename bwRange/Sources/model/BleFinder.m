@@ -40,6 +40,7 @@
         _linkLossAlertLevelOnPhone = PROXIMITY_TAG_ALERT_LEVEL_MILD;
         
         self.isFailAlarm = NO;
+        self.isFirstRemoteKey = YES;
         
         self.vibrate = YES;
        
@@ -264,7 +265,7 @@
     _rssiThreshold = -50.0f;
     _hasBeenBonded = NO;
     
-    //self.isFirstRemoteKey = YES; //用过过滤，上电后第一个按钮值，这是bug
+    self.isFirstRemoteKey = YES; //用过过滤，上电后第一个按钮值，这是bug
     
     
 }
