@@ -292,7 +292,7 @@
         
         
     
-        if([AppDelegate getManager].nBleFinders.count == 0){
+        if([ [AppDelegate getManager] isDemoMode]){
         [self dismissViewControllerAnimated:YES completion:nil];
         }
         else {

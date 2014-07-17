@@ -590,6 +590,7 @@
         case CBCentralManagerStatePoweredOn:
             BW_INFO_LOG(@"蓝牙已打开,请重联或检测外设");
             
+            if(![[AppDelegate getManager] isDemoMode]){
              //[self retrieveKnownPeripherals];
             //检测已经联接
             if([[AppDelegate getManager] checkConnectedDevices:[self bleManager] ] > 0){
@@ -599,6 +600,7 @@
             
         //if([[AppDelegate getManager] isNeedScan])
                 [ self scanBleFinder ];
+            }
             break;
         default:
             break;
@@ -905,6 +907,8 @@
                view.needTake = YES;
             
                MAIN_TAB_CONTROLLER.selectedIndex = MAIN_TAB_CAMERA;
+            
+            [ view showCameraView];
             
             }
         }

@@ -15,6 +15,8 @@
   //  id<CustomImagePickerControllerDelegate> _customDelegate;
 }
 @property(nonatomic)BOOL isSingle;
+
+@property(nonatomic)BOOL isAutoTake;
 @property(nonatomic,assign)id<CustomImagePickerControllerDelegate> customDelegate;
 
 - (void)takePicture;

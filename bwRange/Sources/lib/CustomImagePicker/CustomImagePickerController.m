@@ -28,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.isAutoTake = NO;
     }
     return self;
 }
@@ -98,9 +99,28 @@
         
         self.cameraOverlayView = overlyView;
        
-        
+//        if(self.isAutoTake){
+//            //[ self takePicture ];
+//            //[self performSelector:@selector(takePicture) withObject:nil afterDelay:0.5f];
+//            [NSThread sleepForTimeInterval:1.0f]; [self autoTakePicture];
+//            self.isAutoTake = NO;
+//        }
         
     }
+}
+
+-(void)autoTakePicture{
+    [self takePicture];
+    
+   [self closeView];
+    
+    
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+   
 }
 
 - (void)initVolumeCapture{
@@ -178,10 +198,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     image = [image clipImageWithScaleWithsize:CGSizeMake(320, 480)]  ;
-    [picker dismissViewControllerAnimated:NO completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-        [_customDelegate cameraPhoto:image];
-    }];
+    
+    //选择图库
+    if(picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
+           [picker dismissViewControllerAnimated:NO completion:^{
+                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+                [_customDelegate cameraPhoto:image];
+            }];
+    }
+    else {
+    //不退出，进入连拍模式
+     //[_customDelegate cameraPhoto:image];
+     UIImageWriteToSavedPhotosAlbum(image, self, nil, NULL);
+    
+     picker.sourceType =    UIImagePickerControllerSourceTypeCamera;
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -197,5 +228,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         }
     }
 }
+
+
+
+
 
 @end

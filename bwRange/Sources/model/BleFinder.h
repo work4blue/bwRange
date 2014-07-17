@@ -106,8 +106,8 @@ typedef enum {
 #define UUID_PROPERTY_BATTERY_LEVEL       @"2A19"
 
 
-#define REMOTE_KEY_ALERT_START     (0x10)
-#define REMOTE_KEY_ALERT_STOP      (0x20)
+#define REMOTE_KEY_ALERT_START     (0x01)
+#define REMOTE_KEY_ALERT_STOP      (0x02)
 #define REMOTE_KEY_ALERT_CAMERA    (0x04)
 
 

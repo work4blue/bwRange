@@ -41,8 +41,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)showPicker:(id)sender
-{
+-(void)showCameraView{
     CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -56,8 +55,14 @@
     [self presentModalViewController:picker animated:YES];
     
     if(self.needTake){
-        [picker takePicture];
+        picker.isAutoTake = YES;
+        
     }
+}
+
+- (IBAction)showPicker:(id)sender
+{
+    [self showCameraView ];
    
 }
 
@@ -126,9 +131,14 @@
     [viewController viewDidAppear:animated];
 }
 
+
+
 - (void)viewWillAppear:(BOOL)animated{
   
-     [ self showPicker:self ];
+    // [ self showCameraView];
+    
+    [self cancelCamera ];
+    
     
 
 }

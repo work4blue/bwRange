@@ -20,5 +20,7 @@
 
 - (IBAction)showPicker:(id)sender;
 
+-(void)showCameraView;
+
 
 @end
