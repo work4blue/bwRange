@@ -174,6 +174,9 @@ typedef enum {
 
 -(void) trigeFinderAlert:(BOOL)start;
 
+- (void) readRSSI;
+- (void) readLinkLossAlert;
+
 
 - (void) startRangeMonitoring;
 

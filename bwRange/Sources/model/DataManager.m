@@ -526,5 +526,70 @@
     return count;
 }
 
+-(void)readConnect{
+    for(int i = 0 ; i < self.nBleFinders.count ; i++){
+        
+        BleFinder * finder = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        CBPeripheral * per = [ finder getPeripheral];
+        if(per == nil)
+            continue;
+    
+        if([per isConnected])
+            [finder readRSSI ];
+        
+            
+        
+    }
+}
+
+-(void) readLinkLossAlert{
+    
+    for(int i = 0 ; i < self.nBleFinders.count ; i++){
+        
+        BleFinder * finder = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
+        
+        CBPeripheral * per = [ finder getPeripheral];
+        if(per == nil)
+            continue;
+        
+        if([per isConnected])
+            [finder readLinkLossAlert ];
+        
+        
+        
+    }
+}
+//开始进行
+- (void) startRangeMonitoring
+{
+ 
+    NSLog(@"Start range monitoring of ");
+    //self.rssiThreshold = [self getRssiRange];
+    //NSLog(@"Starting range monitoring of %@,targe rssi %f", [self getName],self.rssiThreshold);
+    
+    
+    
+    [self.rssiTimer invalidate];
+    //直接调用CBPeripheral readRssi 读取信号强度，如果没有联接，将自动联接。
+    self.rssiTimer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(readConnect)    userInfo:nil repeats:YES];
+    
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.rssiTimer forMode:NSRunLoopCommonModes];
+ 
+    
+    //读远程按键定时器
+    [self.readTimer invalidate];
+    self.readTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(readLinkLossAlert) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.readTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void) stopRangeMonitoring
+{
+    NSLog(@"Stopping range monitoring of ");
+    [self.rssiTimer invalidate];
+    [self.readTimer invalidate];
+}
+
 
 @end

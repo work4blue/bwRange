@@ -15,6 +15,10 @@
 @property (strong,nonatomic) NSMutableArray *nRingtones;
 @property (strong,nonatomic) NSMutableArray *nFinderTypes;
 
+//采用统一定时器处理，以节约系统资源
+@property (strong ,nonatomic) NSTimer *rssiTimer; //信号检测定时器
+@property (strong ,nonatomic) NSTimer *readTimer; //
+
 
 @property (nonatomic) int scanCount; //扫描设备总数
 
@@ -70,5 +74,9 @@
 
 //联接的设备
 -(int)connectFinders:(CBCentralManager *)bleManager;
+
+
+- (void) startRangeMonitoring;
+- (void) stopRangeMonitoring;
 
 @end

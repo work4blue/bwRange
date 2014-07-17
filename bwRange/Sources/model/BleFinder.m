@@ -18,8 +18,7 @@
 
 @interface BleFinder()
 
-@property (strong ,nonatomic) NSTimer *rssiTimer; //信号检测定时器
-@property (strong ,nonatomic) NSTimer *readTimer; //
+
 
 @end
 
@@ -416,9 +415,9 @@
 - (void) startRangeMonitoringIfEnabled
 {
     //if (self.rangeMonitoringIsEnabled)
-    {
-        [self startRangeMonitoring];
-    }
+//    {
+//        [self startRangeMonitoring];
+//    }
 }
 
 -(float)getRssiRange{
@@ -434,39 +433,7 @@
    
 }
 
-//开始进行
-- (void) startRangeMonitoring
-{
-    if (![self isConnected])
-    {
-        NSLog(@"Can not start monitoring range of a not connected device, %@", [self getName]);
-        return;
-    }
-    
-     self.rssiThreshold = [self getRssiRange];
-    NSLog(@"Starting range monitoring of %@,targe rssi %f", [self getName],self.rssiThreshold);
-    
-   
-    
-    [self.rssiTimer invalidate];
-    //直接调用CBPeripheral readRssi 读取信号强度
-    self.rssiTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(readRSSI)    userInfo:nil repeats:YES];
-    
-    
-    [[NSRunLoop currentRunLoop] addTimer:self.rssiTimer forMode:NSRunLoopCommonModes];
-    
-    
-    [self.readTimer invalidate];
-    self.readTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(readLinkLossAlert) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.readTimer forMode:NSRunLoopCommonModes];
-}
 
-- (void) stopRangeMonitoring
-{
-    NSLog(@"Stopping range monitoring of %@", [self getName]);
-    [self.rssiTimer invalidate];
-    [self.readTimer invalidate];
-}
 
 - (BOOL) isConnected
 {
@@ -502,7 +469,7 @@
         case PROXIMITY_TAG_STATE_LINK_LOST:
             self.rssiLevel = 0;
             self.status = FINDER_STATUS_LINKLOSS;
-            [self stopRangeMonitoring];
+          //  [self stopRangeMonitoring];
     //        [self stopLocationMonitoring];
             
             // Only store the location if we are currently bonded (i.e. the link was lost now, and we are not just initializing this object)
@@ -624,7 +591,7 @@
 //    [[AppDelegate getSystemAudioPlayer] stopVibrate];
 //     [[AppDelegate getSystemAudioPlayer] stop];
     
-    [self stopRangeMonitoring];
+   // [self stopRangeMonitoring];
    
     
     
@@ -645,7 +612,7 @@
     
  
     
-    [ self startRangeMonitoring];
+   // [ self startRangeMonitoring];
 }
 
 +(void)cleanup:(CBCentralManager *)centralManager peripheral:(CBPeripheral*)peripheral{

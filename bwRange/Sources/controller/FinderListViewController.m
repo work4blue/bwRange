@@ -629,7 +629,13 @@
             
         //if([[AppDelegate getManager] isNeedScan])
                 [ self scanBleFinder ];
+                
+                [[AppDelegate getManager ] startRangeMonitoring ];
             }
+            break;
+        case CBCentralManagerStatePoweredOff:
+             [ self stopScan ];
+             [[AppDelegate getManager ] stopRangeMonitoring ];
             break;
         default:
             break;
