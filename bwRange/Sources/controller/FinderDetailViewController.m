@@ -237,6 +237,7 @@
 }
 
 #pragma mark - 操作处理
+//保存操作
 - (IBAction)finishClick:(id)sender{
     if([self isNewDevice]){
         //保存并跳转
@@ -291,7 +292,13 @@
         
         
     
-     [self dismissViewControllerAnimated:YES completion:nil];
+        if([AppDelegate getManager].nBleFinders.count == 0){
+        [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+        [self.navigationController popToRootViewControllerAnimated:NO ];
+        }
+        
     }
 }
 

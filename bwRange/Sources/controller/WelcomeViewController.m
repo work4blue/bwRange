@@ -56,7 +56,8 @@
     
     [ Utils hideNavBar:self];
     
-    if(![AppDelegate getManager].isDemoMode){
+    if(![AppDelegate getManager].isDemoMode)
+    {
         [self performSegueWithIdentifier:@"FinderList" sender:self];
         
     }
@@ -69,11 +70,31 @@
     [super viewWillDisappear:NO];
     
     [ Utils hideNavBar:self];
+    
+    
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+       didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewDidAppear:animated];
 }
 
 
 
-/*
+- (void)viewDidAppear:(BOOL)animated{
+    
+}
+
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -82,6 +103,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

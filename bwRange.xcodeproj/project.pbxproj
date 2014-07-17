@@ -22,6 +22,7 @@
 		8509F909193A53E20021EC57 /* bwRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509F908193A53E20021EC57 /* bwRangeTests.m */; };
 		8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8533AD3F193E4C8500461C4A /* 3.5.storyboard */; };
 		8570B5CC1946E08D00CEC06E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */; };
+		85881E5319768B0600D8ADC2 /* SystemAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */; };
 		85948A631975167300109812 /* BgMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A601975167300109812 /* BgMusicPlayer.m */; };
 		85948A641975167300109812 /* MusicQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A621975167300109812 /* MusicQuery.m */; };
 		85BC99DF19655A9F0050F75B /* SharedUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99DE19655A9F0050F75B /* SharedUI.m */; };
@@ -111,6 +112,8 @@
 		8533AD40193E4C8500461C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/3.5.storyboard; sourceTree = "<group>"; };
 		8570B5CB1946E08D00CEC06E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		85804716193CFCA2004F73CB /* AppDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDefine.h; path = Sources/AppDefine.h; sourceTree = "<group>"; };
+		85881E5119768B0600D8ADC2 /* SystemAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemAudioPlayer.h; sourceTree = "<group>"; };
+		85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemAudioPlayer.m; sourceTree = "<group>"; };
 		85948A5F1975167300109812 /* BgMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgMusicPlayer.h; sourceTree = "<group>"; };
 		85948A601975167300109812 /* BgMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicPlayer.m; sourceTree = "<group>"; };
 		85948A611975167300109812 /* MusicQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicQuery.h; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 				85C1F7F7195583E8000A0D17 /* BlePeripheral.m */,
 				85BC99E2196589560050F75B /* W4bAudioPlayer.h */,
 				85BC99E3196589560050F75B /* W4bAudioPlayer.m */,
+				85881E5119768B0600D8ADC2 /* SystemAudioPlayer.h */,
+				85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */,
 			);
 			name = lib;
 			path = Sources/lib;
@@ -663,6 +668,7 @@
 				85C1F7B219558000000A0D17 /* BleFinder.m in Sources */,
 				85D5F2EE1961846A007DBE00 /* UIImage+Resize.m in Sources */,
 				85C1F7ED19558139000A0D17 /* WelcomeViewController.m in Sources */,
+				85881E5319768B0600D8ADC2 /* SystemAudioPlayer.m in Sources */,
 				85D5F2FE19618568007DBE00 /* ImageUtil.m in Sources */,
 				85C1F7B119558000000A0D17 /* BleDevice.m in Sources */,
 				85D5F2F01961846A007DBE00 /* UIImage+SplitImageIntoTwoParts.m in Sources */,

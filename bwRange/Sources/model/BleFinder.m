@@ -347,12 +347,18 @@
 //    }
     
     if(!self.mute)
-        [[AppDelegate getAudioPlayer ] play ];
+        //[[AppDelegate getAudioPlayer ] play ];
+        
+        [[AppDelegate getSystemAudioPlayer ] start:@"alarm-sound.wav" ];
+        
     
     
     if(self.vibrate == YES){
-        [Utils playVibrate];
-        [Utils playSystemSound];
+        //[Utils playVibrate];
+        
+        [[AppDelegate getSystemAudioPlayer ] startVibrate];
+        
+        //[Utils playSystemSound]; //可以后台播放
     }
     
     
@@ -389,8 +395,13 @@
 -(void)stopLocalAlarm{
    // [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
     
-    if(!self.mute)
-        [ [AppDelegate getAudioPlayer ] stop];
+  //  if(!self.mute)
+  //      [ [AppDelegate getAudioPlayer ] stop];
+    
+    [[AppDelegate getSystemAudioPlayer ] stop ] ;
+    
+    [[AppDelegate getSystemAudioPlayer ] stopVibrate ] ;
+    
 }
 
 
@@ -601,6 +612,9 @@
      [ self setState:PROXIMITY_TAG_STATE_DISCONNECTED ];
     
     //[self setPeripheral:nil];
+    
+    [[AppDelegate getSystemAudioPlayer] stopVibrate];
+     [[AppDelegate getSystemAudioPlayer] stop];
     
     [self stopRangeMonitoring];
    

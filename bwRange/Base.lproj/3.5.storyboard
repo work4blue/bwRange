@@ -877,7 +877,7 @@
             <objects>
                 <tableViewController id="ddo-ZX-ppn" customClass="FinderDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="D1K-IL-2BU">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1451,7 +1451,6 @@
         <!--Main Tab Controller-->
         <scene sceneID="NCa-V2-hEz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VLn-ew-rVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qrb-qw-0A9" customClass="MainTabController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1465,6 +1464,7 @@
                         <segue destination="4if-ab-ogC" kind="relationship" relationship="viewControllers" id="THN-O8-Dpr"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VLn-ew-rVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="655" y="894"/>
         </scene>
@@ -1505,6 +1505,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="L5K-zg-05v"/>
-        <segue reference="3DJ-Uh-xla"/>
+        <segue reference="aUI-yf-waN"/>
     </inferredMetricsTieBreakers>
 </document>

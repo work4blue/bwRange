@@ -31,6 +31,8 @@
     
     self.cameraView = nil;
     
+    self.systemAudioPlayer = [[ SystemAudioPlayer alloc] init];
+    
 
     UIStoryboard *mainStoryboard = nil;
     if (SCREEN_IS_RETIAN4){
@@ -87,6 +89,11 @@
 
 +(W4bAudioPlayer*)getAudioPlayer{
    return [AppDelegate sharedInstance].audioPlayer;
+}
+
++(SystemAudioPlayer*)getSystemAudioPlayer{
+    return [AppDelegate sharedInstance].systemAudioPlayer;
+
 }
 
 

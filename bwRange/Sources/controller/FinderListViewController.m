@@ -924,8 +924,7 @@
     alarm.alertAction = @"确定";
     
     
-    if(finder.vibrate == YES)
-        [Utils playVibrate];
+    
     
     
     
@@ -943,7 +942,11 @@
    
     // [[UIApplication sharedApplication] setApplicationIconBadgeNumber:number];
     
-    [[AppDelegate getAudioPlayer ] play ];
+//    if(finder.vibrate == YES)
+//        [Utils playVibrate];
+//    [[AppDelegate getAudioPlayer ] play ];
+    
+    [ finder startLocalAlarm ];
 }
 
 - (void) showOutOfRangeDialog:(BleFinder*) finder
@@ -963,12 +966,16 @@
 //            alarm.soundName = UILocalNotificationDefaultSoundName;
 //        }
         
-        if(finder.vibrate == YES)
-            [Utils playVibrate];
+         [[UIApplication sharedApplication] presentLocalNotificationNow:alarm];
         
-        [[UIApplication sharedApplication] presentLocalNotificationNow:alarm];
+   //     [ finder startLocalAlarm ];
         
-        [[AppDelegate getAudioPlayer ] play ];
+//        if(finder.vibrate == YES)
+//            [Utils playVibrate];
+//        
+//       
+//        
+//        [[AppDelegate getAudioPlayer ] play ];
     }
 }
 
@@ -993,8 +1000,12 @@
             
         }
     }
-    else if(alertView.tag == 2)
-      [[AppDelegate getAudioPlayer ] stop ];
+    else if(alertView.tag == 2){
+         BleFinder * finder = [[ AppDelegate getManager] getFinderByIndex:self.currentLine];
+        
+        [ finder stopLocalAlarm];
+     // [[AppDelegate getAudioPlayer ] stop ];
+    }
 }
 
 -(void)alertViewCancel:(UIAlertView *)alertView

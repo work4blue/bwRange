@@ -12,6 +12,9 @@
 #import "BleFinderService.h"
 #import "W4bAudioPlayer.h"
 
+#import "SystemAudioPlayer.h"
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,6 +22,7 @@
 @property (strong, nonatomic) DataManager *dataManager;
 
 @property (nonatomic, strong) W4bAudioPlayer *audioPlayer;
+@property (nonatomic, strong) SystemAudioPlayer *systemAudioPlayer;
 
 
 @property (nonatomic) id  cameraView;
@@ -34,6 +38,8 @@
 +(W4bAudioPlayer*)getAudioPlayer;
 //+(BleFinderService*)getFinderService;
 
+
++(SystemAudioPlayer*)getSystemAudioPlayer;
 
 
 
