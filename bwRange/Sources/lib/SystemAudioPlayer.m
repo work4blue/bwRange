@@ -106,13 +106,13 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
         return NO;
     
     NSNumber *id = [ _soundObjects objectAtIndex:index];
-    SystemSoundID soundID = (SystemSoundID)[id integerValue];
+    _mSoundId = (SystemSoundID)[id integerValue];
     
     
-    AudioServicesAddSystemSoundCompletion (soundID, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
+    AudioServicesAddSystemSoundCompletion (_mSoundId, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
     
     
-    AudioServicesPlayAlertSound (soundID);
+    AudioServicesPlayAlertSound (_mSoundId);
     
     
     _mPlaySoundCount = repeat;
