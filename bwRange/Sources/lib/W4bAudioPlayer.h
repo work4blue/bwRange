@@ -19,6 +19,8 @@
 -(void)play;
 -(void)play:(NSString*)filename;
 
+
+
 -(void) pause;
 -(void) stop;
 

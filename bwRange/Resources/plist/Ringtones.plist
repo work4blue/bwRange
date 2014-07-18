@@ -2,32 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	
 	<dict>
-        <key>id</key>
-        <string>0</string>
+		<key>id</key>
+		<string>0</string>
 		<key>text</key>
-		<string>None</string>
+		<string>电子警报滴滴声</string>
 		<key>RINGTONE</key>
-		<string>None</string>
+		<string>beep1_dd.caf</string>
 	</dict>
-	
 	<dict>
-        <key>id</key>
-        <string>1</string>
+		<key>id</key>
+		<string>1</string>
 		<key>text</key>
-		<string>Beep 1</string>
+		<string>雷达报警声</string>
 		<key>RINGTONE</key>
-		<string>beep1.mp3</string>
+		<string>beep2_radar.caf</string>
 	</dict>
-	
 	<dict>
-        <key>id</key>
-        <string>2</string>
+		<key>id</key>
+		<string>2</string>
 		<key>text</key>
-		<string>Beep 2</string>
+		<string>防空警报声</string>
 		<key>RINGTONE</key>
-		<string>beep2.mp3</string>
+		<string>beep3_fakong.caf</string>
+	</dict>
+    
+    <dict>
+		<key>id</key>
+		<string>3</string>
+		<key>text</key>
+		<string>火警警报</string>
+		<key>RINGTONE</key>
+		<string>beep4_fire.caf</string>
+	</dict>
+    
+    <dict>
+		<key>id</key>
+		<string>4</string>
+		<key>text</key>
+		<string>警报声</string>
+		<key>RINGTONE</key>
+		<string>beep5_alarm.caf</string>
 	</dict>
 </array>
 </plist>

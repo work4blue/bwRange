@@ -102,7 +102,7 @@
      [ AppDelegate sharedInstance ].cameraView = nil;
     
     //保存到相册中
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+   // UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 
 // 相册保存方法回调方法

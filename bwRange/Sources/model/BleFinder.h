@@ -89,7 +89,7 @@ typedef enum {
 
 @property (nonatomic) BOOL vibrate     ; //震动
 @property (nonatomic) BOOL mute     ; //是否静音
-@property (nonatomic, strong) NSDictionary * ringtone  ;
+@property (nonatomic) int ringtone  ;
 
 @property (nonatomic) ProximityTagState state;
 
@@ -182,6 +182,9 @@ typedef enum {
 
 - (void) stopRangeMonitoring;
 
+-(void)startOutrangeAlarm;
+
+-(void)stopOutrangeAlarm;
 
 
 

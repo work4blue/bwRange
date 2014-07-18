@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
-#define BW_LOG(format,...)  [ LogViewController addLog:self log:format,##__VA_ARGS__ ]
+
 
 #ifdef DEBUG
   #define BW_DEBUG_LOG(format,...)   BW_LOG(format,##__VA_ARGS__)
+
 #else
   #define BW_DEBUG_LOG(format,...)
+
 #endif
 
+ #define BW_LOG(format,...)  [ LogViewController addLog:self log:format,##__VA_ARGS__ ]
 
-
-#define BW_INFO_LOG   BW_LOG 
+//#define BW_INFO_LOG   BW_LOG
+#define BW_INFO_LOG(format,...)
 
 
 @interface LogViewController : UIViewController

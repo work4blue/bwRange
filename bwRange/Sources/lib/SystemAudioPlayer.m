@@ -13,8 +13,8 @@
 @interface SystemAudioPlayer()
 
 @property(nonatomic) SystemSoundID mSoundId;
-@property(nonatomic) BOOL mIsPlaySound;
-@property(nonatomic) BOOL mIsPlayVibrate;
+@property(nonatomic) int mPlaySoundCount;
+@property(nonatomic) int mPlayVibrateCount;
 
 @end
 
@@ -22,8 +22,29 @@
 
 static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     
-       
-        AudioServicesPlaySystemSound(mySSID);
+    SystemAudioPlayer * player = (__bridge SystemAudioPlayer *)myself;
+    
+    if(mySSID == kSystemSoundID_Vibrate){
+        
+        player.mPlayVibrateCount -- ;
+
+        
+        if(player.mPlayVibrateCount <= 0)
+            return ;
+        
+        
+        
+    }
+    else {
+        player.mPlaySoundCount -- ;
+        
+        if(player.mPlaySoundCount <= 0)
+            return ;
+        
+        
+    }
+    
+    AudioServicesPlaySystemSound(mySSID);
 }
 
 
@@ -33,23 +54,26 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
 -(id)init{
     self = [super init];
     if (self) {
-        _mIsPlaySound = NO;
-        _mIsPlayVibrate = NO;
+        _mPlaySoundCount = 0;
+        _mPlayVibrateCount = 0;
+         self.soundObjects = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
     
 }
 
--(void) initAudioFile{
-    
-}
+
 
 
 
 -(BOOL) start:(NSString*)filename {
+    return [self start:filename repeat:60000];
+}
+
+-(BOOL) start:(NSString*)filename repeat:(int)repeat{
     
-    if(_mIsPlaySound == YES)
-        return YES;
+    if(_mPlaySoundCount >0)
+        return NO;
     
    _mSoundId =  [SystemAudioPlayer createSystemAudioObject:filename];
 //    if(_mSoundId < 0)
@@ -57,40 +81,73 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
 //    
     
    
-        AudioServicesAddSystemSoundCompletion (_mSoundId, NULL, NULL,playAudioCompletionCallback,NULL);
+    AudioServicesAddSystemSoundCompletion (_mSoundId, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
     
-    
-    
-    
+
     AudioServicesPlayAlertSound (_mSoundId);
+  
     
-    _mIsPlaySound  = YES;
+    _mPlaySoundCount = repeat;
     
     return YES;
     
 }
 
+-(BOOL) startById:(int)index{
+    return [self startById:index repeat:60000];
+}
+
+-(BOOL) startById:(int)index repeat:(int)repeat
+{
+  
+    
+  
+    if(_mPlaySoundCount >0)
+        return NO;
+    
+    NSNumber *id = [ _soundObjects objectAtIndex:index];
+    SystemSoundID soundID = (SystemSoundID)[id integerValue];
+    
+    
+    AudioServicesAddSystemSoundCompletion (soundID, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
+    
+    
+    AudioServicesPlayAlertSound (soundID);
+    
+    
+    _mPlaySoundCount = repeat;
+    
+    return YES;
+
+}
+
+
+
 -(void)stop{
     
-    if(self.mIsPlaySound == YES)
+    if(self.mPlaySoundCount > 0 )
        AudioServicesRemoveSystemSoundCompletion (_mSoundId);
     
     AudioServicesDisposeSystemSoundID(_mSoundId);
     
-    _mIsPlaySound = NO;
+    _mPlaySoundCount = 0;
 }
 
 -(void)startVibrate{
-    if(self.mIsPlayVibrate == YES)
+    [self playVibrate:60000];
+    
+}
+
+-(void)playVibrate:(int)repeat{
+    if(self.mPlayVibrateCount > 0)
         return ;
     
-     AudioServicesAddSystemSoundCompletion (kSystemSoundID_Vibrate, NULL, NULL,playAudioCompletionCallback,NULL);
+    AudioServicesAddSystemSoundCompletion (kSystemSoundID_Vibrate, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
     
     AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     
     
-    _mIsPlayVibrate = YES;
-    
+    _mPlayVibrateCount = repeat;
 }
 
 -(void)stopVibrate{
@@ -99,7 +156,7 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     
     AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
     
-    _mIsPlayVibrate = NO;
+    _mPlayVibrateCount = 0;
 }
 
 -(void)playVibrateOnce{
@@ -123,5 +180,44 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
 
     
     return soundFileObject;
+}
+
+-(void)clearRingtoneList{
+    for(int i= 0; i < _soundObjects.count ; i++){
+        
+        NSNumber *id = [ _soundObjects objectAtIndex:i];
+        SystemSoundID soundID = (SystemSoundID)id;
+        AudioServicesRemoveSystemSoundCompletion (soundID);
+        
+        AudioServicesDisposeSystemSoundID(soundID);
+    }
+    
+     [self.soundObjects removeAllObjects];
+    
+    
+    
+}
+
+-(void)initRingtoneList:(NSMutableArray *)array{
+    
+    [self clearRingtoneList];
+    
+    NSLog(@"initRingtoneList:array %@",array);
+    
+    for (NSDictionary *tone in array){
+        NSString * fileName = [ tone objectForKey:@"RINGTONE"];
+        
+        SystemSoundID soundId = [ SystemAudioPlayer createSystemAudioObject:fileName ];
+        
+       // AudioServicesPlayAlertSound (soundId);
+        
+        NSLog(@"ringtine file %@ ",fileName);
+        [ _soundObjects addObject:[ NSNumber numberWithInt:soundId] ];
+        
+        
+        
+    }
+
+    
 }
 @end

@@ -94,7 +94,7 @@
     self.bleFinder.finderType = finderType;
     self.bleFinder.range =range;
     
-    DLog(@"newFinder type %d,range %e",finderType,range);
+    DLog(@"newFinder type %d,range %d",finderType,range);
     
 }
 
@@ -169,9 +169,15 @@
 - (void)showRingtoneListView {
     LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"铃声" options:_ringtoneOptions handler:^(NSInteger anIndex) {
         
-        NSString * tone = [ NSString stringWithFormat:@"%d",anIndex];
         
-        self.bleFinder.ringtone = [[AppDelegate sharedInstance].dataManager  getRingtone:tone ];      [ self setRingtone:self.tableView];
+        self.bleFinder.ringtone = anIndex ;
+        
+    
+        
+        
+        [ self setRingtone:anIndex atView:self.tableView];
+        
+        [[ AppDelegate getSystemAudioPlayer] startById:anIndex repeat:1];
         
         
     }];
@@ -271,11 +277,23 @@
     nameView.text =[ BleFinder stringWithFinderType:type ];
 }
 
+-(void)setVibrate:(BOOL)value atView:(UIView *)view{
+    UISwitch *vibrateView = (UISwitch *)  [ view viewWithTag:501];
+    
+  
+    vibrateView.on = value;
+    
+    
+    
+}
 
 
--(void)setRingtone:(UIView *)view{
+-(void)setRingtone:(int)ringtone atView:(UIView *)view{
     UILabel *nameView = (UILabel *)  [ view viewWithTag:601];
-    nameView.text =[ self.bleFinder.ringtone objectForKey:@"text" ];
+    
+     NSDictionary *dic =  [[AppDelegate getManager ] getRingtone:[NSString stringWithFormat:@"%d", ringtone ]];
+    
+    nameView.text =[ dic objectForKey:@"text" ];
     
 }
 
@@ -355,6 +373,16 @@
             {
                 [self setFindRange:self.bleFinder.range atView:cell ];
             }
+        case 2:
+            if(indexPath.row == 0){
+               [self setVibrate:self.bleFinder.vibrate  atView:cell ];
+
+            }
+            else if(indexPath.row == 1)
+            {
+                [self setRingtone:self.bleFinder.ringtone  atView:cell ];
+            }
+            
             break;
         }
 }

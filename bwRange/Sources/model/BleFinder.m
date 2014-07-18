@@ -42,6 +42,7 @@
         self.isFirstRemoteKey = YES;
         
         self.vibrate = YES;
+        self.ringtone = 0;
        
         
        
@@ -85,14 +86,12 @@
  */
 -(NSDictionary *)newDict{
     
-    NSString * tone =@"0";
-    if(self.ringtone != nil)
-        tone =[ self.ringtone objectForKey:@"id"];
+   
     
    
     NSDictionary * dic =   [NSDictionary dictionaryWithObjectsAndKeys:
                 self.UUID,@"UUID", [self getName ],@"NAME",
-                 [ NSString stringWithFormat:@"%d",self.range],@"RANGE",tone,@"RINGTONE",
+                 [ NSString stringWithFormat:@"%d",self.range],@"RANGE",[ NSString stringWithFormat:@"%d",self.ringtone],@"RINGTONE",
                 [ NSString stringWithFormat:@"%d",self.sensitivity],@"SENSITIVITY",
              [ NSString stringWithFormat:@"%d",self.finderType],@"TYPE",
              [ NSString stringWithFormat:@"%d",self.vibrate],@"VIBRATE" ,nil];
@@ -119,7 +118,7 @@
 }
 
 -(NSString *) description{
-    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d,rssi %f,distance %f",self.UUID,self.finderType,[self getName],self.range,self.status , self.rssiLevel,self.distance ];
+    return [ NSString stringWithFormat:@"BleFinder:UUID %@, type %d, Name %@,range %d,status %d,rssi %f,distance %f tone %d",self.UUID,self.finderType,[self getName],self.range,self.status , self.rssiLevel,self.distance ,self.ringtone];
 }
 
 -(void) initWithDictionary:(NSDictionary *)map{
@@ -337,9 +336,6 @@
     [  [ self getPeripheral ] writeValue:[NSData dataWithBytes:&data length:1] forCharacteristic:self.linkLossAlertLevelCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
--(NSString *)getRingtoneFile{
-   return  [self.ringtone objectForKey:@"RINGTONE"];
-}
 
 
 
@@ -351,7 +347,7 @@
     if(!self.mute)
         //[[AppDelegate getAudioPlayer ] play ];
         
-        [[AppDelegate getSystemAudioPlayer ] start:@"alarm-sound.wav" ];
+        [[AppDelegate getSystemAudioPlayer ] start:@"beep1_dd.caf" ];
         
     
     
@@ -369,6 +365,50 @@
     
     
 }
+
+-(void)stopLocalAlarm{
+    // [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
+    
+    //  if(!self.mute)
+    //      [ [AppDelegate getAudioPlayer ] stop];
+    
+    [[AppDelegate getSystemAudioPlayer ] stop ] ;
+    
+    [[AppDelegate getSystemAudioPlayer ] stopVibrate ] ;
+    
+    self.isFailAlarm = NO;
+}
+
+#define OUTPUT_RANGE_ALARM_COUNT (10)
+-(void)startOutrangeAlarm{
+    if(!self.mute)
+        //[[AppDelegate getAudioPlayer ] play ];
+        
+        [[AppDelegate getSystemAudioPlayer ] startById:self.ringtone repeat:OUTPUT_RANGE_ALARM_COUNT ];
+    
+    
+    
+    if(self.vibrate == YES){
+        
+        
+        [[AppDelegate getSystemAudioPlayer ] playVibrate:OUTPUT_RANGE_ALARM_COUNT];
+        
+      
+    }
+    
+}
+
+-(void)stopOutrangeAlarm{
+    
+    
+    [[AppDelegate getSystemAudioPlayer ] stop ] ;
+    
+    [[AppDelegate getSystemAudioPlayer ] stopVibrate ] ;
+    
+    self.isFailAlarm = NO;
+}
+
+
 
 
 
@@ -398,18 +438,7 @@
    // [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
--(void)stopLocalAlarm{
-   // [ [UIApplication sharedApplication] cancelLocalNotification:self.AlertNotification  ];
-    
-  //  if(!self.mute)
-  //      [ [AppDelegate getAudioPlayer ] stop];
-    
-    [[AppDelegate getSystemAudioPlayer ] stop ] ;
-    
-    [[AppDelegate getSystemAudioPlayer ] stopVibrate ] ;
-    
-    self.isFailAlarm = NO;
-}
+
 
 
 - (void) startRangeMonitoringIfEnabled

@@ -40,6 +40,9 @@
     //}
     
     
+    [[AppDelegate getSystemAudioPlayer ] initRingtoneList:[AppDelegate getManager].nRingtones];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

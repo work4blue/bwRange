@@ -25,10 +25,15 @@
 		85881E5319768B0600D8ADC2 /* SystemAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85881E5219768B0600D8ADC2 /* SystemAudioPlayer.m */; };
 		85948A631975167300109812 /* BgMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A601975167300109812 /* BgMusicPlayer.m */; };
 		85948A641975167300109812 /* MusicQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 85948A621975167300109812 /* MusicQuery.m */; };
+		859A7ED41978FCB30026DA41 /* beep1_dd.caf in Resources */ = {isa = PBXBuildFile; fileRef = 859A7ECE1978FCB30026DA41 /* beep1_dd.caf */; };
+		859A7ED51978FCB30026DA41 /* beep2_radar.caf in Resources */ = {isa = PBXBuildFile; fileRef = 859A7ECF1978FCB30026DA41 /* beep2_radar.caf */; };
+		859A7ED61978FCB30026DA41 /* beep3_fakong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 859A7ED01978FCB30026DA41 /* beep3_fakong.caf */; };
+		859A7ED81978FCB30026DA41 /* beep5_alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 859A7ED21978FCB30026DA41 /* beep5_alarm.caf */; };
+		859A7ED91978FCB30026DA41 /* beep6_fakong.aif in Resources */ = {isa = PBXBuildFile; fileRef = 859A7ED31978FCB30026DA41 /* beep6_fakong.aif */; };
+		859A7EDB19790D4F0026DA41 /* beep4_fire.caf in Resources */ = {isa = PBXBuildFile; fileRef = 859A7EDA19790D4F0026DA41 /* beep4_fire.caf */; };
 		85BC99DF19655A9F0050F75B /* SharedUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99DE19655A9F0050F75B /* SharedUI.m */; };
 		85BC99E1196587BD0050F75B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BC99E0196587BD0050F75B /* AudioToolbox.framework */; };
 		85BC99E4196589560050F75B /* W4bAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC99E3196589560050F75B /* W4bAudioPlayer.m */; };
-		85BC99E619658EA10050F75B /* alarm-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 85BC99E519658EA10050F75B /* alarm-sound.wav */; };
 		85C1F7B119558000000A0D17 /* BleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7AC19558000000A0D17 /* BleDevice.m */; };
 		85C1F7B219558000000A0D17 /* BleFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7AE19558000000A0D17 /* BleFinder.m */; };
 		85C1F7B319558000000A0D17 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C1F7B019558000000A0D17 /* DataManager.m */; };
@@ -118,12 +123,17 @@
 		85948A601975167300109812 /* BgMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicPlayer.m; sourceTree = "<group>"; };
 		85948A611975167300109812 /* MusicQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicQuery.h; sourceTree = "<group>"; };
 		85948A621975167300109812 /* MusicQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicQuery.m; sourceTree = "<group>"; };
+		859A7ECE1978FCB30026DA41 /* beep1_dd.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep1_dd.caf; sourceTree = "<group>"; };
+		859A7ECF1978FCB30026DA41 /* beep2_radar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep2_radar.caf; sourceTree = "<group>"; };
+		859A7ED01978FCB30026DA41 /* beep3_fakong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep3_fakong.caf; sourceTree = "<group>"; };
+		859A7ED21978FCB30026DA41 /* beep5_alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep5_alarm.caf; sourceTree = "<group>"; };
+		859A7ED31978FCB30026DA41 /* beep6_fakong.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep6_fakong.aif; sourceTree = "<group>"; };
+		859A7EDA19790D4F0026DA41 /* beep4_fire.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep4_fire.caf; sourceTree = "<group>"; };
 		85BC99DD19655A9F0050F75B /* SharedUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUI.h; sourceTree = "<group>"; };
 		85BC99DE19655A9F0050F75B /* SharedUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedUI.m; sourceTree = "<group>"; };
 		85BC99E0196587BD0050F75B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		85BC99E2196589560050F75B /* W4bAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = W4bAudioPlayer.h; sourceTree = "<group>"; };
 		85BC99E3196589560050F75B /* W4bAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = W4bAudioPlayer.m; sourceTree = "<group>"; };
-		85BC99E519658EA10050F75B /* alarm-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "alarm-sound.wav"; sourceTree = "<group>"; };
 		85C1F7AB19558000000A0D17 /* BleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleDevice.h; sourceTree = "<group>"; };
 		85C1F7AC19558000000A0D17 /* BleDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleDevice.m; sourceTree = "<group>"; };
 		85C1F7AD19558000000A0D17 /* BleFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleFinder.h; sourceTree = "<group>"; };
@@ -403,7 +413,12 @@
 		85C1F7C6195580AA000A0D17 /* ringtone */ = {
 			isa = PBXGroup;
 			children = (
-				85BC99E519658EA10050F75B /* alarm-sound.wav */,
+				859A7EDA19790D4F0026DA41 /* beep4_fire.caf */,
+				859A7ECE1978FCB30026DA41 /* beep1_dd.caf */,
+				859A7ECF1978FCB30026DA41 /* beep2_radar.caf */,
+				859A7ED01978FCB30026DA41 /* beep3_fakong.caf */,
+				859A7ED21978FCB30026DA41 /* beep5_alarm.caf */,
+				859A7ED31978FCB30026DA41 /* beep6_fakong.aif */,
 			);
 			path = ringtone;
 			sourceTree = "<group>";
@@ -628,18 +643,23 @@
 				85D5F31219618640007DBE00 /* camera_btn_ok@2x.png in Resources */,
 				85D5F30F19618640007DBE00 /* camera_album.png in Resources */,
 				85C1F7CC195580AA000A0D17 /* Ringtones.plist in Resources */,
+				859A7ED61978FCB30026DA41 /* beep3_fakong.caf in Resources */,
 				85D5F31719618640007DBE00 /* camera_shoot.png in Resources */,
-				85BC99E619658EA10050F75B /* alarm-sound.wav in Resources */,
 				85D5F31019618640007DBE00 /* camera_album@2x.png in Resources */,
 				85C1F7C9195580AA000A0D17 /* DemoFinders.plist in Resources */,
+				859A7EDB19790D4F0026DA41 /* beep4_fire.caf in Resources */,
 				8509F8E8193A53E20021EC57 /* InfoPlist.strings in Resources */,
 				85D5F31419618640007DBE00 /* camera_button_switch_camera@2x.png in Resources */,
+				859A7ED91978FCB30026DA41 /* beep6_fakong.aif in Resources */,
 				85D5F31819618640007DBE00 /* camera_shoot@2x.png in Resources */,
 				8509F8F1193A53E20021EC57 /* Main.storyboard in Resources */,
 				85D5F31519618640007DBE00 /* camera_cancel.png in Resources */,
 				85D5F31319618640007DBE00 /* camera_button_switch_camera.png in Resources */,
+				859A7ED51978FCB30026DA41 /* beep2_radar.caf in Resources */,
 				8533AD41193E4C8500461C4A /* 3.5.storyboard in Resources */,
 				85C1F7CB195580AA000A0D17 /* FinderTypes.plist in Resources */,
+				859A7ED41978FCB30026DA41 /* beep1_dd.caf in Resources */,
+				859A7ED81978FCB30026DA41 /* beep5_alarm.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

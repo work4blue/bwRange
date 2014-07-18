@@ -12,6 +12,8 @@
 
 #import "LogViewController.h"
 
+#import "SystemAudioPlayer.h"
+
 #define FINDER_PLIST_NAME @"Finders.plist"
 
 @interface DataManager ()
@@ -201,7 +203,7 @@
     
     //考虑与showList的兼容。可以直接联接
     
-    NSLog(@"%@",self.nRingtones);
+    NSLog(@"(%d),%@",self.nRingtones.count,self.nRingtones);
     
     
     
@@ -234,6 +236,8 @@
      [self   loadFinders     ];
      [self  loadFinderTypes ];
      [self  loadRingtones   ];
+    
+   
     
 }
 

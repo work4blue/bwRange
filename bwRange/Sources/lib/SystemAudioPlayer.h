@@ -15,11 +15,20 @@
 
 -(void) initAudioFile;
 
+-(void)initRingtoneList:(NSMutableArray *)array;
+
 -(void) stop;
 
 //-(void) play:(NSString*)filename; //播放一次
 
 -(BOOL) start:(NSString*)filename; //开始连续播放
+
+-(BOOL) start:(NSString*)filename repeat:(int)repeat;
+
+-(BOOL) startById:(int)index repeat:(int)repeat;
+-(BOOL) startById:(int)index ;
+
+
 
 //-(void)startById:(int)index; //播放指定音效
 
@@ -27,8 +36,13 @@
 
 -(void)startVibrate; //开始连续震动
 
+-(void)playVibrate:(int)repeat; //震动指定次数
+
 -(void)stopVibrate;
 
 -(void)playVibrateOnce; //震动一次
+
+
+
 
 @end

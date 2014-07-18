@@ -971,7 +971,7 @@
     
     int number = 1;
     
-    alarm.soundName = @"alarm-sound.wav";
+    
     alarm.applicationIconBadgeNumber = number;
     
     
@@ -982,12 +982,9 @@
     
    
     // [[UIApplication sharedApplication] setApplicationIconBadgeNumber:number];
+ 
     
-//    if(finder.vibrate == YES)
-//        [Utils playVibrate];
-//    [[AppDelegate getAudioPlayer ] play ];
-    
-    [ finder startLocalAlarm ];
+    [ finder startOutrangeAlarm ];
 }
 
 - (void) showOutOfRangeDialog:(BleFinder*) finder
@@ -998,25 +995,10 @@
         alarm.alertBody = [NSString stringWithFormat:@"%@ 已经超过范围.", [ finder getName ] ];
         alarm.alertAction = @"确认";
         
-//        if (alertLevel == PROXIMITY_TAG_ALERT_LEVEL_HIGH)
-//        {
-//            alarm.soundName = @"alarm-sound.wav";
-//        }
-//        else
-//        {
-//            alarm.soundName = UILocalNotificationDefaultSoundName;
-//        }
         
          [[UIApplication sharedApplication] presentLocalNotificationNow:alarm];
         
-   //     [ finder startLocalAlarm ];
-        
-//        if(finder.vibrate == YES)
-//            [Utils playVibrate];
-//        
-//       
-//        
-//        [[AppDelegate getAudioPlayer ] play ];
+ 
     }
 }
 
@@ -1044,7 +1026,7 @@
     else if(alertView.tag == 2){
          BleFinder * finder = [[ AppDelegate getManager] getFinderByIndex:self.currentLine];
         
-        [ finder stopLocalAlarm];
+        [ finder stopOutrangeAlarm];
      // [[AppDelegate getAudioPlayer ] stop ];
     }
 }
