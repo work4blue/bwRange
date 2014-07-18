@@ -341,8 +341,8 @@
 
 -(void)startLocalAlarm{
 
-    if(self.isFailAlarm ==YES)
-        return ;
+//    if(self.isFailAlarm ==YES)
+//        return ;
     
     if(!self.mute)
         //[[AppDelegate getAudioPlayer ] play ];
@@ -360,7 +360,7 @@
     }
     
     
-    self.isFailAlarm =YES;
+   // self.isFailAlarm =YES;
     
     
     
@@ -379,12 +379,14 @@
     self.isFailAlarm = NO;
 }
 
-#define OUTPUT_RANGE_ALARM_COUNT (10)
+#define OUTPUT_RANGE_ALARM_COUNT (1000)
 -(void)startOutrangeAlarm{
     if(!self.mute)
         //[[AppDelegate getAudioPlayer ] play ];
         
         [[AppDelegate getSystemAudioPlayer ] startById:self.ringtone repeat:OUTPUT_RANGE_ALARM_COUNT ];
+    
+       // [[AppDelegate getSystemAudioPlayer ] startById:self.ringtone ];
     
     
     

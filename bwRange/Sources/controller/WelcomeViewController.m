@@ -40,8 +40,8 @@
     //}
     
     
-    [[AppDelegate getSystemAudioPlayer ] initRingtoneList:[AppDelegate getManager].nRingtones];
     
+    [[AppDelegate getSystemAudioPlayer ] initRingtoneList:[AppDelegate getManager].nRingtones];
     
 }
 

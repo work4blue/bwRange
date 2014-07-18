@@ -16,6 +16,8 @@
 @property(nonatomic) int mPlaySoundCount;
 @property(nonatomic) int mPlayVibrateCount;
 
+@property(nonatomic,strong) NSMutableArray *ringTongs;
+
 @end
 
 
@@ -105,9 +107,18 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     if(_mPlaySoundCount >0)
         return NO;
     
-    NSNumber *id = [ _soundObjects objectAtIndex:index];
-    _mSoundId = (SystemSoundID)[id integerValue];
     
+    DLog(@"startById: index %d,repeat %d",index,repeat);
+    
+//    NSNumber *id = [ _soundObjects objectAtIndex:index];
+//    _mSoundId = (SystemSoundID)[id integerValue];
+    
+   // _mSoundId = 1005;
+    
+    //自定义声音只能使用一次，所以每次重建
+    _mSoundId = [self createSound:index];
+    
+    _mPlaySoundCount = repeat;
     
     AudioServicesAddSystemSoundCompletion (_mSoundId, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
     
@@ -115,7 +126,7 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     AudioServicesPlayAlertSound (_mSoundId);
     
     
-    _mPlaySoundCount = repeat;
+    
     
     return YES;
 
@@ -125,11 +136,12 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
 
 -(void)stop{
     
-    if(self.mPlaySoundCount > 0 )
+    //if(self.mPlaySoundCount > 0 )
        AudioServicesRemoveSystemSoundCompletion (_mSoundId);
     
     AudioServicesDisposeSystemSoundID(_mSoundId);
     
+    _mSoundId = 0;
     _mPlaySoundCount = 0;
 }
 
@@ -142,12 +154,14 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     if(self.mPlayVibrateCount > 0)
         return ;
     
+     _mPlayVibrateCount = repeat;
+    
     AudioServicesAddSystemSoundCompletion (kSystemSoundID_Vibrate, NULL, NULL,playAudioCompletionCallback,(__bridge void*)self);
     
     AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     
     
-    _mPlayVibrateCount = repeat;
+   
 }
 
 -(void)stopVibrate{
@@ -198,7 +212,21 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
     
 }
 
+-(SystemSoundID)createSound:(int)index{
+    
+     NSDictionary *tone =  [self.ringTongs objectAtIndex:index ];
+     NSString * fileName = [ tone objectForKey:@"RINGTONE"];
+     SystemSoundID soundId = [ SystemAudioPlayer createSystemAudioObject:fileName ];
+    
+    return soundId;
+    
+}
+
 -(void)initRingtoneList:(NSMutableArray *)array{
+    self.ringTongs = array;
+}
+
+-(void)initRingtoneListOld:(NSMutableArray *)array{
     
     [self clearRingtoneList];
     
@@ -211,7 +239,7 @@ static void playAudioCompletionCallback (SystemSoundID  mySSID, void* myself){
         
        // AudioServicesPlayAlertSound (soundId);
         
-        NSLog(@"ringtine file %@ ",fileName);
+        NSLog(@"ringtine file %@ %d",fileName,soundId);
         [ _soundObjects addObject:[ NSNumber numberWithInt:soundId] ];
         
         
