@@ -108,19 +108,19 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    static NSString *mapId = @"map";
-    
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)mapId];
-    
-   
-    
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    static NSString *mapId = @"map";
+//    
+//    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)mapId];
+//    
+//   
+//    
+//    return cell;
+//}
 
 
 /*
