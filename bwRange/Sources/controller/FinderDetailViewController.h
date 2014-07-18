@@ -16,6 +16,8 @@
 @property (nonatomic, strong) BleDevice * bleDevice;
 @property (nonatomic, strong) BleFinder * bleFinder;
 
+@property (nonatomic, strong) CBCentralManager *bleManager;
+
 
 @property (strong, nonatomic) NSArray * typeOptions;
 @property (strong, nonatomic) NSArray * distanceOptions;

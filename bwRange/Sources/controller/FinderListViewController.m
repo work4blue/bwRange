@@ -97,7 +97,7 @@
     [self initObserver];
     
     
-    
+    [AppDelegate sharedInstance].finderListView = self;
     
 }
 
@@ -691,13 +691,27 @@
     
     NSLog(@"didDisconnectPeripheral %@",peripheral);
     
+    
+    
     [finder didDisconnect];
     
-   
-    
+    if(finder.isDeleting){
+        
+        BW_INFO_LOG(@"正在删除 %@",finder);
+       
+        
+        [[ AppDelegate getManager] removeFinder:finder ];
+        
+        [ self refreshUI];
+        
+       
+        
+    }
+    else {
     NSLog(@"Did disconnect peripheral, %@ with error %@. Trying to reconnect...", [peripheral name], error);
     
     [self connectPeripheral:peripheral];
+    }
 }
 //连接外设失败
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -886,7 +900,7 @@
         
         FinderStatusViewController *destViewController = segue.destinationViewController;
         
-        
+        destViewController.bleManager = self.bleManager;
         destViewController.bleFinder = finder;
     }
 }
@@ -1017,7 +1031,8 @@
         if(per!=nil){
             [ per setDelegate:self];
             
-         [self.bleManager cancelPeripheralConnection:per];
+         //[self.bleManager cancelPeripheralConnection:per];
+            [finder disconnect:self.bleManager];
             
             DLog(@"Disconnect device %@!!!",per);
             

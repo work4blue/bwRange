@@ -13,6 +13,7 @@
 @interface FinderStatusViewController : UITableViewController
 
 @property (nonatomic, strong) BleFinder * bleFinder;
+@property (nonatomic, strong) CBCentralManager *bleManager;
 
 -(IBAction)alarmClick:(id)sender;
 -(IBAction)rangeClick:(id)sender;

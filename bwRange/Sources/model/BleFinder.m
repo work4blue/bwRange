@@ -44,7 +44,7 @@
         self.vibrate = YES;
         self.ringtone = 0;
        
-        
+        self.isDeleting = NO;
        
         
         [self reset];
@@ -466,10 +466,19 @@
 
 - (BOOL) isConnected
 {
+    CBPeripheral  * per = [self getPeripheral];
+    if(per == nil)
+        return NO;
+    
+    if([per isConnected])
+        return YES;
+    
+    return NO;
+    
     // If we are initialized, not disconnected and not link lost, we are connected
-    return self.state != PROXIMITY_TAG_STATE_UNINITIALIZED &&
-    self.state != PROXIMITY_TAG_STATE_DISCONNECTED &&
-    self.state != PROXIMITY_TAG_STATE_LINK_LOST;
+//    return self.state != PROXIMITY_TAG_STATE_UNINITIALIZED &&
+//    self.state != PROXIMITY_TAG_STATE_DISCONNECTED &&
+//    self.state != PROXIMITY_TAG_STATE_LINK_LOST;
 }
 
 - (BOOL) isBonded
@@ -613,6 +622,10 @@
 }
 
 -(void)didDisconnect{
+    
+    if(self.isDeleting)
+        return ;
+    
      [ self setState:PROXIMITY_TAG_STATE_DISCONNECTED ];
     
     //[self setPeripheral:nil];
@@ -662,6 +675,19 @@
     }
     
     [centralManager cancelPeripheralConnection:peripheral];
+}
+
+-(void)disconnect:(CBCentralManager *)centralManager{
+    [BleFinder cleanup:centralManager peripheral:[self getPeripheral] ];
+}
+
+-(BOOL)connect:(CBCentralManager *)centralManager{
+    
+     NSDictionary* connectOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey];
+    
+     [ centralManager connectPeripheral:[self getPeripheral] options:connectOptions ];
+    
+    return YES;
 }
 
 

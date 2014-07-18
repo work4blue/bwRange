@@ -8,8 +8,12 @@
 
 #import "FinderStatusViewController.h"
 #import "FinderDetailViewController.h"
+#import "FinderListViewController.h"
+#import "AppDelegate.h"
 
 #import "LogViewController.h"
+
+#import "UIView+Toast.h"
 
 @interface FinderStatusViewController ()
 
@@ -61,27 +65,110 @@
         
         FinderDetailViewController *destViewController = segue.destinationViewController;
         
-        
+        destViewController.bleManager = self.bleManager;
         [ destViewController setFinder:self.bleFinder ];
     }
 }
 
--(IBAction)alarmClick:(id)sender{
-    
-    BW_INFO_LOG(@"报警 %@,%@",[ self.bleFinder getName ],[self.bleFinder UUID ]);
-    UIButton * checkbox = (UIButton *)sender;
-    if(checkbox.tag == 0){
-        //[checkbox setSelected:YES];
-        checkbox.tag = 1;
-        [ self.bleFinder trigeFinderAlert:YES ];
-    }
-    else {
-        //[checkbox setSelected:NO];
-        checkbox.tag = 0;
-        [ self.bleFinder trigeFinderAlert:NO ];
-    }
+
+-(void) refreshUI{
     
 }
+
+-(void) showMessage:(NSString *)title {
+    
+    //    if(finder.mute ==YES){
+    //        return;
+    //    }
+    //  NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ finder getName ],@"抱警."];
+    
+    
+    [ self.view makeToast:title
+                 duration:3.0
+                 position:@"bottom"
+                    image:[UIImage imageNamed:@"leash_default_icon_bg"]];
+}
+
+-(IBAction)alarmClick:(id)sender{
+    
+    
+     FinderListViewController * finderListView = (FinderListViewController*)[AppDelegate sharedInstance].finderListView ;
+    
+    
+    if ([[AppDelegate getManager] isDemoMode ])
+    {
+        
+        NSString * title = [ NSString stringWithFormat:@"%@%@%@", @"bwRange 标签 ",[ self.bleFinder getName ],@"发出哔的声音."];
+        
+        
+        [self showMessage:title];
+        
+        return ;
+    }
+   
+        
+        CBPeripheral * perpheral = [self.bleFinder getPeripheral ];
+        
+        DLog(@"AlarmClicked %@",perpheral);
+        
+        UIButton * checkbox = (UIButton *)sender;
+        
+        if(perpheral == nil){
+            //设备为时空打开扫描，
+            if(checkbox.tag == 0){
+                
+                [ self showMessage:[ NSString stringWithFormat:@"%@设备未配对,请同时长按设备按键进行",[ self.bleFinder getName ] ]];
+                BW_INFO_LOG(@"正在查找配对 %@,%@",[ finder getName ],[self.bleFinder UUID ]);
+                
+                [ finderListView scanBleFinder ];
+            }
+            else {
+                [ finderListView stopScan ];
+            }
+            
+            if(checkbox.tag == 0){
+                [checkbox setSelected:YES];
+                checkbox.tag = 1;
+                //  [ finder trigeFinderAlert:YES ];
+            }
+            else {
+                [checkbox setSelected:NO];
+                checkbox.tag = 0;
+                //  [ finder trigeFinderAlert:NO ];
+            }
+            
+        }
+        else if(!self.bleFinder.isConnected){
+            [ self showMessage:[ NSString stringWithFormat:@"正在联接%@设备",[ self.bleFinder getName ] ]];
+            [ self.bleFinder connect:self.bleManager];
+        }
+        else {
+            BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[self.bleFinder UUID ]);
+            if(checkbox.tag == 0)
+                [ self.bleFinder trigeFinderAlert:YES ];
+            else
+                [ self.bleFinder trigeFinderAlert:NO ];
+            
+            
+            if(checkbox.tag == 0){
+                [checkbox setSelected:YES];
+                checkbox.tag = 1;
+                //  [ finder trigeFinderAlert:YES ];
+            }
+            else {
+                [checkbox setSelected:NO];
+                checkbox.tag = 0;
+                //  [ finder trigeFinderAlert:NO ];
+            }
+        }
+        
+        
+        [self refreshUI];
+    
+}
+    
+    
+    
 -(IBAction)rangeClick:(id)sender{
     
     UISwitch *switchButton = (UISwitch*)sender;

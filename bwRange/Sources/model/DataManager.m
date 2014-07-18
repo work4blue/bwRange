@@ -165,6 +165,8 @@
     if([self isDemoMode])
         return NO;
     
+     [ self stopRangeMonitoring ];
+    
     NSLog(@"removeFinder befor %@",self.nBleFinders);
     
     [self.nBleFinders removeObject:finder];
@@ -179,6 +181,8 @@
         [self loadFinders ];
         
     }
+    
+     [ self startRangeMonitoring ];
     
     self.isModify = YES;
     return YES;

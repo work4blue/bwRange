@@ -91,6 +91,8 @@ typedef enum {
 @property (nonatomic) BOOL mute     ; //是否静音
 @property (nonatomic) int ringtone  ;
 
+@property (nonatomic) int isDeleting  ; //正在删除中，一般是用户发出删除指令，在等待设备中断联接的中间状态
+
 @property (nonatomic) ProximityTagState state;
 
 //远端警告通知
@@ -198,6 +200,11 @@ typedef enum {
 -(void)didConnect:(CBPeripheral *)peripheral ;
 
 +(void)cleanup:(CBCentralManager *)centralManager peripheral:(CBPeripheral*)peripheral;
+
+
+-(void)disconnect:(CBCentralManager *)centralManager;
+
+-(BOOL)connect:(CBCentralManager *)centralManager;
 
 
 

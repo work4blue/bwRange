@@ -34,5 +34,5 @@
 
 -(int)showSerivces;
 
--(void)cleanup;
+
 @end

@@ -305,8 +305,20 @@
 #pragma mark - 对话框 响应
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
-        [[AppDelegate getManager]
-         removeFinder:self.bleFinder ];
+
+        
+        if(self.bleFinder.isConnected){
+            self.bleFinder.isDeleting = YES;
+            
+            [ self.bleFinder disconnect:self.bleManager ];
+        }
+        else {
+                [[AppDelegate getManager]
+                     removeFinder:self.bleFinder ];
+        }
+        
+       
+        
         
         
     

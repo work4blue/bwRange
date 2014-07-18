@@ -26,6 +26,7 @@
 
 
 @property (nonatomic) id  cameraView;
+@property (nonatomic) id  finderListView;
 
 //@property (strong, nonatomic) BleFinderService *finderService;
 
