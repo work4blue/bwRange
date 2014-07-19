@@ -475,7 +475,7 @@
         
         if(perpheral == nil){
              //设备为时空打开扫描，
-            if(checkbox.tag == 0){
+            if(finder.isKeyPress == NO){
            
                [ self showMessage:[ NSString stringWithFormat:@"%@设备未配对,请同时长按设备按键进行",[ finder getName ] ]];
                 BW_INFO_LOG(@"正在查找配对 %@,%@",[ finder getName ],[finder UUID ]);
@@ -486,40 +486,35 @@
                 [ self stopScan ];
             }
             
-            if(checkbox.tag == 0){
-                [checkbox setSelected:YES];
-                checkbox.tag = 1;
-                //  [ finder trigeFinderAlert:YES ];
-            }
-            else {
-                [checkbox setSelected:NO];
-                checkbox.tag = 0;
-                //  [ finder trigeFinderAlert:NO ];
-            }
+           
                
         }
         else if(![perpheral isConnected]){
               [ self showMessage:[ NSString stringWithFormat:@"正在联接%@设备",[ finder getName ] ]];
               [self connectPeripheral:perpheral];
+            
+            return ;
         }
         else {
              BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[finder UUID ]);
-             if(checkbox.tag == 0)
+             if(finder.isKeyPress ==NO)
                  [ finder trigeFinderAlert:YES ];
               else
                   [ finder trigeFinderAlert:NO ];
                  
             
-            if(checkbox.tag == 0){
-                [checkbox setSelected:YES];
-                checkbox.tag = 1;
-                //  [ finder trigeFinderAlert:YES ];
-            }
-            else {
-                [checkbox setSelected:NO];
-                checkbox.tag = 0;
-                //  [ finder trigeFinderAlert:NO ];
-            }
+         
+        }
+        
+        if(finder.isKeyPress ==NO){
+            [checkbox setSelected:YES];
+            finder.isKeyPress = YES;
+            //  [ finder trigeFinderAlert:YES ];
+        }
+        else {
+            [checkbox setSelected:NO];
+            finder.isKeyPress =NO;
+            //  [ finder trigeFinderAlert:NO ];
         }
         
      
@@ -573,10 +568,14 @@
     
     UIButton * button = (UIButton *)[cell viewWithTag:105];
     
+    [ button setSelected:finder.isKeyPress ];
+    
   //  [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     //加入长按处理
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(btnLongPress:)];
+    
+    
     
     
     

@@ -91,7 +91,9 @@ typedef enum {
 @property (nonatomic) BOOL mute     ; //是否静音
 @property (nonatomic) int ringtone  ;
 
-@property (nonatomic) int isDeleting  ; //正在删除中，一般是用户发出删除指令，在等待设备中断联接的中间状态
+@property (nonatomic) BOOL isDeleting  ; //正在删除中，一般是用户发出删除指令，在等待设备中断联接的中间状态
+@property (nonatomic) BOOL isDisconnecting  ; //正在断线，这时不需要重启
+@property (nonatomic) BOOL isKeyPress  ;   //远程按键状态
 
 @property (nonatomic) ProximityTagState state;
 

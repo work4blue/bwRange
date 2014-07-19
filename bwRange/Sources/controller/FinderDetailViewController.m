@@ -107,6 +107,10 @@
     [self.tableView reloadData ];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [[AppDelegate getSystemAudioPlayer] stop ];
+}
+
 
 
 - (void)didReceiveMemoryWarning

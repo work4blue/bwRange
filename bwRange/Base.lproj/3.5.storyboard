@@ -254,7 +254,7 @@
                                                 <segue destination="rmT-9T-fQV" kind="push" identifier="newDevice" id="L5K-zg-05v"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-ra-ck4">
+                                        <button opaque="NO" tag="105" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-ra-ck4">
                                             <rect key="frame" x="231" y="11" width="84" height="86"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="paging_btn_default">
@@ -329,7 +329,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="268"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proximity_range_green_f1_16-9" translatesAutoresizingMaskIntoConstraints="NO" id="OV0-yy-iCo">
+                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proximity_range_green_f1_16-9" translatesAutoresizingMaskIntoConstraints="NO" id="OV0-yy-iCo">
                                                     <rect key="frame" x="0.0" y="-5" width="320" height="273"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -349,11 +349,11 @@
                                                     <rect key="frame" x="47" y="190" width="226" height="119"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="objIcon_balloon" translatesAutoresizingMaskIntoConstraints="NO" id="QcM-vU-Ucl">
+                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="objIcon_balloon" translatesAutoresizingMaskIntoConstraints="NO" id="QcM-vU-Ucl">
                                                     <rect key="frame" x="112" y="197" width="96" height="78"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_bag" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-5X-UFi">
+                                                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_bag" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-5X-UFi">
                                                     <rect key="frame" x="138" y="203" width="44" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -367,7 +367,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zI8-VE-M1D">
+                                                <switch opaque="NO" tag="201" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zI8-VE-M1D">
                                                     <rect key="frame" x="20" y="13" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.56470588239999997" green="0.77647058820000003" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -382,7 +382,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-Zq-2ik">
+                                                <switch opaque="NO" tag="203" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bZA-Zq-2ik">
                                                     <rect key="frame" x="251" y="13" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.56470588239999997" green="0.77647058820000003" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -397,7 +397,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsf-QO-XZi">
+                                                <button opaque="NO" tag="202" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsf-QO-XZi">
                                                     <rect key="frame" x="116" y="7" width="89" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="paging_btn_default">
@@ -428,6 +428,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backImage" destination="OV0-yy-iCo" id="UFo-LM-uRm"/>
+                        <outlet property="balloonImage" destination="QcM-vU-Ucl" id="QgC-39-6wz"/>
+                        <outlet property="objectImage" destination="hqh-5X-UFi" id="lP3-fP-sr7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmy-CR-YvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

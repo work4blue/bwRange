@@ -15,6 +15,12 @@
 @property (nonatomic, strong) BleFinder * bleFinder;
 @property (nonatomic, strong) CBCentralManager *bleManager;
 
+@property(nonatomic, retain) IBOutlet UIImageView * balloonImage;
+@property(nonatomic, retain) IBOutlet UIImageView * objectImage;
+@property(nonatomic, retain) IBOutlet UIImageView * backImage;
+
+
+
 -(IBAction)alarmClick:(id)sender;
 -(IBAction)rangeClick:(id)sender;
 -(IBAction)muteClick:(id)sender;

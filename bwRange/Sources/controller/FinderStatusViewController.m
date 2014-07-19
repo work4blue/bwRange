@@ -115,7 +115,7 @@
         
         if(perpheral == nil){
             //设备为时空打开扫描，
-            if(checkbox.tag == 0){
+            if(self.bleFinder.isKeyPress ==NO){
                 
                 [ self showMessage:[ NSString stringWithFormat:@"%@设备未配对,请同时长按设备按键进行",[ self.bleFinder getName ] ]];
                 BW_INFO_LOG(@"正在查找配对 %@,%@",[ finder getName ],[self.bleFinder UUID ]);
@@ -126,43 +126,39 @@
                 [ finderListView stopScan ];
             }
             
-            if(checkbox.tag == 0){
-                [checkbox setSelected:YES];
-                checkbox.tag = 1;
-                //  [ finder trigeFinderAlert:YES ];
-            }
-            else {
-                [checkbox setSelected:NO];
-                checkbox.tag = 0;
-                //  [ finder trigeFinderAlert:NO ];
-            }
+         
             
         }
         else if(!self.bleFinder.isConnected){
             [ self showMessage:[ NSString stringWithFormat:@"正在联接%@设备",[ self.bleFinder getName ] ]];
             [ self.bleFinder connect:self.bleManager];
+            
+            return ;
         }
         else {
             BW_INFO_LOG(@"报警 %@,%@",[ finder getName ],[self.bleFinder UUID ]);
-            if(checkbox.tag == 0)
+            if(self.bleFinder.isKeyPress ==NO)
                 [ self.bleFinder trigeFinderAlert:YES ];
             else
                 [ self.bleFinder trigeFinderAlert:NO ];
             
             
-            if(checkbox.tag == 0){
-                [checkbox setSelected:YES];
-                checkbox.tag = 1;
-                //  [ finder trigeFinderAlert:YES ];
-            }
-            else {
-                [checkbox setSelected:NO];
-                checkbox.tag = 0;
-                //  [ finder trigeFinderAlert:NO ];
-            }
+          
         }
-        
-        
+    
+    if(self.bleFinder.isKeyPress ==NO){
+        [checkbox setSelected:YES];
+        self.bleFinder.isKeyPress = YES;
+        //  [ finder trigeFinderAlert:YES ];
+    }
+    else {
+        [checkbox setSelected:NO];
+        self.bleFinder.isKeyPress =NO;
+        //  [ finder trigeFinderAlert:NO ];
+    }
+
+    
+    
         [self refreshUI];
     
 }
@@ -192,6 +188,35 @@
         self.bleFinder.mute = NO;
     else
         self.bleFinder.mute = YES;
+}
+
+-(void)setKeyState:(BOOL)press atView:(UIView *)view{
+    //UIImageView *imageView = (UIImageView *)  [ view viewWithTag:201];
+    
+    UIButton * button = (UIButton *)[ view viewWithTag:202];
+    
+    if(press)
+        [button setSelected:YES];
+    else
+        [button setSelected:NO];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"FinderStatus Display Cell %d:%d",indexPath.section,indexPath.row);
+    
+    switch (indexPath.section) {
+            
+        case 0:
+            switch(indexPath.row ) {
+                case 1:
+                    [self setKeyState:self.bleFinder.isKeyPress  atView:cell ];
+                    break;
+            }
+        
+           
+      
+    }
 }
 
 

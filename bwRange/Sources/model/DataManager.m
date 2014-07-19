@@ -299,6 +299,7 @@
         BleFinder * device = (BleFinder *)[ self.nBleFinders objectAtIndex:i];
         
         NSLog(@"Reset %@",device);
+        [  device setPeripheral:nil ];
         [device reset];
     }
     

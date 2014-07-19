@@ -251,7 +251,7 @@
 -(void) reset{
     self.status = FINDER_STATUS_LINKLOSS;
     
-    [  self setPeripheral:nil ];
+    
     
     
     
@@ -265,7 +265,8 @@
     
     self.isFirstRemoteKey = YES; //用过过滤，上电后第一个按钮值，这是bug
     
-    
+    self.isDisconnecting = NO;
+    self.isKeyPress = NO;
 }
 
 -(void)setDevRSSI:(NSNumber *)rssi{
@@ -629,6 +630,10 @@
         return ;
     
      [ self setState:PROXIMITY_TAG_STATE_DISCONNECTED ];
+    
+   
+    
+    [self reset];
     
     //[self setPeripheral:nil];
     
