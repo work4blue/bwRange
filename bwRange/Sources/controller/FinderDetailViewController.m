@@ -292,6 +292,7 @@
 }
 
 
+
 -(void)setRingtone:(int)ringtone atView:(UIView *)view{
     UILabel *nameView = (UILabel *)  [ view viewWithTag:601];
     

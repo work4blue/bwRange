@@ -201,6 +201,27 @@
         [button setSelected:NO];
 }
 
+-(void)setFinderImage:(UIImage *)image atView:(UIView*)view {
+    UIImageView * ImageView = (UIImageView *)[view viewWithTag:103];
+    
+    
+    ImageView.image = image;
+}
+
+-(void)setMute:(BOOL)isVoice atView:(UIView*)view {
+    UISwitch *  switchBtn = (UISwitch *)[view viewWithTag:201];
+    
+    switchBtn.on = !isVoice;
+   
+}
+
+-(void)setRange:(int)range atView:(UIView*)view {
+    UISwitch *  switchBtn = (UISwitch *)[view viewWithTag:203];
+    
+    switchBtn.on = (range == FINDER_RANGE_FAR);
+    
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"FinderStatus Display Cell %d:%d",indexPath.section,indexPath.row);
@@ -209,8 +230,13 @@
             
         case 0:
             switch(indexPath.row ) {
+                case 0:
+                     [self setFinderImage:[self.bleFinder getImage] atView:cell];
+                    break;
                 case 1:
                     [self setKeyState:self.bleFinder.isKeyPress  atView:cell ];
+                    [self setMute:self.bleFinder.mute atView:cell];
+                    [self setRange:self.bleFinder.range atView:cell];
                     break;
             }
         

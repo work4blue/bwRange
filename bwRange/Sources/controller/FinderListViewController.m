@@ -320,7 +320,7 @@
 
 
 //静音开关，目前只把当成一个开关
--(IBAction)connectSwitchAction:(id)sender {
+-(IBAction)muteSwitchAction:(id)sender {
     UISwitch *switchButton = (UISwitch*)sender;
     BOOL isButtonOn = [switchButton isOn];
     
@@ -530,6 +530,18 @@
     }
 }
 
+-(void)setMute:(BOOL)isVoice atView:(UIView *)view{
+    UISwitch * muteSwitch = (UISwitch *)[view viewWithTag:103];
+    
+    muteSwitch.on = !isVoice;
+    
+    UIImageView * image = (UIImageView *)[ view viewWithTag:106 ];
+    
+    
+    
+    [ image setHidden:!isVoice ];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -582,8 +594,9 @@
     longPress.minimumPressDuration = 0.5; //定义按的时间
      [button addGestureRecognizer:longPress];
     
-    UISwitch * connectSwitch = (UISwitch *)[cell viewWithTag:103];
-     [connectSwitch addTarget:self action:@selector(connectSwitchAction:) forControlEvents:UIControlEventValueChanged];
+    [self setMute:finder.mute atView:cell];
+    
+    // [muteSwitch addTarget:self action:@selector(muteSwitchAction:) forControlEvents:UIControlEventValueChanged];
     
     
     return cell;
@@ -707,9 +720,12 @@
         
     }
     else {
-    NSLog(@"Did disconnect peripheral, %@ with error %@. Trying to reconnect...", [peripheral name], error);
     
-    [self connectPeripheral:peripheral];
+    
+        if(!finder.isDisconnecting){
+            NSLog(@"Did disconnect peripheral, %@ with error %@. Trying to reconnect...", [peripheral name], error);
+          [self connectPeripheral:peripheral];
+        }
     }
 }
 //连接外设失败
@@ -1030,6 +1046,7 @@
         if(per!=nil){
             [ per setDelegate:self];
             
+            finder.isDisconnecting = YES;
          //[self.bleManager cancelPeripheralConnection:per];
             [finder disconnect:self.bleManager];
             

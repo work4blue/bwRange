@@ -35,6 +35,7 @@ UIAlertViewDelegate>
 -(IBAction) refreshClicked:(id)sender;
 -(IBAction) disconnectClicked:(id)sender;
 
+-(IBAction)muteSwitchAction:(id)sender;
 -(void)scanBleFinder;
 -(void)stopScan;
 

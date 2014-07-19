@@ -649,6 +649,8 @@
 -(void)didConnect:(CBPeripheral *)peripheral {
     [self setState:PROXIMITY_TAG_STATE_BONDING];
     
+    self.isDisconnecting = NO;
+    
     
     if(self.isFailAlarm)
         [self stopLocalAlarm];
